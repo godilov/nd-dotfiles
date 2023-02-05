@@ -1,0 +1,9 @@
+nvidia
+nvidia-settings
+nvidia-utils
+libvdpau
+lib32-nvidia-utils
+lib32-libvdpau
+cuda
+cuda-tools
+

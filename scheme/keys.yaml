@@ -1,0 +1,73 @@
+main:
+  keys:
+    h: Move left  | Decrease  | Close   |
+    j: Move down  | Decrease  | Close   | Move left
+    k: Move up    | Increase  | Open    | Move right
+    m: Move right | Increase  | Open    |
+
+  modifiers:
+    super: Window Manager modkey
+    shift: 
+    ctrl: 
+    alt: 
+
+awesome:
+  super:
+    h: Focus prev client (focus)
+    j: Focus prev screen (focus)
+    k: Focus next screen (focus)
+    l: Focus next client (focus)
+
+    n: Maximize client (toggle)
+    m: Minimize client (down)
+    ',': Minimize client (up)
+
+    q: Close client
+    Return: Run terminal
+    Space: Run process 
+    shift:
+      h: Move client within screen to prev
+      j: Move client to prev screen
+      k: Move client to next screen
+      l: Move client within screen to next
+      ctrl:
+        h: 
+        j: 
+        k: 
+        l: 
+    ctrl:
+      h:
+      j:
+      k:
+      l:
+    alt:
+      h: Focus prev tag
+      j: Move client to prev tag
+      k: Move client to next tag
+      l: Focus next tag
+
+nvim:
+  h: Left
+  j: Down
+  k: Up
+  l: Right
+  shift: 
+    h: Move window left
+    j: Move window down
+    k: Move window up
+    l: Move window right
+    ctrl:
+      h: Resize horizontal (-4)
+      j: Resize vertical (-4)
+      k: Resize vertical (+4)
+      l: Resize horizontal (+4)
+  ctrl: 
+    h: Focus left window
+    j: Focus down window 
+    k: Focus up window
+    l: Focus right window
+  alt: 
+    h: Focus prev tab
+    j: Close tab
+    k: Open tab
+    l: Focus next tab
