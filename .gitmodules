@@ -1,0 +1,6 @@
+[submodule "config/nvim"]
+	path = config/nvim
+	url = https://github.com/GermanOdilov/nd-dotfiles-nvim
+[submodule "config/awesome"]
+	path = config/awesome
+	url = https://github.com/GermanOdilov/nd-dotfiles-awesome
