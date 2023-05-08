@@ -18,6 +18,7 @@ nvme-cli
 cpupower
 hyperfine
 stress
+upower
 mtpfs
 
 lua
