@@ -50,6 +50,7 @@ aspnet-runtime
 nodejs
 npm
 docker
+docker-compose
 apache
 nginx-mainline
 
