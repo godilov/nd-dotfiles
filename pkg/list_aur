@@ -3,6 +3,7 @@ vimix-icon-theme
 vimix-cursors
 nerd-fonts-git
 nvim-packer-git
+ghcup-hs-bin
 glsl-language-server
 rm-improved
 scc
