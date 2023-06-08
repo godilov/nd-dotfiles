@@ -6,3 +6,9 @@
 	path = config/awesome
 	url = https://github.com/GermanOdilov/nd-dotfiles-awesome
     branch = main
+[submodule "ext/paru"]
+	path = ext/paru
+	url = https://github.com/Morganamilo/paru
+[submodule "ext/refind-theme"]
+	path = ext/refind-theme-regular
+	url = https://github.com/bobafetthotmail/refind-theme-regular
