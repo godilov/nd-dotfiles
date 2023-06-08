@@ -7,4 +7,5 @@ ghcup-hs-bin
 glsl-language-server
 rm-improved
 scc
+awesome-luajit
 ledger-live-bin
