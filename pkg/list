@@ -103,8 +103,9 @@ udisks2
 udiskie
 bandwhich
 
-firefox
-passff-host
+browserpass
+browserpass-chromium
+browserpass-firefox
 thunderbird
 telegram-desktop
 discord

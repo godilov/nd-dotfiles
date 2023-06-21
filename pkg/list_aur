@@ -6,6 +6,7 @@ nvim-packer-git
 ghcup-hs-bin
 glsl-language-server
 rm-improved
-scc
+scc-bin
 awesome-luajit
 ledger-live-bin
+brave-bin
