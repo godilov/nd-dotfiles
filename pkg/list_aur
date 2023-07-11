@@ -1,6 +1,3 @@
-vimix-gtk-themes
-vimix-icon-themes
-vimix-cursors
 nerd-fonts-git
 nvim-packer-git
 glsl-language-server
@@ -10,3 +7,16 @@ scc-bin
 brave-bin
 slack-desktop
 ledger-live-bin
+
+amberol
+eartag
+junction
+metadata-cleaner
+komikku
+mousai
+plots
+pika-backup
+apostrophe
+dialect
+emblem
+eyedropper
