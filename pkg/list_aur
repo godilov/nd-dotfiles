@@ -1,12 +1,12 @@
 vimix-gtk-themes
-vimix-icon-theme
+vimix-icon-themes
 vimix-cursors
 nerd-fonts-git
 nvim-packer-git
-ghcup-hs-bin
 glsl-language-server
+ghcup-hs-bin
 rm-improved
 scc-bin
-awesome-luajit
-ledger-live-bin
 brave-bin
+slack-desktop
+ledger-live-bin

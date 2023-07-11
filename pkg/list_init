@@ -1,7 +1,7 @@
-reflector
-refind
 amd-ucode
 intel-ucode
+reflector
+refind
 iwd
 dhcpcd
 neovim

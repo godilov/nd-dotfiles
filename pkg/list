@@ -31,8 +31,9 @@ lld
 gcc
 gdb
 ccls
-cmake
 ninja
+meson
+cmake
 boost
 base-devel
 vulkan-devel
@@ -63,6 +64,7 @@ bluez
 bluez-utils
 bluez-tools
 
+wayland
 xorg
 xorg-xinit
 xdg-utils
@@ -103,9 +105,8 @@ udisks2
 udiskie
 bandwhich
 
+firefox
 browserpass
-browserpass-chromium
-browserpass-firefox
 thunderbird
 telegram-desktop
 discord
@@ -115,3 +116,5 @@ blender
 gimp
 obs-studio
 qbittorrent
+retroarch
+yuzu

@@ -3,4 +3,6 @@ mesa
 mesa-utils
 mesa-vdpau
 libva-mesa-driver
+libva-utils
+vdpauinfo
 vulkan-radeon
