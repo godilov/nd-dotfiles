@@ -8,8 +8,14 @@ brave-bin
 slack-desktop
 ledger-live-bin
 
+decoder
+identity
+textpieces
 metadata-cleaner
+tube-converter
 pika-backup
+denaro
+tagger
 amberol
 eartag
 mousai
@@ -20,3 +26,5 @@ emblem
 apostrophe
 eyedropper
 dialect
+fontdownloader
+khronos
