@@ -8,8 +8,10 @@ bluez-utils
 bluez-tools
 
 wayland
+wl-clipboard
 gnome
 gnome-extra
+power-profiles-daemon
 
 zsh
 zsh-completions
