@@ -12,6 +12,7 @@ wl-clipboard
 gnome
 gnome-extra
 power-profiles-daemon
+gstreamer-vaapi
 
 zsh
 zsh-completions

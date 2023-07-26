@@ -12,6 +12,7 @@ blanket
 fragments
 
 firefox
+passff-host
 browserpass
 thunderbird
 telegram-desktop
