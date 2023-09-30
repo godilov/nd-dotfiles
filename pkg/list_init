@@ -3,6 +3,7 @@ intel-ucode
 reflector
 refind
 networkmanager
+networkmanager-openvpn
 neovim
 emacs
 git
@@ -19,3 +20,4 @@ tor
 i2pd
 man-db
 tealdeer
+exfatprogs
