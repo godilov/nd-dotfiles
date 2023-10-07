@@ -7,6 +7,7 @@ scc-bin
 brave-bin
 slack-desktop
 ledger-live-bin
+amdgpu_top-bin
 
 decoder
 identity
