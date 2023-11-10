@@ -21,3 +21,5 @@ gimp
 inkscape
 blender
 obs-studio
+transmission-cli
+transmission-gtk

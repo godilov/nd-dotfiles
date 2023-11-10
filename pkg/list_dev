@@ -11,6 +11,7 @@ ccls
 ninja
 meson
 cmake
+libuv
 boost
 base-devel
 vulkan-devel

@@ -1,5 +1,6 @@
 nerd-fonts-git
 nvim-packer-git
+compiledb
 glsl-language-server
 ghcup-hs-bin
 rm-improved
@@ -29,6 +30,7 @@ eyedropper
 dialect
 fontdownloader
 khronos
+extension-manager
 
 bibata-cursor-theme-bin
 
