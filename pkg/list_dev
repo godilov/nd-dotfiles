@@ -8,6 +8,8 @@ lld
 gcc
 gdb
 ccls
+grpc
+bear
 ninja
 meson
 cmake
@@ -21,6 +23,7 @@ fmt
 spdlog
 gtest
 uncrustify
+go
 rustup
 ghc
 dotnet-sdk
