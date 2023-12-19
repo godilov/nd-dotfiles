@@ -14,6 +14,7 @@ gnome-extra
 power-profiles-daemon
 gstreamer-vaapi
 
+tmux
 zsh
 zsh-completions
 noto-fonts-emoji
