@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git clone git@github.com:godilov/nd-dotfiles.git dotfiles
 
 cd dotfiles
@@ -17,9 +19,9 @@ mkdir -p ext/nd/res/ext/nd
 mkdir -p ext/nd/nvim/ext/nd
 mkdir -p ext/nd/awesome/ext/nd
 
-ln -s ext/nd/lib ext/nd/res/ext/nd/lib
-ln -s ext/nd/lib ext/nd/nvim/ext/nd/lib
-ln -s ext/nd/lib ext/nd/awesome/ext/nd/lib
+ln -s ../../../lib ext/nd/res/ext/nd/lib
+ln -s ../../../lib ext/nd/nvim/ext/nd/lib
+ln -s ../../../lib ext/nd/awesome/ext/nd/lib
 
-ln -s ext/nd/res ext/nd/nvim/ext/nd/res
-ln -s ext/nd/res ext/nd/awesome/ext/nd/res
+ln -s ../../../res ext/nd/nvim/ext/nd/res
+ln -s ../../../res ext/nd/awesome/ext/nd/res
