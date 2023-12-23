@@ -84,7 +84,7 @@ function install-awesome {
     fi
 }
 
-if [[ "$*" == *"--all"* ]]
+if [[ "$*" == *"all"* ]]
 then
     cat pkg/dev pkg/shell pkg/fonts pkg/apps > pkg/all
 
@@ -98,67 +98,67 @@ then
     install-awesome
 fi
 
-if [[ "$*" == *"--ext"* ]]
+if [[ "$*" == *"ext"* ]]
 then
     install-ext
 fi
 
-if [[ "$*" == *"--ext-nd"* ]]
+if [[ "$*" == *"ext-nd"* ]]
 then
     install-ext-nd
 fi
 
-if [[ "$*" == *"--dev"* ]]
+if [[ "$*" == *"dev"* ]]
 then
     install-pkg pkg/dev
 fi
 
-if [[ "$*" == *"--shell"* ]]
+if [[ "$*" == *"shell"* ]]
 then
     install-pkg pkg/shell
 fi
 
-if [[ "$*" == *"--fonts"* ]]
+if [[ "$*" == *"fonts"* ]]
 then
     install-pkg pkg/fonts
 fi
 
-if [[ "$*" == *"--apps"* ]]
+if [[ "$*" == *"apps"* ]]
 then
     install-pkg pkg/apps
 fi
 
-if [[ "$*" == *"--amd"* ]]
+if [[ "$*" == *"amd"* ]]
 then
     install-pkg pkg/v_amd
 fi
 
-if [[ "$*" == *"--nvidia"* ]]
+if [[ "$*" == *"nvidia"* ]]
 then
     install-pkg pkg/v_nvidia
 fi
 
-if [[ "$*" == *"--env"* ]]
+if [[ "$*" == *"env"* ]]
 then
     install-env
 fi
 
-if [[ "$*" == *"--nvim"* ]]
+if [[ "$*" == *"nvim"* ]]
 then
     install-nvim
 fi
 
-if [[ "$*" == *"--alacritty"* ]]
+if [[ "$*" == *"alacritty"* ]]
 then
     install-alacritty
 fi
 
-if [[ "$*" == *"--hypr"* ]]
+if [[ "$*" == *"hypr"* ]]
 then
     install-hypr
 fi
 
-if [[ "$*" == *"--awesome"* ]]
+if [[ "$*" == *"awesome"* ]]
 then
     install-awesome
 fi
