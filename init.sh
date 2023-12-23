@@ -3,7 +3,7 @@
 DIR=$(pwd)
 PATTERN="^[a-zA-Z0-9_-]+$"
 
-function install{
+function install {
     paru -S --needed $($1 | grep -E --color=never $PATTERN)
 }
 
