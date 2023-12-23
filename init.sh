@@ -38,10 +38,13 @@ function install-ext-nd {
     ln -s ../../../res ext/nd/awesome/ext/nd/res
 }
 
-function install-env {
-    rm -rf ~/.config/environment.d
+function install-config {
+    for config in "$@"
+    do
+        rm -rf ~/.config/$config
 
-    ln -sf $DIR/config/environment.d ~/.config/environment.d
+        ln -sf $DIR/config/$config ~/.config/$config
+    done
 }
 
 function install-nvim {
@@ -55,30 +58,6 @@ function install-nvim {
     fi
 }
 
-function install-starship {
-    rm -rf ~/.config/starship.toml
-
-    ln -sf $DIR/config/starship.toml ~/.config/starship.toml
-}
-
-function install-btop {
-    rm -rf ~/.config/btop
-
-    ln -sf $DIR/config/btop ~/.config/btop
-}
-
-function install-mpv {
-    rm -rf ~/.config/mpv
-
-    ln -sf $DIR/config/mpv ~/.config/mpv
-}
-
-function install-alacritty {
-    rm -rf ~/.config/alacritty
-
-    ln -sf $DIR/config/alacritty ~/.config/alacritty
-}
-
 function install-hypr {
     rm -rf ~/.config/hypr
     rm -rf ~/.config/waybar
@@ -90,7 +69,7 @@ function install-hypr {
 }
 
 function install-awesome {
-    if [[ -d ext/nd/nvim ]]
+    if [[ -d ext/nd/awesome ]]
     then
         rm -rf ~/.config/awesome
 
@@ -109,11 +88,15 @@ then
     install-ext-nd
 
     install-pkg pkg/all
-    install-env
     install-nvim
-    install-alacritty
     install-hypr
     install-awesome
+    
+    install-config alacritty
+    install-config btop
+    install-config mpv
+    install-config starship.toml
+    install-config environment.d
 fi
 
 if [[ "$*" == *"ext"* ]]
@@ -156,34 +139,9 @@ then
     install-pkg pkg/v_nvidia
 fi
 
-if [[ "$*" == *"env"* ]]
-then
-    install-env
-fi
-
-if [[ "$*" == *"starship"* ]]
-then
-    install-starship
-fi
-
-if [[ "$*" == *"btop"* ]]
-then
-    install-btop
-fi
-
-if [[ "$*" == *"mpv"* ]]
-then
-    install-mpv
-fi
-
 if [[ "$*" == *"nvim"* ]]
 then
     install-nvim
-fi
-
-if [[ "$*" == *"alacritty"* ]]
-then
-    install-alacritty
 fi
 
 if [[ "$*" == *"hypr"* ]]
@@ -194,4 +152,29 @@ fi
 if [[ "$*" == *"awesome"* ]]
 then
     install-awesome
+fi
+
+if [[ "$*" == *"alacritty"* ]]
+then
+    install-config alacritty
+fi
+
+if [[ "$*" == *"btop"* ]]
+then
+    install-config btop
+fi
+
+if [[ "$*" == *"mpv"* ]]
+then
+    install-config mpv
+fi
+
+if [[ "$*" == *"starship"* ]]
+then
+    install-config starship.toml
+fi
+
+if [[ "$*" == *"env"* ]]
+then
+    install-config environment.d
 fi
