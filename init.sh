@@ -1,84 +1,87 @@
 #!/bin/bash
 
 DIR=$(pwd)
-PATTERN="^[a-zA-Z0-9_-]+$"
 
 function install {
-    paru -S --needed $($1 | grep -E --color=never $PATTERN)
+    paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
-function install-file {
-    paru -S --needed $(cat $1 | grep -E --color=never $PATTERN)
-}
-
-if [[ "$*" == *"-c"* || "$*" == *"--clone"* ]]
+if [[ "$*" == *"--clone"* || "$*" == *"-c"* ]]
 then
     git clone git@github.com:godilov/nd-dotfiles.git dotfiles
 
     cd dotfiles
 fi
 
-rm -rf ext/*
-
 if [[ "$*" == *"--ext"* ]]
 then
+    rm -rf ext/paru
+    rm -rf ext/refind
+
     git clone git@github.com:Morganamilo/paru.git ext/paru
     git clone git@github.com:bobafetthotmail/refind-theme-regular.git ext/refind
 fi
 
-git clone git@github.com:godilov/nd-dotfiles-lib.git ext/nd/lib
-git clone git@github.com:godilov/nd-dotfiles-res.git ext/nd/res
-git clone git@github.com:godilov/nd-dotfiles-nvim.git ext/nd/nvim
-git clone git@github.com:godilov/nd-dotfiles-awesome.git ext/nd/awesome
+if [[ "$*" == *"--ext-nd"* ]]
+then
+    rm -rf ext/nd
 
-rm -rf ext/nd/res/ext/nd/*
-rm -rf ext/nd/nvim/ext/nd/*
-rm -rf ext/nd/awesome/ext/nd/*
+    git clone git@github.com:godilov/nd-dotfiles-lib.git ext/nd/lib
+    git clone git@github.com:godilov/nd-dotfiles-res.git ext/nd/res
+    git clone git@github.com:godilov/nd-dotfiles-nvim.git ext/nd/nvim
+    git clone git@github.com:godilov/nd-dotfiles-awesome.git ext/nd/awesome
 
-mkdir -p ext/nd/res/ext/nd
-mkdir -p ext/nd/nvim/ext/nd
-mkdir -p ext/nd/awesome/ext/nd
+    rm -rf ext/nd/res/ext/nd/*
+    rm -rf ext/nd/nvim/ext/nd/*
+    rm -rf ext/nd/awesome/ext/nd/*
 
-ln -s ../../../lib ext/nd/res/ext/nd/lib
-ln -s ../../../lib ext/nd/nvim/ext/nd/lib
-ln -s ../../../lib ext/nd/awesome/ext/nd/lib
+    mkdir -p ext/nd/res/ext/nd
+    mkdir -p ext/nd/nvim/ext/nd
+    mkdir -p ext/nd/awesome/ext/nd
 
-ln -s ../../../res ext/nd/nvim/ext/nd/res
-ln -s ../../../res ext/nd/awesome/ext/nd/res
+    ln -s ../../../lib ext/nd/res/ext/nd/lib
+    ln -s ../../../lib ext/nd/nvim/ext/nd/lib
+    ln -s ../../../lib ext/nd/awesome/ext/nd/lib
+
+    ln -s ../../../res ext/nd/nvim/ext/nd/res
+    ln -s ../../../res ext/nd/awesome/ext/nd/res
+fi
 
 if [[ "$*" == *"--all"* ]]
 then
-    install $(cat pkg/dev pkg/shell pkg/fonts pkg/apps)
+    cat pkg/dev pkg/shell pkg/fonts pkg/apps > pkg/all
+
+    install pkg/all
 fi
 
 if [[ "$*" == *"--dev"* ]]
 then
-    install-file pkg/dev
+    install pkg/dev
 fi
 
 if [[ "$*" == *"--shell"* ]]
 then
-    install-file pkg/shell
+    install pkg/shell
 fi
 
 if [[ "$*" == *"--fonts"* ]]
 then
-    install-file pkg/fonts
+    install pkg/fonts
 fi
 
 if [[ "$*" == *"--apps"* ]]
 then
-    install-file pkg/apps
+    install pkg/apps
 fi
 
 if [[ "$*" == *"--amd"* ]]
 then
-    install-file pkg/v_amd
+    install pkg/v_amd
 fi
 
 if [[ "$*" == *"--nvidia"* ]]
 then
-    install-file pkg/v_nvidia
+    install pkg/v_nvidia
 fi
 
 if [[ "$*" == *"--env"* ]]
@@ -107,7 +110,7 @@ then
     rm -rf ~/.config/hypr
     rm -rf ~/.config/waybar
 
-    install-file pkg/wm_hyprland
+    install pkg/wm_hyprland
 
     ln -sf $DIR/config/hypr ~/.config/hypr
     ln -sf $DIR/config/waybar ~/.config/waybar
@@ -117,9 +120,7 @@ if [[ "$*" == *"--awesome"* ]]
 then
     rm -rf ~/.config/awesome
 
-    install-file pkg/wm_awesome
+    install pkg/wm_awesome
 
     ln -sf $DIR/ext/nd/awesome ~/.config/awesome
 fi
-
-cd -
