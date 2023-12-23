@@ -81,6 +81,13 @@ then
     install-file pkg/v_nvidia
 fi
 
+if [[ "$*" == *"--env"* ]]
+then
+    rm -rf ~/.config/environment.d
+
+    ln -sf $DIR/config/environment.d ~/.config/environment.d
+fi
+
 if [[ "$*" == *"--nvim"* ]]
 then
     rm -rf ~/.config/nvim
