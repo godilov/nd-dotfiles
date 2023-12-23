@@ -2,28 +2,19 @@
 
 DIR=$(pwd)
 
-function install {
+function install-pkg {
     paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
-if [[ "$*" == *"--clone"* || "$*" == *"-c"* ]]
-then
-    git clone git@github.com:godilov/nd-dotfiles.git dotfiles
-
-    cd dotfiles
-fi
-
-if [[ "$*" == *"--ext"* ]]
-then
+function install-ext {
     rm -rf ext/paru
     rm -rf ext/refind
 
     git clone git@github.com:Morganamilo/paru.git ext/paru
     git clone git@github.com:bobafetthotmail/refind-theme-regular.git ext/refind
-fi
+}
 
-if [[ "$*" == *"--ext-nd"* ]]
-then
+function install-ext-nd {
     rm -rf ext/nd
 
     git clone git@github.com:godilov/nd-dotfiles-lib.git ext/nd/lib
@@ -45,82 +36,136 @@ then
 
     ln -s ../../../res ext/nd/nvim/ext/nd/res
     ln -s ../../../res ext/nd/awesome/ext/nd/res
+}
+
+function install-env {
+    rm -rf ~/.config/environment.d
+
+    ln -sf $DIR/config/environment.d ~/.config/environment.d
+}
+
+function install-nvim {
+    if [[ -d ext/nd/nvim ]]
+    then
+        rm -rf ~/.config/nvim
+
+        ln -sf $DIR/ext/nd/nvim ~/.config/nvim
+    else
+        install-ext-nd
+    fi
+}
+
+function install-alacritty {
+    rm -rf ~/.config/alacritty
+
+    ln -sf $DIR/config/alacritty ~/.config/alacritty
+}
+
+function install-hypr {
+    rm -rf ~/.config/hypr
+    rm -rf ~/.config/waybar
+
+    install-pkg pkg/wm_hyprland
+
+    ln -sf $DIR/config/hypr ~/.config/hypr
+    ln -sf $DIR/config/waybar ~/.config/waybar
+}
+
+function install-awesome {
+    if [[ -d ext/nd/nvim ]]
+    then
+        rm -rf ~/.config/awesome
+
+        install-pkg pkg/wm_awesome
+
+        ln -sf $DIR/ext/nd/awesome ~/.config/awesome
+    else
+        install-ext-nd
+    fi
+}
+
+if [[ "$*" == *"--clone"* || "$*" == *"-c"* ]]
+then
+    git clone git@github.com:godilov/nd-dotfiles.git dotfiles
+
+    cd dotfiles
 fi
 
 if [[ "$*" == *"--all"* ]]
 then
     cat pkg/dev pkg/shell pkg/fonts pkg/apps > pkg/all
 
-    install pkg/all
+    install-ext-nd
+
+    install-pkg pkg/all
+    install-env
+    install-nvim
+    install-alacritty
+    install-hypr
+    install-awesome
+fi
+
+if [[ "$*" == *"--ext"* ]]
+then
+    install-ext
+fi
+
+if [[ "$*" == *"--ext-nd"* ]]
+then
+    install-ext-nd
 fi
 
 if [[ "$*" == *"--dev"* ]]
 then
-    install pkg/dev
+    install-pkg pkg/dev
 fi
 
 if [[ "$*" == *"--shell"* ]]
 then
-    install pkg/shell
+    install-pkg pkg/shell
 fi
 
 if [[ "$*" == *"--fonts"* ]]
 then
-    install pkg/fonts
+    install-pkg pkg/fonts
 fi
 
 if [[ "$*" == *"--apps"* ]]
 then
-    install pkg/apps
+    install-pkg pkg/apps
 fi
 
 if [[ "$*" == *"--amd"* ]]
 then
-    install pkg/v_amd
+    install-pkg pkg/v_amd
 fi
 
 if [[ "$*" == *"--nvidia"* ]]
 then
-    install pkg/v_nvidia
+    install-pkg pkg/v_nvidia
 fi
 
 if [[ "$*" == *"--env"* ]]
 then
-    rm -rf ~/.config/environment.d
-
-    ln -sf $DIR/config/environment.d ~/.config/environment.d
+    install-env
 fi
 
 if [[ "$*" == *"--nvim"* ]]
 then
-    rm -rf ~/.config/nvim
-
-    ln -sf $DIR/ext/nd/nvim ~/.config/nvim
+    install-nvim
 fi
 
 if [[ "$*" == *"--alacritty"* ]]
 then
-    rm -rf ~/.config/alacritty
-
-    ln -sf $DIR/config/alacritty ~/.config/alacritty
+    install-alacritty
 fi
 
 if [[ "$*" == *"--hypr"* ]]
 then
-    rm -rf ~/.config/hypr
-    rm -rf ~/.config/waybar
-
-    install pkg/wm_hyprland
-
-    ln -sf $DIR/config/hypr ~/.config/hypr
-    ln -sf $DIR/config/waybar ~/.config/waybar
+    install-hypr
 fi
 
 if [[ "$*" == *"--awesome"* ]]
 then
-    rm -rf ~/.config/awesome
-
-    install pkg/wm_awesome
-
-    ln -sf $DIR/ext/nd/awesome ~/.config/awesome
+    install-awesome
 fi
