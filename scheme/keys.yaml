@@ -18,13 +18,11 @@ awesome:
     k: Focus next screen (focus)
     l: Focus next client (focus)
 
-    n: Maximize client (toggle)
-    m: Minimize client (down)
-    ',': Minimize client (up)
-
     q: Close client
-    Return: Run terminal
-    Space: Run process 
+    w: Maximize client
+    e: Minimize client
+    return: Run terminal
+    space: Run process 
     shift:
       h: Move client within screen to prev
       j: Move client to prev screen
