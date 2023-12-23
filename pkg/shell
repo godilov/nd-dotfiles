@@ -9,22 +9,30 @@ bluez-tools
 
 wayland
 wl-clipboard
-gnome
-gnome-extra
-power-profiles-daemon
 gstreamer-vaapi
 
 tmux
 zsh
 zsh-completions
-noto-fonts-emoji
-ttf-fira-code
-ttc-iosevka
 alacritty
-wezterm
 starship
 neofetch
-nvme-cli
-vkmark
-btop
 mpv
+
+vkmark
+stress
+hyperfine
+ripgrep
+tree
+btop
+bat
+exa
+
+nvme-cli
+brightnessctl
+
+# AUR
+
+nvim-packer-git
+rm-improved
+amdgpu_top-bin

@@ -35,3 +35,10 @@ docker
 docker-compose
 apache
 nginx-mainline
+
+# AUR
+
+compiledb
+glsl-language-server
+ghcup-hs-bin
+scc-bin

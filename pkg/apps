@@ -1,22 +1,13 @@
-stress
-hyperfine
-ripgrep
-tree
-bat
-exa
-
-drawing
-pitivi
-foliate
-blanket
-
 firefox
 passff-host
 browserpass
-thunderbird
 telegram-desktop
 discord
 gimp
 inkscape
 blender
 obs-studio
+
+# AUR
+
+brave-bin

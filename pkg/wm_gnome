@@ -1,14 +1,13 @@
-nerd-fonts-git
-nvim-packer-git
-compiledb
-glsl-language-server
-ghcup-hs-bin
-rm-improved
-scc-bin
-brave-bin
-slack-desktop
-ledger-live-bin
-amdgpu_top-bin
+gnome
+gnome-extra
+power-profiles-daemon
+
+drawing
+pitivi
+foliate
+blanket
+
+# AUR
 
 decoder
 identity
@@ -30,7 +29,5 @@ dialect
 fontdownloader
 khronos
 extension-manager
-
-bibata-cursor-theme-bin
 
 gnome-pass-search-provider-git
