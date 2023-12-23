@@ -55,6 +55,24 @@ function install-nvim {
     fi
 }
 
+function install-starship {
+    rm -rf ~/.config/starship.toml
+
+    ln -sf $DIR/config/starship.toml ~/.config/starship.toml
+}
+
+function install-btop {
+    rm -rf ~/.config/btop
+
+    ln -sf $DIR/config/btop ~/.config/btop
+}
+
+function install-mpv {
+    rm -rf ~/.config/mpv
+
+    ln -sf $DIR/config/mpv ~/.config/mpv
+}
+
 function install-alacritty {
     rm -rf ~/.config/alacritty
 
@@ -141,6 +159,21 @@ fi
 if [[ "$*" == *"env"* ]]
 then
     install-env
+fi
+
+if [[ "$*" == *"starship"* ]]
+then
+    install-starship
+fi
+
+if [[ "$*" == *"btop"* ]]
+then
+    install-btop
+fi
+
+if [[ "$*" == *"mpv"* ]]
+then
+    install-mpv
 fi
 
 if [[ "$*" == *"nvim"* ]]
