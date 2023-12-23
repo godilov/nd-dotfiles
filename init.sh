@@ -84,13 +84,6 @@ function install-awesome {
     fi
 }
 
-if [[ "$*" == *"--clone"* || "$*" == *"-c"* ]]
-then
-    git clone git@github.com:godilov/nd-dotfiles.git dotfiles
-
-    cd dotfiles
-fi
-
 if [[ "$*" == *"--all"* ]]
 then
     cat pkg/dev pkg/shell pkg/fonts pkg/apps > pkg/all
