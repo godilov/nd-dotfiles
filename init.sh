@@ -83,7 +83,7 @@ function install-awesome {
 
 if [[ "$*" == *"all"* ]]
 then
-    cat pkg/dev pkg/shell pkg/fonts pkg/apps > pkg/all
+    cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
 
     install-ext-nd
 
@@ -114,9 +114,9 @@ then
     install-pkg pkg/dev
 fi
 
-if [[ "$*" == *"shell"* ]]
+if [[ "$*" == *"cli"* ]]
 then
-    install-pkg pkg/shell
+    install-pkg pkg/cli
 fi
 
 if [[ "$*" == *"fonts"* ]]

@@ -1,3 +1,7 @@
+wayland
+wl-clipboard
+gstreamer-vaapi
+
 pipewire
 pipewire-alsa
 pipewire-pulse
@@ -6,10 +10,6 @@ wireplumber
 bluez
 bluez-utils
 bluez-tools
-
-wayland
-wl-clipboard
-gstreamer-vaapi
 
 tmux
 zsh
@@ -30,12 +30,16 @@ tree
 btop
 bat
 exa
+duf
 
+acpi
 nvme-cli
+cpupower
+upower
 brightnessctl
 
 # AUR
 
 nvim-packer-git
-rm-improved
 amdgpu_top-bin
+rm-improved
