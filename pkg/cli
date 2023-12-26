@@ -32,11 +32,12 @@ bat
 exa
 duf
 
+tlp
 acpi
 nvme-cli
+brightnessctl
 cpupower
 upower
-brightnessctl
 
 # AUR
 
