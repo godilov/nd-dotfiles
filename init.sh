@@ -48,14 +48,11 @@ function install-config {
 }
 
 function install-nvim {
-    if [[ -d ext/nd/nvim ]]
-    then
-        rm -rf ~/.config/nvim
+    [[ -d ext/nd/nvim ]] || install-ext-nd
 
-        ln -sf $DIR/ext/nd/nvim ~/.config/nvim
-    else
-        install-ext-nd
-    fi
+    rm -rf ~/.config/nvim
+
+    ln -sf $DIR/ext/nd/nvim ~/.config/nvim
 }
 
 function install-hypr {
@@ -69,112 +66,64 @@ function install-hypr {
 }
 
 function install-awesome {
-    if [[ -d ext/nd/awesome ]]
-    then
-        rm -rf ~/.config/awesome
+    [[ -d ext/nd/awesome ]] || install-ext-nd
 
-        install-pkg pkg/wm_awesome
+    rm -rf ~/.config/awesome
 
-        ln -sf $DIR/ext/nd/awesome ~/.config/awesome
-    else
-        install-ext-nd
-    fi
+    install-pkg pkg/wm_awesome
+
+    ln -sf $DIR/ext/nd/awesome ~/.config/awesome
 }
 
-if [[ "$*" == *"all"* ]]
-then
-    cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
+for arg in "$@"
+do
+    case arg in
+        "all")
+            cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
 
-    install-ext-nd
+            install-ext
+            install-ext-nd
 
-    install-pkg pkg/all
-    install-nvim
-    install-hypr
-    install-awesome
-    
-    install-config alacritty
-    install-config btop
-    install-config mpv
-    install-config starship.toml
-    install-config environment.d
-fi
-
-if [[ "$*" == *"ext"* ]]
-then
-    install-ext
-fi
-
-if [[ "$*" == *"ext-nd"* ]]
-then
-    install-ext-nd
-fi
-
-if [[ "$*" == *"dev"* ]]
-then
-    install-pkg pkg/dev
-fi
-
-if [[ "$*" == *"cli"* ]]
-then
-    install-pkg pkg/cli
-fi
-
-if [[ "$*" == *"fonts"* ]]
-then
-    install-pkg pkg/fonts
-fi
-
-if [[ "$*" == *"apps"* ]]
-then
-    install-pkg pkg/apps
-fi
-
-if [[ "$*" == *"amd"* ]]
-then
-    install-pkg pkg/v_amd
-fi
-
-if [[ "$*" == *"nvidia"* ]]
-then
-    install-pkg pkg/v_nvidia
-fi
-
-if [[ "$*" == *"nvim"* ]]
-then
-    install-nvim
-fi
-
-if [[ "$*" == *"hypr"* ]]
-then
-    install-hypr
-fi
-
-if [[ "$*" == *"awesome"* ]]
-then
-    install-awesome
-fi
-
-if [[ "$*" == *"alacritty"* ]]
-then
-    install-config alacritty
-fi
-
-if [[ "$*" == *"btop"* ]]
-then
-    install-config btop
-fi
-
-if [[ "$*" == *"mpv"* ]]
-then
-    install-config mpv
-fi
-
-if [[ "$*" == *"starship"* ]]
-then
-    install-config starship.toml
-fi
-
-if [[ "$*" == *"env"* ]]
-then
-    install-config environment.d
-fi
+            install-pkg pkg/all
+            install-nvim
+            install-hypr
+            install-awesome
+            
+            install-config alacritty btop mpv starship.toml environment.d
+            ;;
+        "ext")
+            install-ext;;
+        "ext-nd")
+            install-ext-nd;;
+        "dev")
+            install-pkg pkg/dev;;
+        "cli")
+            install-pkg pkg/cli;;
+        "fonts")
+            install-pkg pkg/fonts;;
+        "apps")
+            install-pkg pkg/apps;;
+        "amd")
+            install-pkg pkg/v_amd;;
+        "nvidia")
+            install-pkg pkg/v_nvidia;;
+        "nvim")
+            install-nvim;;
+        "hypr")
+            install-hypr;;
+        "awesome")
+            install-awesome;;
+        "alacritty")
+            install-config alacritty;;
+        "btop")
+            install-config btop;;
+        "mpv")
+            install-config mpv;;
+        "starship")
+            install-config starship.toml;;
+        "env")
+            install-config environment.d;;
+        *)
+            echo No args;;
+    esac
+done
