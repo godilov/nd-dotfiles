@@ -38,6 +38,8 @@ nvme-cli
 brightnessctl
 cpupower
 upower
+udisks2
+udiskie
 
 # AUR
 
