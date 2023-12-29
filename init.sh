@@ -77,7 +77,7 @@ function install-awesome {
 
 for arg in "$@"
 do
-    case arg in
+    case $arg in
         "all")
             cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
 
@@ -90,6 +90,11 @@ do
             install-awesome
             
             install-config alacritty btop mpv starship.toml environment.d
+            ;;
+        "all-pkg")
+            cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
+
+            install-pkg pkg/all
             ;;
         "ext")
             install-ext;;
