@@ -1,0 +1,10 @@
+[user]
+	signingkey = godilov@skiff.com
+	email = godilov@skiff.com
+	name = German Odilov
+[commit]
+	gpgsign = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

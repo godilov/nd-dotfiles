@@ -47,6 +47,15 @@ function install-config {
     done
 }
 
+function install-config-home {
+    for config in "$@"
+    do
+        rm -rf ~/$config
+
+        ln -sf $DIR/config/$config ~/$config
+    done
+}
+
 function install-nvim {
     [[ -d ext/nd/nvim ]] || install-ext-nd
 
@@ -90,6 +99,7 @@ do
             install-awesome
             
             install-config alacritty btop mpv starship.toml environment.d
+            install-config-home .gitconfig
             ;;
         "all-pkg")
             cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
@@ -112,6 +122,8 @@ do
             install-pkg pkg/v_amd;;
         "nvidia")
             install-pkg pkg/v_nvidia;;
+        "git")
+            install-config-home .gitconfig;;
         "nvim")
             install-nvim;;
         "hypr")
