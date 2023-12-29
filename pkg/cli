@@ -12,6 +12,7 @@ bluez
 bluez-utils
 bluez-tools
 
+xplr
 tmux
 zsh
 zsh-completions
