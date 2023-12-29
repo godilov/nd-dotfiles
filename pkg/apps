@@ -2,7 +2,6 @@ firefox
 passff-host
 browserpass
 telegram-desktop
-discord
 gimp
 inkscape
 blender
@@ -11,3 +10,4 @@ obs-studio
 # AUR
 
 brave-bin
+webcord
