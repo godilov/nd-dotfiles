@@ -98,8 +98,8 @@ do
             install-hypr
             install-awesome
             
-            install-config alacritty bat btop mpv starship.toml environment.d retroarch
-            install-config-home .gitconfig
+            install-config alacritty bat btop mpv starship.toml xplr environment.d retroarch
+            install-config-home .gitconfig .tmux.conf
             ;;
         "all-pkg")
             cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
@@ -124,6 +124,8 @@ do
             install-pkg pkg/v_nvidia;;
         "git")
             install-config-home .gitconfig;;
+        "tmux")
+            install-config-home .tmux.conf;;
         "nvim")
             install-nvim;;
         "hypr")
