@@ -11,6 +11,7 @@ wireplumber
 bluez
 bluez-utils
 bluez-tools
+usbutils
 
 xplr
 tmux
@@ -49,3 +50,4 @@ udiskie
 nvim-packer-git
 amdgpu_top-bin
 rm-improved
+xpadneo-dkms-git
