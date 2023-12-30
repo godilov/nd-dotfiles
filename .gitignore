@@ -1,3 +1,6 @@
 .session
 ext
 pkg/all
+
+config/retroarch/*
+!config/retroarch/retroarch.cfg
