@@ -98,7 +98,7 @@ do
             install-hypr
             install-awesome
             
-            install-config alacritty btop mpv starship.toml environment.d retroarch
+            install-config alacritty bat btop mpv starship.toml environment.d retroarch
             install-config-home .gitconfig
             ;;
         "all-pkg")
@@ -132,6 +132,8 @@ do
             install-awesome;;
         "alacritty")
             install-config alacritty;;
+        "bat")
+            install-config bat;;
         "btop")
             install-config btop;;
         "mpv")
