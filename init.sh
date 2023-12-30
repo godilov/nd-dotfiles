@@ -140,6 +140,8 @@ do
             install-config mpv;;
         "starship")
             install-config starship.toml;;
+        "xplr")
+            install-config xplr;;
         "env")
             install-config environment.d;;
         "retroarch")
