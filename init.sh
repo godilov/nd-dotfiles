@@ -125,7 +125,10 @@ do
         "git")
             install-config-home .gitconfig;;
         "tmux")
-            install-config-home .tmux.conf;;
+            install-config-home .tmux.conf
+
+            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+            ;;
         "nvim")
             install-nvim;;
         "hypr")
