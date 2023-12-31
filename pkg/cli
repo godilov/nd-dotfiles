@@ -1,6 +1,7 @@
 wayland
 wayland-protocols
 wl-clipboard
+wev
 gstreamer-vaapi
 
 pipewire
