@@ -11,7 +11,7 @@ main:
     ctrl: 
     alt: 
 
-awesome:
+desktop:
   super:
     h: Focus prev client (focus)
     j: Focus prev screen (focus)
@@ -21,8 +21,10 @@ awesome:
     q: Close client
     w: Maximize client
     e: Minimize client
+
     return: Run terminal
     space: Run process 
+
     shift:
       h: Move client within screen to prev
       j: Move client to prev screen
@@ -39,10 +41,10 @@ awesome:
       k:
       l:
     alt:
-      h: Focus prev tag
-      j: Move client to prev tag
-      k: Move client to next tag
-      l: Focus next tag
+      h: Focus prev workspace
+      j: Move client to prev workspace
+      k: Move client to next workspace
+      l: Focus next workspace
 
 nvim:
   h: Left
