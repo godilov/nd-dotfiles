@@ -9,6 +9,7 @@ git
 sudo
 gnupg
 pass
+ssh
 wireguard-tools
 openvpn
 unzip
