@@ -40,6 +40,7 @@ duf
 glow
 
 tlp
+tlp-rdw
 acpi
 nvme-cli
 brightnessctl
