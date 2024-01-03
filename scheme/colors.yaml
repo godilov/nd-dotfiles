@@ -1,6 +1,6 @@
 main:
   foreground:
-    normal: #f2f2f2
+    normal: #ffffff
   background:
     normal: #0d0d0d
   black:
@@ -32,9 +32,9 @@ main:
     normal: #5ce6e6
     light: #99ffff
   white:
-    dark: #cccccc
-    normal: #d9d9d9
-    light: #e6e6e6
+    dark: #d9d9d9
+    normal: #e6e6e6
+    light: #f2f2f2
 
 awesome:
   active:
