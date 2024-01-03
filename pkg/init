@@ -9,9 +9,9 @@ git
 sudo
 gnupg
 pass
-ssh
-wireguard-tools
+openssh
 openvpn
+wireguard-tools
 unzip
 unrar
 zip
