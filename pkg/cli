@@ -2,6 +2,7 @@ wayland
 wayland-protocols
 wl-clipboard
 wev
+
 gstreamer-vaapi
 
 pipewire
@@ -46,6 +47,7 @@ cpupower
 upower
 udisks2
 udiskie
+pacman-contrib
 
 # AUR
 
