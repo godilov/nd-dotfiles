@@ -68,7 +68,7 @@ function install-hypr {
     rm -rf ~/.config/hypr
     rm -rf ~/.config/waybar
 
-    install-pkg pkg/wm_hyprland
+    install-pkg pkg/wm_shared pkg/wm_hyprland
 
     ln -sf $DIR/config/hypr ~/.config/hypr
     ln -sf $DIR/config/waybar ~/.config/waybar
@@ -79,7 +79,7 @@ function install-awesome {
 
     rm -rf ~/.config/awesome
 
-    install-pkg pkg/wm_awesome
+    install-pkg pkg/wm_shared pkg/wm_awesome
 
     ln -sf $DIR/ext/nd/awesome ~/.config/awesome
 }
@@ -87,24 +87,14 @@ function install-awesome {
 for arg in "$@"
 do
     case $arg in
-        "all")
-            cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
-
-            install-ext
-            install-ext-nd
-
-            install-pkg pkg/all
-            install-nvim
-            install-hypr
-            install-awesome
-            
-            install-config alacritty bat btop mpv starship.toml xplr environment.d retroarch
-            install-config-home .gitconfig .tmux.conf
-            ;;
         "all-pkg")
             cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
 
             install-pkg pkg/all
+            ;;
+        "all-cfg")
+            install-config alacritty bat btop mpv starship.toml xplr retroarch
+            install-config-home .profile .gitconfig .tmux.conf
             ;;
         "ext")
             install-ext;;
@@ -122,6 +112,8 @@ do
             install-pkg pkg/v_amd;;
         "nvidia")
             install-pkg pkg/v_nvidia;;
+        "env")
+            install-config-home .profile;;
         "git")
             install-config-home .gitconfig;;
         "tmux")
@@ -147,8 +139,6 @@ do
             install-config starship.toml;;
         "xplr")
             install-config xplr;;
-        "env")
-            install-config environment.d;;
         "retroarch")
             install-config retroarch;;
         *)
