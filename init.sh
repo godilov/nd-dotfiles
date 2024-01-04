@@ -89,6 +89,8 @@ function link-zsh {
     link-config $DIR_LOCAL .profile ~ .zprofile
 }
 
+mkdir -p ~/.config
+
 for arg in "$@"
 do
     case $arg in
