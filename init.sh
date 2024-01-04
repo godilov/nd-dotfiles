@@ -2,86 +2,91 @@
 
 DIR=$(pwd)
 
+DIR_EXT=$DIR/ext
+DIR_EXT_ND=$DIR_EXT/nd
+
+DIR_BOOT=$DIR/root/boot
+DIR_GLOBAL=$DIR/root/global
+DIR_LOCAL=$DIR/root/local
+DIR_CONFIG=$DIR_LOCAL/config
+
+function mv-safe {
+    if [[ -e $1/$2 ]]; then
+        mv $1/$2 $1/_$2.bak
+    fi
+}
+
 function install-pkg {
     paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
-function install-ext {
-    rm -rf ext/paru
-    rm -rf ext/refind
-
-    git clone git@github.com:Morganamilo/paru.git ext/paru
-    git clone git@github.com:bobafetthotmail/refind-theme-regular.git ext/refind
+function clone {
+    [[ -d $1 ]] || git clone $2 $1
 }
 
-function install-ext-nd {
-    rm -rf ext/nd
-
-    git clone git@github.com:godilov/nd-dotfiles-lib.git ext/nd/lib
-    git clone git@github.com:godilov/nd-dotfiles-res.git ext/nd/res
-    git clone git@github.com:godilov/nd-dotfiles-nvim.git ext/nd/nvim
-    git clone git@github.com:godilov/nd-dotfiles-awesome.git ext/nd/awesome
-
-    rm -rf ext/nd/res/ext/nd/*
-    rm -rf ext/nd/nvim/ext/nd/*
-    rm -rf ext/nd/awesome/ext/nd/*
-
-    mkdir -p ext/nd/res/ext/nd
-    mkdir -p ext/nd/nvim/ext/nd
-    mkdir -p ext/nd/awesome/ext/nd
-
-    ln -s ../../../lib ext/nd/res/ext/nd/lib
-    ln -s ../../../lib ext/nd/nvim/ext/nd/lib
-    ln -s ../../../lib ext/nd/awesome/ext/nd/lib
-
-    ln -s ../../../res ext/nd/nvim/ext/nd/res
-    ln -s ../../../res ext/nd/awesome/ext/nd/res
+function clone-ext {
+    clone ext/paru git@github.com:Morganamilo/paru.git
+    clone ext/refind git@github.com:bobafetthotmail/refind-theme-regular.git
+    clone ext/tpm git@github.com:tmux-plugins/tpm.git
 }
 
-function install-config {
+function clone-ext-nd {
+    clone ext/nd/lib git@github.com:godilov/nd-dotfiles-lib.git
+    clone ext/nd/res git@github.com:godilov/nd-dotfiles-res.git
+    clone ext/nd/nvim git@github.com:godilov/nd-dotfiles-nvim.git
+    clone ext/nd/awesome git@github.com:godilov/nd-dotfiles-awesome.git
+
+    [[ -d ext/nd/res/nd ]] || mkdir -p ext/nd/res/ext/nd
+    [[ -d ext/nd/nvim/nd ]] || mkdir -p ext/nd/nvim/ext/nd
+    [[ -d ext/nd/awesome/nd ]] || mkdir -p ext/nd/awesome/ext/nd
+
+    [[ -h ext/nd/res/ext/nd/lib ]] || ln -s ../../../lib ext/nd/res/ext/nd/lib
+    [[ -h ext/nd/nvim/ext/nd/lib ]] || ln -s ../../../lib ext/nd/nvim/ext/nd/lib
+    [[ -h ext/nd/awesome/ext/nd/lib ]] || ln -s ../../../lib ext/nd/awesome/ext/nd/lib
+
+    [[ -h ext/nd/nvim/ext/nd/res ]] || ln -s ../../../res ext/nd/nvim/ext/nd/res
+    [[ -h ext/nd/awesome/ext/nd/res ]] || ln -s ../../../res ext/nd/awesome/ext/nd/res
+}
+
+function link-config {
+    src=$1
+    srcf=$2
+    dest=$3
+    destf=$4
+
+    mv-safe $dest $destf
+
+    ln -sf $src/$srcf $dest/$destf
+}
+
+function link-config-arr {
+    src=$1
+    dest=$2
+
+    shift 2
+
     for config in "$@"
     do
-        rm -rf ~/.config/$config
+        mv-safe $dest $config
 
-        ln -sf $DIR/config/$config ~/.config/$config
+        ln -sf $src/$config $dest/$config
     done
 }
 
-function install-config-home {
-    for config in "$@"
-    do
-        rm -rf ~/$config
+function link-tmux {
+    clone-ext
 
-        ln -sf $DIR/config/$config ~/$config
-    done
+    link-config-arr $DIR_LOCAL ~ .tmux.conf
+
+    mkdir -p ~/.tmux/plugins/
+
+    link-config-arr $DIR_EXT ~/.tmux/plugins tpm
 }
 
-function install-nvim {
-    [[ -d ext/nd/nvim ]] || install-ext-nd
+function link-zsh {
+    link-config-arr $DIR_LOCAL ~ .zshrc
 
-    rm -rf ~/.config/nvim
-
-    ln -sf $DIR/ext/nd/nvim ~/.config/nvim
-}
-
-function install-hypr {
-    rm -rf ~/.config/hypr
-    rm -rf ~/.config/waybar
-
-    install-pkg pkg/wm_shared pkg/wm_hyprland
-
-    ln -sf $DIR/config/hypr ~/.config/hypr
-    ln -sf $DIR/config/waybar ~/.config/waybar
-}
-
-function install-awesome {
-    [[ -d ext/nd/awesome ]] || install-ext-nd
-
-    rm -rf ~/.config/awesome
-
-    install-pkg pkg/wm_shared pkg/wm_awesome
-
-    ln -sf $DIR/ext/nd/awesome ~/.config/awesome
+    link-config $DIR_LOCAL .profile ~ .zprofile
 }
 
 for arg in "$@"
@@ -93,13 +98,16 @@ do
             install-pkg pkg/all
             ;;
         "all-cfg")
-            install-config alacritty bat btop mpv starship.toml xplr retroarch
-            install-config-home .profile .gitconfig .tmux.conf
+            link-config-arr $DIR_CONFIG ~/.config alacritty bat btop brave-flags.conf mpv retroarch starship.toml xplr
+            link-config-arr $DIR_LOCAL ~ .profile .gitconfig
+
+            link-tmux
+            link-zsh
             ;;
         "ext")
-            install-ext;;
+            clone-ext;;
         "ext-nd")
-            install-ext-nd;;
+            clone-ext-nd;;
         "dev")
             install-pkg pkg/dev;;
         "cli")
@@ -113,34 +121,46 @@ do
         "nvidia")
             install-pkg pkg/v_nvidia;;
         "env")
-            install-config-home .profile;;
+            link-config-arr $DIR_LOCAL ~ .profile;;
         "git")
-            install-config-home .gitconfig;;
+            link-config-arr $DIR_LOCAL ~ .gitconfig;;
         "tmux")
-            install-config-home .tmux.conf
+            link-tmux;;
+        "zsh")
+           link-zsh;;
+        "awesome")
+            clone-ext-nd
 
-            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+            link-config-arr $DIR_EXT_ND ~/.config awesome
+
+            install-pkg pkg/wm_shared pkg/wm_awesome
             ;;
         "nvim")
-            install-nvim;;
+            clone-ext-nd
+
+            link-config-arr $DIR_EXT_ND ~/.config nvim
+            ;;
         "hypr")
-            install-hypr;;
-        "awesome")
-            install-awesome;;
+            link-config-arr $DIR_CONFIG ~/.config hypr waybar
+
+            install-pkg pkg/wm_shared pkg/wm_hyprland
+            ;;
         "alacritty")
-            install-config alacritty;;
+            link-config-arr $DIR_CONFIG ~/.config alacritty;;
         "bat")
-            install-config bat;;
+            link-config-arr $DIR_CONFIG ~/.config bat;;
         "btop")
-            install-config btop;;
+            link-config-arr $DIR_CONFIG ~/.config btop;;
+        "brave")
+            link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
         "mpv")
-            install-config mpv;;
-        "starship")
-            install-config starship.toml;;
-        "xplr")
-            install-config xplr;;
+            link-config-arr $DIR_CONFIG ~/.config mpv;;
         "retroarch")
-            install-config retroarch;;
+            link-config-arr $DIR_CONFIG ~/.config retroarch;;
+        "starship")
+            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
+        "xplr")
+            link-config-arr $DIR_CONFIG ~/.config xplr;;
         *)
             echo No args;;
     esac
