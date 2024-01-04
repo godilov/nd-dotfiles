@@ -100,7 +100,7 @@ do
             install-pkg pkg/all
             ;;
         "all-cfg")
-            link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml xplr
+            link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml
             link-config-arr $DIR_LOCAL ~ .profile .gitconfig
 
             link-tmux
@@ -130,17 +130,20 @@ do
             link-tmux;;
         "zsh")
            link-zsh;;
+        "gnome")
+            install-pkg pkg/wm_gnome
+            ;;
+        "nvim")
+            clone-ext-nd
+
+            link-config-arr $DIR_EXT_ND ~/.config nvim
+            ;;
         "awesome")
             clone-ext-nd
 
             link-config-arr $DIR_EXT_ND ~/.config awesome
 
             install-pkg pkg/wm_shared pkg/wm_awesome
-            ;;
-        "nvim")
-            clone-ext-nd
-
-            link-config-arr $DIR_EXT_ND ~/.config nvim
             ;;
         "hypr")
             link-config-arr $DIR_CONFIG ~/.config hypr waybar
