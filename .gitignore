@@ -2,5 +2,5 @@
 ext
 pkg/all
 
-config/retroarch/*
-!config/retroarch/retroarch.cfg
+root/local/config/retroarch/*
+!root/local/config/retroarch/retroarch.cfg
