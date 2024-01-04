@@ -98,7 +98,7 @@ do
             install-pkg pkg/all
             ;;
         "all-cfg")
-            link-config-arr $DIR_CONFIG ~/.config alacritty bat btop brave-flags.conf mpv retroarch starship.toml xplr
+            link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml xplr
             link-config-arr $DIR_LOCAL ~ .profile .gitconfig
 
             link-tmux
@@ -146,7 +146,7 @@ do
             install-pkg pkg/wm_shared pkg/wm_hyprland
             ;;
         "alacritty")
-            link-config-arr $DIR_CONFIG ~/.config alacritty;;
+            link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
         "bat")
             link-config-arr $DIR_CONFIG ~/.config bat;;
         "btop")
