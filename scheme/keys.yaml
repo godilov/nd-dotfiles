@@ -12,35 +12,35 @@ main:
     alt: 
 
 desktop:
-  super:
-    h: Focus prev client (focus)
-    j: Focus prev screen (focus)
-    k: Focus next screen (focus)
-    l: Focus next client (focus)
+  super: # Clients dimension
+    h: Focus prev client
+    j: Move client backward
+    k: Move client forward
+    l: Focus next client
 
     q: Close client
     w: Maximize client
     e: Minimize client
 
-    return: Run terminal
+    enter: Run terminal
     space: Run process 
 
     shift:
-      h: Move client within screen to prev
-      j: Move client to prev screen
-      k: Move client to next screen
-      l: Move client within screen to next
-      ctrl:
-        h: 
-        j: 
-        k: 
-        l: 
-    ctrl:
       h:
       j:
       k:
       l:
-    alt:
+      ctrl:
+        h:
+        j:
+        k:
+        l:
+    ctrl: # Screens dimension
+      h: Focus prev screen
+      j: Move client to prev screen
+      k: Move client to next screen
+      l: Focus next screen
+    alt: # Workspaces dimension
       h: Focus prev workspace
       j: Move client to prev workspace
       k: Move client to next workspace
@@ -62,12 +62,12 @@ nvim:
       k: Resize vertical (+4)
       l: Resize horizontal (+4)
   ctrl: 
-    h: Focus left window
-    j: Focus down window 
-    k: Focus up window
-    l: Focus right window
+    h: Focus l window
+    j: Focus d window 
+    k: Focus u window
+    l: Focus r window
   alt: 
     h: Focus prev tab
-    j: Close tab
-    k: Open tab
+    j: Tab close
+    k: Tab open
     l: Focus next tab
