@@ -1,32 +1,32 @@
 gnome
-gnome-extra
+# gnome-extra
 
-drawing
-pitivi
-foliate
-blanket
+# drawing
+# pitivi
+# foliate
+# blanket
 
 # AUR
 
-decoder
-identity
-textpieces
-metadata-cleaner
-tube-converter
-pika-backup
-tagger
+# decoder
+# identity
+# textpieces
+# metadata-cleaner
+# tube-converter
+# pika-backup
+# tagger
 amberol
-eartag
-mousai
-junction
-komikku
-plots
-emblem
-apostrophe
-eyedropper
-dialect
-fontdownloader
-khronos
-extension-manager
-
-gnome-pass-search-provider-git
+# eartag
+# mousai
+# junction
+# komikku
+# plots
+# emblem
+# apostrophe
+# eyedropper
+# dialect
+# fontdownloader
+# khronos
+# extension-manager
+ 
+# gnome-pass-search-provider-git

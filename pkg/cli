@@ -15,7 +15,6 @@ bluez-utils
 bluez-tools
 usbutils
 
-xplr
 tmux
 zsh
 zsh-completions
@@ -43,16 +42,12 @@ tlp
 tlp-rdw
 acpi
 nvme-cli
-brightnessctl
 cpupower
 upower
-udisks2
-udiskie
 pacman-contrib
 
 # AUR
 
-nvim-packer-git
-amdgpu_top-bin
 rm-improved
+nvim-packer-git
 xpadneo-dkms-git
