@@ -51,3 +51,4 @@ pacman-contrib
 rm-improved
 nvim-packer-git
 xpadneo-dkms-git
+git-crypt
