@@ -1,10 +1,16 @@
 gnome
 # gnome-extra
+gnome-tweaks
 
 # drawing
 # pitivi
 # foliate
-# blanket
+# fragments
+blanket
+lollypop
+
+dconf
+dconf-editor
 
 # AUR
 
@@ -15,7 +21,7 @@ gnome
 # tube-converter
 # pika-backup
 # tagger
-# amberol
+amberol
 # eartag
 # mousai
 # junction

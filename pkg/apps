@@ -5,6 +5,8 @@ telegram-desktop
 gimp
 inkscape
 blender
+quodlibet
+qbittorrent
 obs-studio
 retroarch
 
@@ -13,3 +15,6 @@ retroarch
 brave-bin
 webcord-bin
 logseq-desktop-bin
+grist-electron-bin
+anki-bin
+parabolic

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Grist Electron
+Exec=/opt/grist-electron-bin/grist-electron --enable-features=UseOzonePlatform --ozone-platform=wayland --no-sandbox %U
+Terminal=false
+Type=Application
+Icon=grist-electron
+StartupWMClass=grist-electron
+Comment=Grist is the evolution of spreadsheets
+Categories=Development;
