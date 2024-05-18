@@ -1,0 +1,53 @@
+local format  = string.format
+local gsub    = string.gsub
+
+local path    = gsub(gsub(... or '', '%.init', ''), '%.', '/')
+
+local is_init = false
+
+
+local init = nil
+local run  = nil
+
+
+init = function(root, is_debug)
+    if is_init then
+        return
+    end
+
+    root = root or '.'
+
+    local entry_root = path ~= '' and format('%s/%s', root, path) or root
+
+    local entry_file = format('%s/src/?.lua', entry_root)
+    local entry_init = format('%s/src/?/init.lua', entry_root)
+
+    local entry_config_file = format('%s/?.lua', entry_root)
+    local entry_config_init = format('%s/?/init.lua', entry_root)
+
+    package.path = format('%s;%s;%s;%s;%s', package.path, entry_file, entry_init, entry_config_file, entry_config_init)
+
+    ND_AWESOME_IS_DEBUG = ND_AWESOME_IS_DEBUG or is_debug
+
+    require 'ext.nd.lib.init'.init(root, is_debug, true)
+    require 'ext.nd.res.init'.init(root, is_debug, true)
+
+    is_init = true
+
+    require 'nd.awesome' ()
+end
+
+run = function()
+    init('.', true)
+
+    require 'nd.lib.test' {}
+end
+
+require 'rc-default'
+
+init(require 'gears.filesystem'.get_configuration_dir(), false)
+
+return {
+    init = init,
+    run  = run,
+}

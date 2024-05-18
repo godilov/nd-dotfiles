@@ -3,7 +3,7 @@
 DIR=$(pwd)
 
 DIR_DEPS=$DIR/deps
-DIR_EXT=$DIR/ext/nd
+DIR_EXT=$DIR/ext
 
 DIR_BOOT=$DIR/root/boot
 DIR_GLOBAL=$DIR/root/global
@@ -24,28 +24,10 @@ function clone {
     [[ -d $1 ]] || git clone $2 $1
 }
 
-function clone-ext {
+function clone-deps {
     clone $DIR_DEPS/paru https://aur.archlinux.org/paru.git
     clone $DIR_DEPS/refind git@github.com:bobafetthotmail/refind-theme-regular.git
     clone $DIR_DEPS/tpm git@github.com:tmux-plugins/tpm.git
-}
-
-function clone-ext-nd {
-    clone $DIR_EXT/lib git@github.com:godilov/nd-dotfiles-lib.git
-    clone $DIR_EXT/res git@github.com:godilov/nd-dotfiles-res.git
-    clone $DIR_EXT/nvim git@github.com:godilov/nd-dotfiles-nvim.git
-    clone $DIR_EXT/awesome git@github.com:godilov/nd-dotfiles-awesome.git
-
-    [[ -d $DIR_EXT/res/nd ]] || mkdir -p $DIR_EXT/res/ext/nd
-    [[ -d $DIR_EXT/nvim/nd ]] || mkdir -p $DIR_EXT/nvim/ext/nd
-    [[ -d $DIR_EXT/awesome/nd ]] || mkdir -p $DIR_EXT/awesome/ext/nd
-
-    [[ -h $DIR_EXT/res/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/res/ext/nd/lib
-    [[ -h $DIR_EXT/nvim/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/nvim/ext/nd/lib
-    [[ -h $DIR_EXT/awesome/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/awesome/ext/nd/lib
-
-    [[ -h $DIR_EXT/nvim/ext/nd/res ]] || ln -s ../../../res $DIR_EXT/nvim/ext/nd/res
-    [[ -h $DIR_EXT/awesome/ext/nd/res ]] || ln -s ../../../res $DIR_EXT/awesome/ext/nd/res
 }
 
 function link-config {
@@ -74,7 +56,7 @@ function link-config-arr {
 }
 
 function link-tmux {
-    clone-ext
+    clone-deps
 
     link-config-arr $DIR_LOCAL ~ .tmux.conf
 
@@ -106,10 +88,8 @@ do
             link-tmux
             link-zsh
             ;;
-        "ext")
-            clone-ext;;
-        "ext-nd")
-            clone-ext-nd;;
+        "deps")
+            clone-deps;;
         "dev")
             install-pkg pkg/dev;;
         "cli")
@@ -131,16 +111,10 @@ do
         "zsh")
            link-zsh;;
         "gnome")
-            install-pkg pkg/wm_gnome
-            ;;
+            install-pkg pkg/wm_gnome;;
         "nvim")
-            clone-ext-nd
-
-            link-config-arr $DIR_EXT ~/.config nvim
-            ;;
+            link-config-arr $DIR_EXT ~/.config nvim;;
         "awesome")
-            clone-ext-nd
-
             link-config-arr $DIR_EXT ~/.config awesome
 
             install-pkg pkg/wm_shared pkg/wm_awesome
