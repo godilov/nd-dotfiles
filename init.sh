@@ -2,8 +2,8 @@
 
 DIR=$(pwd)
 
-DIR_EXT=$DIR/ext
-DIR_EXT_ND=$DIR_EXT/nd
+DIR_DEPS=$DIR/deps
+DIR_EXT=$DIR/ext/nd
 
 DIR_BOOT=$DIR/root/boot
 DIR_GLOBAL=$DIR/root/global
@@ -25,27 +25,27 @@ function clone {
 }
 
 function clone-ext {
-    clone ext/paru git@github.com:Morganamilo/paru.git
-    clone ext/refind git@github.com:bobafetthotmail/refind-theme-regular.git
-    clone ext/tpm git@github.com:tmux-plugins/tpm.git
+    clone $DIR_DEPS/paru https://aur.archlinux.org/paru.git
+    clone $DIR_DEPS/refind git@github.com:bobafetthotmail/refind-theme-regular.git
+    clone $DIR_DEPS/tpm git@github.com:tmux-plugins/tpm.git
 }
 
 function clone-ext-nd {
-    clone ext/nd/lib git@github.com:godilov/nd-dotfiles-lib.git
-    clone ext/nd/res git@github.com:godilov/nd-dotfiles-res.git
-    clone ext/nd/nvim git@github.com:godilov/nd-dotfiles-nvim.git
-    clone ext/nd/awesome git@github.com:godilov/nd-dotfiles-awesome.git
+    clone $DIR_EXT/lib git@github.com:godilov/nd-dotfiles-lib.git
+    clone $DIR_EXT/res git@github.com:godilov/nd-dotfiles-res.git
+    clone $DIR_EXT/nvim git@github.com:godilov/nd-dotfiles-nvim.git
+    clone $DIR_EXT/awesome git@github.com:godilov/nd-dotfiles-awesome.git
 
-    [[ -d ext/nd/res/nd ]] || mkdir -p ext/nd/res/ext/nd
-    [[ -d ext/nd/nvim/nd ]] || mkdir -p ext/nd/nvim/ext/nd
-    [[ -d ext/nd/awesome/nd ]] || mkdir -p ext/nd/awesome/ext/nd
+    [[ -d $DIR_EXT/res/nd ]] || mkdir -p $DIR_EXT/res/ext/nd
+    [[ -d $DIR_EXT/nvim/nd ]] || mkdir -p $DIR_EXT/nvim/ext/nd
+    [[ -d $DIR_EXT/awesome/nd ]] || mkdir -p $DIR_EXT/awesome/ext/nd
 
-    [[ -h ext/nd/res/ext/nd/lib ]] || ln -s ../../../lib ext/nd/res/ext/nd/lib
-    [[ -h ext/nd/nvim/ext/nd/lib ]] || ln -s ../../../lib ext/nd/nvim/ext/nd/lib
-    [[ -h ext/nd/awesome/ext/nd/lib ]] || ln -s ../../../lib ext/nd/awesome/ext/nd/lib
+    [[ -h $DIR_EXT/res/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/res/ext/nd/lib
+    [[ -h $DIR_EXT/nvim/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/nvim/ext/nd/lib
+    [[ -h $DIR_EXT/awesome/ext/nd/lib ]] || ln -s ../../../lib $DIR_EXT/awesome/ext/nd/lib
 
-    [[ -h ext/nd/nvim/ext/nd/res ]] || ln -s ../../../res ext/nd/nvim/ext/nd/res
-    [[ -h ext/nd/awesome/ext/nd/res ]] || ln -s ../../../res ext/nd/awesome/ext/nd/res
+    [[ -h $DIR_EXT/nvim/ext/nd/res ]] || ln -s ../../../res $DIR_EXT/nvim/ext/nd/res
+    [[ -h $DIR_EXT/awesome/ext/nd/res ]] || ln -s ../../../res $DIR_EXT/awesome/ext/nd/res
 }
 
 function link-config {
@@ -80,7 +80,7 @@ function link-tmux {
 
     mkdir -p ~/.tmux/plugins/
 
-    link-config-arr $DIR_EXT ~/.tmux/plugins tpm
+    link-config-arr $DIR_DEPS ~/.tmux/plugins tpm
 }
 
 function link-zsh {
@@ -136,12 +136,12 @@ do
         "nvim")
             clone-ext-nd
 
-            link-config-arr $DIR_EXT_ND ~/.config nvim
+            link-config-arr $DIR_EXT ~/.config nvim
             ;;
         "awesome")
             clone-ext-nd
 
-            link-config-arr $DIR_EXT_ND ~/.config awesome
+            link-config-arr $DIR_EXT ~/.config awesome
 
             install-pkg pkg/wm_shared pkg/wm_awesome
             ;;
