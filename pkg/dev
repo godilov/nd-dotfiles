@@ -35,6 +35,10 @@ docker
 docker-compose
 apache
 nginx-mainline
+kubectl
+kubeadm
+kubelet
+minikube
 
 # AUR
 
