@@ -1,5 +1,6 @@
 .session
 deps
+ext/nvim/plugin
 pkg/all
 
 root/local/config/retroarch/*
