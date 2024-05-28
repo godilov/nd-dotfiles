@@ -1,6 +1,7 @@
 .session
 deps
 ext/nvim/plugin
+ext/nvim/plugin/packer_compiled.lua
 pkg/all
 
 root/local/config/retroarch/*
