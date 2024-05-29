@@ -32,6 +32,7 @@ hyperfine
 ripgrep
 tree
 btop
+fd
 bat
 exa
 fzf
