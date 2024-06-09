@@ -7,5 +7,6 @@ return function()
         'c_sharp', 'sql',
         'html', 'css', 'scss', 'javascript', 'typescript',
         'json', 'yaml', 'toml',
+        'tmux',
     }
 end

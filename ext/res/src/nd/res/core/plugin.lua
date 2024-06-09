@@ -24,5 +24,6 @@ return function()
         { 'L3MON4D3',        'LuaSnip' },
         { 'natecraddock',    'workspaces.nvim' },
         { 'natecraddock',    'sessions.nvim' },
+        { 'iamcco',          'markdown-preview.nvim' },
     }
 end
