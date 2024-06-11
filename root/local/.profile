@@ -1,4 +1,5 @@
 export EDITOR=nvim
+export VISUAL=nvim
 export PAGER=bat
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/german/.cargo/bin
