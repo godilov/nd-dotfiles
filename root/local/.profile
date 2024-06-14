@@ -5,3 +5,5 @@ export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/german/.cargo/bin
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export MOZ_ENABLE_WAYLAND=1
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
