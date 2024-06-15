@@ -1,4 +1,4 @@
-local fn_lib        = require 'nd.lib.core.fn'
+local fn_lib        = require 'nd.lib.fn'
 
 local cache_res     = require 'nd.res.key.cache'
 local treeistter_fn = require 'nd.res.core.language.nvim.treesitter'

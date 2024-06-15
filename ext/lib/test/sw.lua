@@ -1,4 +1,4 @@
-local sw_lib = require 'nd.lib.core.sw'
+local sw_lib = require 'nd.lib.sw'
 
 local is_sw  = sw_lib.is_sw
 local start  = sw_lib.start

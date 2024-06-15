@@ -1,6 +1,6 @@
-local fn_lib      = require 'nd.lib.core.fn'
-local str_lib     = require 'nd.lib.core.str'
-local math_lib    = require 'nd.lib.core.math'
+local fn_lib      = require 'nd.lib.fn'
+local str_lib     = require 'nd.lib.str'
+local math_lib    = require 'nd.lib.math'
 
 local map         = fn_lib.map
 local filter      = fn_lib.filter

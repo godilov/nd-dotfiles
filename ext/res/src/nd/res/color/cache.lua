@@ -1,6 +1,6 @@
-local str_lib    = require 'nd.lib.core.str'
-local type_lib   = require 'nd.lib.core.type'
-local assert_lib = require 'nd.lib.core.assert'
+local str_lib    = require 'nd.lib.str'
+local type_lib   = require 'nd.lib.type'
+local assert_lib = require 'nd.lib.assert'
 local cache_lib  = require 'nd.lib.cache.fs'
 
 local awesome_fn = require 'nd.res.core.color.awesome'

@@ -1,5 +1,5 @@
-local fn_lib   = require 'nd.lib.core.fn'
-local type_lib = require 'nd.lib.core.type'
+local fn_lib   = require 'nd.lib.fn'
+local type_lib = require 'nd.lib.type'
 
 local kv       = fn_lib.kv
 local ivals    = fn_lib.ivals

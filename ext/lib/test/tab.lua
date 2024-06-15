@@ -1,4 +1,4 @@
-local tab_lib    = require 'nd.lib.core.tab'
+local tab_lib    = require 'nd.lib.tab'
 
 local concat     = tab_lib.concat
 local merge      = tab_lib.merge

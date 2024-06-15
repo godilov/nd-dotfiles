@@ -1,5 +1,5 @@
-local fn_lib         = require 'nd.lib.core.fn'
-local str_lib        = require 'nd.lib.core.str'
+local fn_lib         = require 'nd.lib.fn'
+local str_lib        = require 'nd.lib.str'
 local cache_lib      = require 'nd.lib.cache.fs'
 
 local plugin_fn      = require 'nd.res.core.plugin'

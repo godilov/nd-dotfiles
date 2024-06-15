@@ -1,4 +1,4 @@
-local fn_lib   = require 'nd.lib.core.fnc'
+local fn_lib   = require 'nd.lib.fnc'
 
 local fnd      = require 'test.fnd'
 

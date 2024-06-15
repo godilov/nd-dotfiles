@@ -1,5 +1,5 @@
-local fn_lib  = require 'nd.lib.core.fn'
-local str_lib = require 'nd.lib.core.str'
+local fn_lib  = require 'nd.lib.fn'
+local str_lib = require 'nd.lib.str'
 
 local range_v = fn_lib.range_v
 local collect = fn_lib.collect

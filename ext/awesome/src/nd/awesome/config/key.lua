@@ -1,4 +1,4 @@
-local str_lib   = require 'nd.lib.core.str'
+local str_lib   = require 'nd.lib.str'
 
 local event_lib = require 'nd.lib.event'
 

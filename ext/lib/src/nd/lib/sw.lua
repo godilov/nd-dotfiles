@@ -1,7 +1,7 @@
-local assert_lib = require 'nd.lib.core.assert'
+local assert_lib = require 'nd.lib.assert'
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.core.sw'
+local nd_err     = assert_lib.get_err_fn 'nd.lib.sw'
 
 local clock      = os.clock
 

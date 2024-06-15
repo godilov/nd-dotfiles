@@ -101,7 +101,7 @@ are_eq = function(x, y)
         return false
     end
 
-    assert(are_same(x, y), 'nd.lib.core.type.are_eq(): x and y must be of same type')
+    assert(are_same(x, y), 'nd.lib.type.are_eq(): x and y must be of same type')
 
     if x == y then
         return true

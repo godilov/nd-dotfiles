@@ -1,4 +1,4 @@
-local fn_lib   = require 'nd.lib.core.fn'
+local fn_lib   = require 'nd.lib.fn'
 
 local it       = fn_lib.it
 local collect  = fn_lib.collect

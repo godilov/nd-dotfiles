@@ -1,12 +1,12 @@
-local type_lib      = require 'nd.lib.core.type'
-local assert_lib    = require 'nd.lib.core.assert'
+local type_lib      = require 'nd.lib.type'
+local assert_lib    = require 'nd.lib.assert'
 
 local is_num        = type_lib.is_num
 local is_tab        = type_lib.is_tab
 local is_fn         = type_lib.is_fn
 
 local nd_assert     = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.lib.core.fn'
+local nd_err        = assert_lib.get_err_fn 'nd.lib.fn'
 
 local next_fn       = next
 

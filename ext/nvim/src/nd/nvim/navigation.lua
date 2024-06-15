@@ -1,4 +1,4 @@
-local str_lib         = require 'nd.lib.core.str'
+local str_lib         = require 'nd.lib.str'
 
 local key_cache_res   = require 'nd.res.key.cache'
 local color_cache_res = require 'nd.res.color.cache'

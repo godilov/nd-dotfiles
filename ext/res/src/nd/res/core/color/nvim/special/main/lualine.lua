@@ -1,6 +1,6 @@
-local type_lib   = require 'nd.lib.core.type'
-local assert_lib = require 'nd.lib.core.assert'
-local color_lib  = require 'nd.lib.core.color'
+local type_lib   = require 'nd.lib.type'
+local assert_lib = require 'nd.lib.assert'
+local color_lib  = require 'nd.lib.color'
 
 local is_tab     = type_lib.is_tab
 

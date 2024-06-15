@@ -1,6 +1,6 @@
 local fs_lib          = require 'nd.lib.fs'
-local stats_lib       = require 'nd.lib.core.stats'
-local assert_lib      = require 'nd.lib.core.assert'
+local stats_lib       = require 'nd.lib.stats'
+local assert_lib      = require 'nd.lib.assert'
 
 local enum            = fs_lib.enum
 local read_val        = fs_lib.read_val

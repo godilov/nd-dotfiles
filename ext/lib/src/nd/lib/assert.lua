@@ -1,4 +1,4 @@
-local type_lib = require 'nd.lib.core.type'
+local type_lib = require 'nd.lib.type'
 
 local is_nil   = type_lib.is_nil
 local is_str   = type_lib.is_str
@@ -19,7 +19,7 @@ local get_err_fn      = nil
 --- @param args any
 get_message = function(err, args)
     assert(is_fn(err) or is_str(err) or is_nil(err),
-        'nd.lib.core.assert.get_message(): err must be of type nil, string or function')
+        'nd.lib.assert.get_message(): err must be of type nil, string or function')
 
     --- @cast err function
     return is_fn(err) and err(args)
@@ -60,8 +60,8 @@ end
 --- @return function
 get_err_fn = function(scope)
     return function(message)
-        assert(is_str(scope), 'nd.lib.core.assert.get_err_fn(): scope must be of type string')
-        assert(is_str(message), 'nd.lib.core.assert.get_err_fn(): message must be of type string')
+        assert(is_str(scope), 'nd.lib.assert.get_err_fn(): scope must be of type string')
+        assert(is_str(message), 'nd.lib.assert.get_err_fn(): message must be of type string')
 
         return format('%s.%s', scope, message)
     end

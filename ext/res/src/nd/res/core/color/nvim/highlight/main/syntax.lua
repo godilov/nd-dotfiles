@@ -1,6 +1,6 @@
-local tab_lib    = require 'nd.lib.core.tab'
-local type_lib   = require 'nd.lib.core.type'
-local assert_lib = require 'nd.lib.core.assert'
+local tab_lib    = require 'nd.lib.tab'
+local type_lib   = require 'nd.lib.type'
+local assert_lib = require 'nd.lib.assert'
 
 local flat       = tab_lib.flat
 local clone_with = tab_lib.clone_with

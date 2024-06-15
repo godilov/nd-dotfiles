@@ -1,6 +1,6 @@
-local type_lib   = require 'nd.lib.core.type'
-local assert_lib = require 'nd.lib.core.assert'
-local math_lib   = require 'nd.lib.core.math'
+local type_lib   = require 'nd.lib.type'
+local assert_lib = require 'nd.lib.assert'
+local math_lib   = require 'nd.lib.math'
 
 local is_bool    = type_lib.is_bool
 local is_num     = type_lib.is_num
@@ -8,7 +8,7 @@ local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.core.color'
+local nd_err     = assert_lib.get_err_fn 'nd.lib.color'
 
 local clamp      = math_lib.clamp
 

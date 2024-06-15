@@ -1,7 +1,7 @@
-local fn_lib          = require 'nd.lib.core.fn'
-local str_lib         = require 'nd.lib.core.str'
-local tab_lib         = require 'nd.lib.core.tab'
-local type_lib        = require 'nd.lib.core.type'
+local fn_lib          = require 'nd.lib.fn'
+local str_lib         = require 'nd.lib.str'
+local tab_lib         = require 'nd.lib.tab'
+local type_lib        = require 'nd.lib.type'
 
 local cache_lib       = require 'nd.lib.cache.fs'
 local event_lib       = require 'nd.lib.event'

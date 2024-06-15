@@ -1,4 +1,4 @@
-local fn_lib    = require 'nd.lib.core.fn'
+local fn_lib    = require 'nd.lib.fn'
 
 local key_res   = require 'nd.res.key.cache'
 local color_res = require 'nd.res.color.cache'

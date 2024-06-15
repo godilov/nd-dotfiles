@@ -1,4 +1,4 @@
-local type_lib        = require 'nd.lib.core.type'
+local type_lib        = require 'nd.lib.type'
 
 local nvim_color_fn   = require 'nd.res.core.color.nvim'
 local nvim_key_fn     = require 'nd.res.core.key.nvim'

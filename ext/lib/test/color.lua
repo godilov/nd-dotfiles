@@ -1,4 +1,4 @@
-local color_lib = require 'nd.lib.core.color'
+local color_lib = require 'nd.lib.color'
 
 local rgb       = color_lib.rgb
 local hsl       = color_lib.hsl

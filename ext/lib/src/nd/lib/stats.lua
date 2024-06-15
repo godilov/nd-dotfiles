@@ -1,13 +1,13 @@
-local type_lib      = require 'nd.lib.core.type'
-local assert_lib    = require 'nd.lib.core.assert'
-local serialize_lib = require 'nd.lib.core.serialize'
+local type_lib      = require 'nd.lib.type'
+local assert_lib    = require 'nd.lib.assert'
+local serialize_lib = require 'nd.lib.serialize'
 
 local is_str        = type_lib.is_str
 local is_fn         = type_lib.is_fn
 local are_eq        = type_lib.are_eq
 
 local nd_assert     = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.lib.core.stats'
+local nd_err        = assert_lib.get_err_fn 'nd.lib.stats'
 
 local as_str        = serialize_lib.as_str
 
