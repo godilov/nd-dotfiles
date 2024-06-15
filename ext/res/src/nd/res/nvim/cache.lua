@@ -1,10 +1,10 @@
 local type_lib           = require 'nd.lib.type'
 local assert_lib         = require 'nd.lib.assert'
 
-local cache_colors       = require 'nd.res.cache.colors'
-local cache_keys         = require 'nd.res.cache.keys'
-local nvim_colors_fn     = require 'nd.res.nvim.colors'
-local nvim_keys_fn       = require 'nd.res.nvim.keys'
+local colors             = require 'nd.res.cache.colors'
+local keys               = require 'nd.res.cache.keys'
+local colors_fn          = require 'nd.res.nvim.colors'
+local keys_fn            = require 'nd.res.nvim.keys'
 
 local is_str             = type_lib.is_str
 local is_tab             = type_lib.is_tab
@@ -12,10 +12,10 @@ local is_tab             = type_lib.is_tab
 local nd_assert          = assert_lib.get_fn(ND_RES_IS_DEBUG)
 local nd_err             = assert_lib.get_err_fn 'nd.res.nvim.cache'
 
-local get_colors_keyname = cache_colors.get_keyname
-local get_colors_scheme  = cache_colors.get_scheme
-local get_keys_keyname   = cache_keys.get_keyname
-local get_keys_scheme    = cache_keys.get_scheme
+local get_colors_keyname = colors.get_keyname
+local get_colors_scheme  = colors.get_scheme
+local get_keys_keyname   = keys.get_keyname
+local get_keys_scheme    = keys.get_scheme
 
 
 local get_colors = nil
@@ -41,7 +41,7 @@ get_colors = function(config, is_forced)
 
     local key = get_colors_keyname { 'nvim', palette_n, accent_n, highlight_n }
 
-    return get_colors_scheme(nvim_colors_fn, config, key, is_forced)
+    return get_colors_scheme(colors_fn, config, key, is_forced)
 end
 
 get_keys = function(config, is_forced)
@@ -54,7 +54,7 @@ get_keys = function(config, is_forced)
 
     local key = get_keys_keyname { 'nvim', scheme_n }
 
-    return get_keys_scheme(nvim_keys_fn, config, key, is_forced)
+    return get_keys_scheme(keys_fn, config, key, is_forced)
 end
 
 return {
