@@ -1,8 +1,7 @@
 local type_lib           = require 'nd.lib.type'
 local assert_lib         = require 'nd.lib.assert'
 
-local colors             = require 'nd.res.cache.colors'
-local keys               = require 'nd.res.cache.keys'
+local cache              = require 'nd.res.cache'
 local colors_fn          = require 'nd.res.awesome.colors'
 local keys_fn            = require 'nd.res.awesome.keys'
 
@@ -12,10 +11,10 @@ local is_tab             = type_lib.is_tab
 local nd_assert          = assert_lib.get_fn(ND_RES_IS_DEBUG)
 local nd_err             = assert_lib.get_err_fn 'nd.res.awesome.cache'
 
-local get_colors_keyname = colors.get_keyname
-local get_colors_scheme  = colors.get_scheme
-local get_keys_keyname   = keys.get_keyname
-local get_keys_scheme    = keys.get_scheme
+local get_colors_keyname = cache.get_colors_keyname
+local get_colors_scheme  = cache.get_colors_scheme
+local get_keys_keyname   = cache.get_keys_keyname
+local get_keys_scheme    = cache.get_keys_scheme
 
 
 local get_colors = nil

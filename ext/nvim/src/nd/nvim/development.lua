@@ -32,16 +32,17 @@ local crates        = require 'crates'
 
 local is_not_skip_fn = nil
 
+
 is_not_skip_fn = function(elem)
     return not elem[2].skip
 end
 
 return function(config)
-    local keys = cache_res.get_keys(config.keys)
+    local key_scheme = cache_res.get_keys(config.keys)
 
     local lsp = lsp_fn(config.lsp)
 
-    apply_keys(keys.lsp_fn())
+    apply_keys(key_scheme.lsp_fn())
 
     vim.diagnostic.config {
         signs            = true,
@@ -57,7 +58,7 @@ return function(config)
                 snip.lsp_expand(args.body)
             end,
         },
-        mapping = keys.cmp_fn(),
+        mapping = key_scheme.cmp_fn(),
         sources = {
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
@@ -93,7 +94,7 @@ return function(config)
 
                 inlayhints.on_attach(client, bufnr)
 
-                apply_keys(keys.lsp_buf_fn(bufnr))
+                apply_keys(key_scheme.lsp_buf_fn(bufnr))
             end,
         }
     end, ivals(lsp))
@@ -108,7 +109,7 @@ return function(config)
             disable = {},
             updatetime = 25,
             persist_queries = false,
-            keybindings = keys.treesitter_fn(),
+            keybindings = key_scheme.treesitter_fn(),
         },
     }
 
