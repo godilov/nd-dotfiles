@@ -9,10 +9,10 @@ local event_lib       = require 'nd.lib.event'
 local key_cache_res   = require 'nd.res.key.cache'
 local color_cache_res = require 'nd.res.color.cache'
 
-local key_config      = require 'nd.awesome.config.key'
-local color_config    = require 'nd.awesome.config.color'
+local key_config      = require 'nd.awesome.config.keys'
+local color_config    = require 'nd.awesome.config.colors'
 
-local key_fn          = require 'nd.awesome.core.key'
+local keys_fn         = require 'nd.awesome.keys'
 
 local proc            = require 'nd.awesome.proc'
 
@@ -193,8 +193,8 @@ return function()
         local key_scheme = key_scheme_fn(key_config['main'])
         local color_scheme = color_scheme_fn(color_config['main'])
 
-        root.keys(key_fn(key_scheme.key.root, awful.key))
-        root.buttons(key_fn(key_scheme.button.root, awful.button))
+        root.keys(keys_fn(key_scheme.key.root, awful.key))
+        root.buttons(keys_fn(key_scheme.button.root, awful.button))
 
         beautiful.init(color_scheme.theme.raw)
 
@@ -203,8 +203,8 @@ return function()
                 rule = {},
                 properties = {
                     raise        = true,
-                    keys         = key_fn(key_scheme.key.client, awful.key),
-                    buttons      = key_fn(key_scheme.button.client, awful.button),
+                    keys         = keys_fn(key_scheme.key.client, awful.key),
+                    buttons      = keys_fn(key_scheme.button.client, awful.button),
                     border_width = beautiful.border_width,
                     border_color = beautiful.border_normal,
                     focus        = awful.client.focus.filter,
