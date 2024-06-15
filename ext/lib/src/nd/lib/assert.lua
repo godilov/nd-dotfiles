@@ -31,7 +31,7 @@ assert_fn = function(val, err, args)
     return val
 end
 
-assert_fn_empty = function(val)
+assert_fn_empty = function(val, _, _)
     return val
 end
 

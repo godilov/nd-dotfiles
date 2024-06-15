@@ -21,8 +21,8 @@ local menubar   = require 'menubar'
 local date      = os.date
 
 return {
-    ['main'] = {
-        scheme = 'main',
+    ['nd-even'] = {
+        scheme = 'nd-even',
         mod = {
             key = {
                 alt   = 'Mod1',

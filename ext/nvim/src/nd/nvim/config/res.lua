@@ -1,6 +1,5 @@
 return {
-    ['main'] = {
-        scheme = 'main',
+    ['nd-even'] = {
         tree = {
             icons = {
                 symlink_arrow = '  ',

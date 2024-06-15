@@ -6,8 +6,8 @@ local actions   = require 'telescope.actions'
 local inlay     = require 'lsp-inlayhints'
 
 return {
-    ['main'] = {
-        scheme = 'main',
+    ['nd-even'] = {
+        scheme = 'nd-even',
         leader = {
             files    = ';',
             lsp_goto = 'g',

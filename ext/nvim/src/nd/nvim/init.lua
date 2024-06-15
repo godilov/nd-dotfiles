@@ -44,10 +44,10 @@ return function()
         }
 
         local config = {
-            keys   = keys_config['main'],
-            colors = colors_config['main'],
-            lsp    = lsp_config['main'],
-            res    = res_config['main'],
+            keys   = keys_config['nd-even'],
+            colors = colors_config['nd-even'],
+            lsp    = lsp_config['nd-even'],
+            res    = res_config['nd-even'],
         }
 
         options_fn(config)

@@ -1,5 +1,5 @@
 return {
-    ['main'] = {
+    ['nd-even'] = {
         lua = {
             libs = {
                 '/usr/share/nvim/runtime/lua',

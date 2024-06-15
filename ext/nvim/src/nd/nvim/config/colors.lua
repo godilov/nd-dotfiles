@@ -1,5 +1,5 @@
 return {
-    ['main'] = {
-        scheme = 'main',
+    ['nd-even'] = {
+        scheme = 'nd-even',
     },
 }

@@ -22,14 +22,14 @@ return function(config)
     nd_assert(accent_cfg, nd_err, 'fn(): accent must be of type value')
     nd_assert(highlight_cfg, nd_err, 'fn(): highlight must be of type value')
 
-    local palette   = load_fn('nd.res.palette', palette_cfg, {})
-    local accent    = load_fn('nd.res.nvim.colors.accent', accent_cfg, { palette = palette })
-    local highlight = load_fn('nd.res.nvim.colors.highlight', highlight_cfg, {
+    local palette   = load_fn('nd.res.palettes', palette_cfg, {})
+    local accent    = load_fn('nd.res.nvim.colors.accents', accent_cfg, { palette = palette })
+    local highlight = load_fn('nd.res.nvim.colors.highlights', highlight_cfg, {
         palette = palette,
         accent  = accent,
     })
 
-    local special   = special_cfg and load_fn('nd.res.nvim.colors.special', special_cfg, {
+    local special   = special_cfg and load_fn('nd.res.nvim.colors.specials', special_cfg, {
         palette   = palette,
         accent    = accent,
         highlight = highlight,
