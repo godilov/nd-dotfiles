@@ -35,10 +35,6 @@ local read_val   = nil
 local write_val  = nil
 
 
---- Splits a path to (dirname, filename)
---- @param path string
---- @return string Directory
---- @return string File
 split = function(path)
     nd_assert(is_str(path), nd_err, 'split(): path must be of type string')
 
@@ -47,9 +43,6 @@ split = function(path)
     return sub(path, 1, index), sub(path, index + 1, -1)
 end
 
---- Checks whether a directory or file exists
---- @param path string
---- @return boolean
 exists = function(path)
     nd_assert(is_str(path), nd_err, 'exists(): path must be of type string')
 
@@ -62,8 +55,6 @@ exists = function(path)
     return is_val(f)
 end
 
---- Creates a new directory or file
---- @param path string
 create = function(path)
     nd_assert(is_str(path), nd_err, 'create(): path must be of type string')
 
@@ -74,10 +65,6 @@ create = function(path)
     end
 end
 
---- Enumerates entries by a path and filter
---- @param path string
---- @param filter string
---- @return arr<string>
 enum = function(path, filter)
     nd_assert(is_str(path) or not path, nd_err, 'enum(): path must be of type string or nil')
 
@@ -99,9 +86,6 @@ enum = function(path, filter)
     return arr
 end
 
---- Reads content of a file by path
---- @param path string
---- @return string
 read_file = function(path)
     nd_assert(is_str(path), nd_err, 'read(): path must be of type string')
 
@@ -114,9 +98,6 @@ read_file = function(path)
     return str
 end
 
---- Writes content to a file by path
---- @param path string
---- @param args string|table
 write_file = function(path, args)
     nd_assert(is_str(path), nd_err, 'write(): path must be of type string')
     nd_assert(is_str(args) or is_tab(args), nd_err, 'write(): args must be of type string or table')
@@ -135,18 +116,12 @@ write_file = function(path, args)
     close(f)
 end
 
---- Reads content of a file by path and returns value
---- @param path string
---- @return any
 read_val = function(path)
     nd_assert(is_str(path), nd_err, 'read_val(): path must be of type string')
 
     return as_val(read_file(path))
 end
 
---- Writes content to a file by path
---- @param path string
---- @param val any
 write_val = function(path, val)
     nd_assert(is_str(path), nd_err, 'write_val(): path must be of type string')
 

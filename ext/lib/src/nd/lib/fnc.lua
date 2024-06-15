@@ -63,10 +63,6 @@ local collect       = nil
 local each          = nil
 
 
---- Maps each element by index
---- @param i index
---- @param iter? iterator
---- @return iterator|function
 mapi = function(i, iter)
     nd_assert(is_num(i), nd_err, 'mapi(): i must be of type number')
 
@@ -75,10 +71,6 @@ mapi = function(i, iter)
     end
 end
 
---- Maps each element by key
---- @param k key
---- @param iter? iterator
---- @return iterator|function
 mapk = function(k, iter)
     nd_assert(k, nd_err, 'mapk(): k must be of type value')
 
@@ -87,10 +79,6 @@ mapk = function(k, iter)
     end
 end
 
---- Maps each element by function
---- @param fn function
---- @param iter? iterator
---- @return iterator|function
 map = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'map(): fn must be of type function')
 
@@ -99,10 +87,6 @@ map = function(fn, iter)
     end
 end
 
---- Filters each element by function
---- @param fn function
---- @param iter? iterator
---- @return iterator|function
 filter = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'filter(): fn must be of type function')
 
@@ -111,11 +95,6 @@ filter = function(fn, iter)
     end
 end
 
---- Reduce each element by function and initial value
---- @param fn function
---- @param init any
---- @param iter? iterator
---- @return iterator|function
 reduce = function(fn, init, iter)
     nd_assert(is_fn(fn), nd_err, 'reduce(): fn must be of type function')
 
@@ -124,10 +103,6 @@ reduce = function(fn, init, iter)
     end
 end
 
---- Concatenates two iterators
---- @param iter_ iterator
---- @param iter? iterator
---- @return iterator|function
 concat = function(iter_, iter)
     nd_assert(is_iter(iter_), nd_err, 'concat(): iter_ must be of type iterator')
 
@@ -136,10 +111,6 @@ concat = function(iter_, iter)
     end
 end
 
---- Zips two iterators
---- @param iter_ iterator
---- @param iter? iterator
---- @return iterator|function
 zip = function(iter_, iter)
     nd_assert(is_iter(iter_), nd_err, 'zip(): iter_ must be of type iterator')
 
@@ -148,10 +119,6 @@ zip = function(iter_, iter)
     end
 end
 
---- Takes at most N elements of iterator
---- @param n number
---- @param iter? iterator
---- @return iterator|function
 take = function(n, iter)
     nd_assert(n >= 0, nd_err, 'take(): n must not be non-negative')
 
@@ -160,10 +127,6 @@ take = function(n, iter)
     end
 end
 
---- Skips at least N elements of iterator
---- @param n number
---- @param iter? iterator
---- @return iterator|function
 skip = function(n, iter)
     nd_assert(n >= 0, nd_err, 'skip(): n must not be non-negative')
 
@@ -172,20 +135,12 @@ skip = function(n, iter)
     end
 end
 
---- Distincts elements of iterator
---- @param fn function|nil
---- @param iter? iterator
---- @return iterator|function
 distinct = function(fn, iter)
     return iter and distinct_impl(fn, iter) or function(iter_ext)
         return distinct_impl(fn, iter_ext)
     end
 end
 
---- Groups elements of iterator
---- @param fn function
---- @param iter? iterator
---- @return tab<key, arr<value>>|function
 group = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'group(): fn must be of type function')
 
@@ -194,19 +149,12 @@ group = function(fn, iter)
     end
 end
 
---- Counts number of elements in iterator
---- @param iter? iterator
---- @return number|function
 count = function(iter)
     return iter and count_impl(iter) or function(iter_ext)
         return count_impl(iter_ext)
     end
 end
 
---- Checks whether all elements of iterator satisfies fn
---- @param fn function
---- @param iter? iterator
---- @return boolean|function
 all = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'all(): fn must be of type function')
 
@@ -215,10 +163,6 @@ all = function(fn, iter)
     end
 end
 
---- Checks whether any element of iterator satisfies fn
---- @param fn function
---- @param iter? iterator
---- @return boolean|function
 any = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'any(): fn must be of type function')
 
@@ -227,11 +171,6 @@ any = function(fn, iter)
     end
 end
 
---- Adds new val to index of iterator
---- @param val value
---- @param index number
---- @param iter? iterator
---- @return iterator|function
 add = function(val, index, iter)
     nd_assert(index > 0, nd_err, 'add(): index must be greater than zero')
 
@@ -240,10 +179,6 @@ add = function(val, index, iter)
     end
 end
 
---- Removes val from index of iterator
---- @param index number
---- @param iter? iterator
---- @return iterator|function
 remove = function(index, iter)
     nd_assert(index > 0, nd_err, 'remove(): index must be greater than zero')
 
@@ -252,19 +187,12 @@ remove = function(index, iter)
     end
 end
 
---- Collects result of iterator in array
---- @param iter? iterator
---- @return arr<any>|function
 collect = function(iter)
     return iter and collect_impl(iter) or function(iter_ext)
         return collect_impl(iter_ext)
     end
 end
 
---- Applies fn to each element of iterator
---- @param fn function
---- @param iter? iterator
---- @return nil|function
 each = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'each(): fn must be of type function')
 

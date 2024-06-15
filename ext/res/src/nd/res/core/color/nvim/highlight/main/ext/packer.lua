@@ -6,9 +6,6 @@ local is_tab     = type_lib.is_tab
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
 local nd_err     = assert_lib.get_err_fn 'nd.res.core.color.nvim.highlight.main.ext.packer'
 
---
--- Group = { hl, fg, bg, sp, gui, link }
---
 
 return function(config)
     local palette = config.palette

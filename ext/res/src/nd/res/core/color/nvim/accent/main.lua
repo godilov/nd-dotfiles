@@ -13,9 +13,6 @@ local nd_err     = assert_lib.get_err_fn 'nd.res.core.color.nvim.accent.main'
 local as_hex     = color_lib.rgb.as_hex
 local from_hex   = color_lib.rgb.from_hex
 
---
--- Group = { fg, bg, sp, gui, link }
---
 
 return function(config)
     local palette = config.palette

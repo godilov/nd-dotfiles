@@ -33,25 +33,8 @@ local get_failed_bench_stats = nil
 local get_failed_test_stats  = nil
 
 
---- @class benchcase
---- @field id any
---- @field name string
---- @field args any
---- @field fn function
---- @field n? number
---- @field opts? serialize_options
 
---- @class benchstat
---- @field id any
---- @field name string
---- @field args any
---- @field opts table
---- @field time number
 
---- Runs a benchmark and returns statistics
---- @param case benchcase
---- @param index number
---- @return benchstat
 get_bench_stat = function(case, index)
     nd_assert(is_str(case.name), nd_err, 'get_bench_stat(): case.name must be of type string')
     nd_assert(is_fn(case.fn), nd_err, 'get_bench_stat(): case.fn must be of type function')
@@ -81,28 +64,8 @@ get_bench_stat = function(case, index)
     }
 end
 
---- @class testcase
---- @field id any
---- @field name string
---- @field args any
---- @field res any
---- @field fn function
---- @field opts? serialize_options
---- @field is_ok? function
 
---- @class teststat
---- @field id any
---- @field name string
---- @field args any
---- @field res any
---- @field opts serialize_options
---- @field ret any
---- @field ok boolean
 
---- Runs a test and returns statistics
---- @param case testcase
---- @param index number
---- @return teststat
 get_test_stat = function(case, index)
     nd_assert(is_str(case.name), nd_err, 'get_test_stat(): case.name must be of type string')
     nd_assert(is_fn(case.fn), nd_err, 'get_test_stat(): case.fn must be of type function')
@@ -120,9 +83,6 @@ get_test_stat = function(case, index)
     }
 end
 
---- Returns full statistics of a cases
---- @param fn function
---- @return function
 get_stats_closure = function(fn)
     return function(cases, options)
         local stats = {}
@@ -135,24 +95,14 @@ get_stats_closure = function(fn)
     end
 end
 
---- Returns statistic's id
---- @param stat benchstat|teststat
---- @return string
 get_id = function(stat)
     return format('%s %s', stat.name, stat.args)
 end
 
---- Returns statistic's fullname
---- @param stat benchstat|teststat
---- @return string
 get_full_name = function(stat)
     return format('%s: %s', stat.id, stat.name)
 end
 
---- Runs a bench/test cases and returns statistics
---- @param cases arr<benchcase|testcase>
---- @param fn function
---- @param options? serialize_options
 get_stats = function(cases, fn, options)
     local arr = {}
     local index = 0
@@ -170,11 +120,6 @@ get_stats = function(cases, fn, options)
     return arr
 end
 
---- Returns report by bench stats
---- @param stats arr<benchstat>
---- @param stats_prev? arr<benchstat>
---- @param options serialize_options
---- @return string
 get_bench_report = function(stats, stats_prev, options)
     local time_prev_arr = {}
 
@@ -201,10 +146,6 @@ get_bench_report = function(stats, stats_prev, options)
     return concat(arr, '\n-----\n')
 end
 
---- Returns report by test stats
---- @param stats arr<teststat>
---- @param options serialize_options
---- @return string
 get_test_report = function(stats, options)
     local arr = {}
     local index = 0
@@ -223,11 +164,6 @@ get_test_report = function(stats, options)
     return concat(arr, '\n----\n')
 end
 
---- Returns failed bench cases names
---- @param stats arr<benchstat>
---- @param stats_prev arr<benchstat>
---- @param eps number
---- @return arr<string>
 get_failed_bench_stats = function(stats, stats_prev, eps)
     if not stats_prev then
         return {}
@@ -256,9 +192,6 @@ get_failed_bench_stats = function(stats, stats_prev, eps)
     return arr
 end
 
---- Returns failed test cases names
---- @param stats arr<teststat>
---- @return arr<string>
 get_failed_test_stats = function(stats)
     local arr = {}
     local index = 0

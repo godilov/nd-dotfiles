@@ -25,10 +25,6 @@ key = function(scope, name)
     return format('%s.%s', scope, name)
 end
 
---- Subscribes for an event ("{scope}.{name}")
---- @param scope string
---- @param name string
---- @param fn function
 subscribe = function(scope, name, fn)
     nd_assert(is_str(scope), nd_err, 'subscribe(): scope must be of type string')
     nd_assert(is_str(name), nd_err, 'subscribe(): name must be of type string')
@@ -45,18 +41,12 @@ subscribe = function(scope, name, fn)
     event[#event + 1] = fn
 end
 
---- Notifies of an event ("{scope}.{name}") with call of a function
---- @param args any
---- @return function
 notify_each = function(args)
     return function(fn)
         fn(args)
     end
 end
 
---- Notifies of an event ("{scope}.{name}") occured
---- @param scope string
---- @param name string
 notify = function(scope, name, args)
     nd_assert(is_str(scope), nd_err, 'notify(): scope must be of type string')
     nd_assert(is_str(name), nd_err, 'notify(): name must be of type string')

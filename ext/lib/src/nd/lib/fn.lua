@@ -53,9 +53,6 @@ local each          = nil
 local pipe          = nil
 
 
---- @class iterator
---- @operator call(iterator): function
---- @operator mul(function): function
 
 local iter_mt = {
     __call = function(iter)
@@ -74,36 +71,19 @@ local iter_mt = {
     end,
 }
 
---- Checks if val is of type iterator
---- @param val any
---- @return boolean
 is_iter = function(val)
     return getmetatable(val) == iter_mt
 end
 
---- Returns iterator
---- @param next function
---- @param data any
---- @param state any
---- @return iterator
 as_iter = function(next, data, state)
     nd_assert(is_fn(next), nd_err, 'get_iter(): next must be of type function')
 
     return setmetatable({ next, data, state }, iter_mt)
 end
 
---- Next function for empty iterator
---- @return nil
 empty_next = function()
 end
 
---- @alias range_v_data arr<number, 3>
---- @alias range_v_state number
---- @alias range_v_return range_v_state|nil
---- Next function for range by (value) iterator
---- @param data range_v_data
---- @param state range_v_state
---- @return range_v_return
 range_v_next = function(data, state)
     local stop = data[1]
     local step = data[2]
@@ -116,13 +96,6 @@ range_v_next = function(data, state)
     end
 end
 
---- @alias range_iv_data arr<number, 3>
---- @alias range_iv_state arr<number, 2>
---- @alias range_iv_return range_iv_state|nil
---- Next function for range by (index, value) iterator
---- @param data range_iv_data
---- @param state range_iv_state
---- @return range_iv_return
 range_iv_next = function(data, state)
     local len   = data[1]
     local step  = data[2]
@@ -135,13 +108,6 @@ range_iv_next = function(data, state)
     end
 end
 
---- @alias iv_next_data arr<value>
---- @alias iv_next_state ind<index, value>
---- @alias iv_next_return iv_next_state|nil
---- Next function for iterator over (index, value)
---- @param data iv_next_data
---- @param state iv_next_state
---- @return iv_next_return
 iv_next = function(data, state)
     local index = state[1] + 1
     local val   = data[index]
@@ -151,13 +117,6 @@ iv_next = function(data, state)
     end
 end
 
---- @alias kv_next_data table
---- @alias kv_next_state ind<key, value>
---- @alias kv_next_return kv_next_state|nil
---- Next function for iterator over (key, value)
---- @param data kv_next_data
---- @param state kv_next_state
---- @return kv_next_return
 kv_next = function(data, state)
     local key, val = next_fn(data, state[1])
 
@@ -166,20 +125,10 @@ kv_next = function(data, state)
     end
 end
 
---- @alias keys_next_data table
---- @alias keys_next_state key
---- @alias keys_next_return keys_next_state|nil
---- Next function for iterator over (key)
---- @param data keys_next_data
---- @param state keys_next_state
---- @return keys_next_return
 keys_next = function(data, state)
     return (next_fn(data, state))
 end
 
---- Map i-th elemnts
---- @param i index
---- @return function
 mapi_fn = function(i)
     nd_assert(is_num(i), nd_err, 'get_mapi_fn(): i must be of type number')
 
@@ -188,33 +137,20 @@ mapi_fn = function(i)
     end
 end
 
---- Map k-th elemnts
---- @param k key
---- @return function
 mapk_fn = function(k)
     return function(elem)
         return elem[k]
     end
 end
 
---- Returns arg
---- @param val any
---- @return any
 self = function(val)
     return val
 end
 
---- Empty iterator
---- @return iterator
 empty = function()
     return as_iter(empty_next)
 end
 
---- Range by (value) iterator
---- @param len number
---- @param start? number
---- @param step? number
---- @return iterator
 range_v = function(len, start, step)
     if not start then start = 1 end
     if not step then step = 1 end
@@ -231,11 +167,6 @@ range_v = function(len, start, step)
     return as_iter(range_v_next, { stop, step, sign }, start - step)
 end
 
---- Range by (index, value) iterator
---- @param len number
---- @param start? number
---- @param step? number
---- @return iterator
 range_iv = function(len, start, step)
     if not start then start = 1 end
     if not step then step = 1 end
@@ -249,45 +180,30 @@ range_iv = function(len, start, step)
     return as_iter(range_iv_next, { len, step }, { 0, start - step })
 end
 
---- Iterator over a standard Lua function (pairs, ipairs, gmatch, ...)
---- @param fn function
---- @return iterator
 it = function(fn)
     nd_assert(is_fn(fn), nd_err, 'it(): fn must be of type function')
 
     return as_iter(fn)
 end
 
---- (index, value) iterator over an array
---- @param t arr<any>
---- @return iterator
 iv = function(t)
     nd_assert(is_tab(t), nd_err, 'iv(): t must be of type table')
 
     return as_iter(iv_next, t, { 0 })
 end
 
---- (key, value) iterator over a table
---- @param t table
---- @return iterator
 kv = function(t)
     nd_assert(is_tab(t), nd_err, 'kv(): t must be of type table')
 
     return as_iter(kv_next, t, {})
 end
 
---- (key) iterator over a table
---- @param t table
---- @return iterator
 keys = function(t)
     nd_assert(is_tab(t), nd_err, 'keys(): t must be of type table')
 
     return as_iter(keys_next, t, nil)
 end
 
---- (value) iterator over an array
---- @param t arr<any>
---- @return iterator
 ivals = function(t)
     nd_assert(is_tab(t), nd_err, 'ivals(): t must be of type table')
 
@@ -304,9 +220,6 @@ ivals = function(t)
     end, t, nil)
 end
 
---- (key) iterator over a table
---- @param t table
---- @return iterator
 kvals = function(t)
     nd_assert(is_tab(t), nd_err, 'kvals(): t must be of type table')
 
@@ -323,10 +236,6 @@ kvals = function(t)
     end, t, nil)
 end
 
---- Maps each element by index
---- @param i index
---- @param iter iterator
---- @return iterator
 mapi = function(i, iter)
     nd_assert(is_num(i), nd_err, 'mapi(): i must be of type number')
     nd_assert(is_iter(iter), nd_err, 'mapi(): iter must be of type iterator')
@@ -334,10 +243,6 @@ mapi = function(i, iter)
     return map(mapi_fn(i), iter)
 end
 
---- Maps each element by key
---- @param k key
---- @param iter iterator
---- @return iterator
 mapk = function(k, iter)
     nd_assert(k, nd_err, 'mapk(): k must be of type value')
     nd_assert(is_iter(iter), nd_err, 'mapk(): iter must be of type iterator')
@@ -345,10 +250,6 @@ mapk = function(k, iter)
     return map(mapk_fn(k), iter)
 end
 
---- Maps each element by function
---- @param fn function
---- @param iter iterator
---- @return iterator
 map = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'map(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'map(): iter must be of type iterator')
@@ -364,10 +265,6 @@ map = function(fn, iter)
     end, data, elem)
 end
 
---- Filters each element by function
---- @param fn function
---- @param iter iterator
---- @return iterator
 filter = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'filter(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'filter(): iter must be of type iterator')
@@ -387,11 +284,6 @@ filter = function(fn, iter)
     end, data, elem)
 end
 
---- Reduce each element by function and initial value
---- @param fn function
---- @param init any
---- @param iter iterator
---- @return any
 reduce = function(fn, init, iter)
     nd_assert(is_fn(fn), nd_err, 'reduce(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'reduce(): iter must be of type iterator')
@@ -405,10 +297,6 @@ reduce = function(fn, init, iter)
     return val
 end
 
---- Concatenates two iterators
---- @param iter_ iterator
---- @param iter iterator
---- @return iterator
 concat = function(iter_, iter)
     nd_assert(is_iter(iter), nd_err, 'concat(): iter must be of type iterator')
     nd_assert(is_iter(iter_), nd_err, 'concat(): iter_ must be of type iterator')
@@ -440,10 +328,6 @@ concat = function(iter_, iter)
     end, data, elem)
 end
 
---- Zips two iterators
---- @param iter_ iterator
---- @param iter iterator
---- @return iterator
 zip = function(iter_, iter)
     nd_assert(is_iter(iter), nd_err, 'zip(): iter must be of type iterator')
     nd_assert(is_iter(iter_), nd_err, 'zip(): iter_ must be of type iterator')
@@ -464,10 +348,6 @@ zip = function(iter_, iter)
     end, data, elem)
 end
 
---- Takes at most N elements of iterator
---- @param n number
---- @param iter iterator
---- @return iterator
 take = function(n, iter)
     nd_assert(n >= 0, nd_err, 'take(): n must not be non-negative')
     nd_assert(is_iter(iter), nd_err, 'take(): iter must be of type iterator')
@@ -487,10 +367,6 @@ take = function(n, iter)
     end, data, elem)
 end
 
---- Skips at least N elements of iterator
---- @param n number
---- @param iter iterator
---- @return iterator
 skip = function(n, iter)
     nd_assert(n >= 0, nd_err, 'skip(): n must not be non-negative')
     nd_assert(is_iter(iter), nd_err, 'skip(): iter must be of type iterator')
@@ -514,10 +390,6 @@ skip = function(n, iter)
     end, data, elem)
 end
 
---- Distincts elements of iterator
---- @param fn function|nil
---- @param iter iterator
---- @return iterator
 distinct = function(fn, iter)
     nd_assert(is_iter(iter), nd_err, 'distinct(): iter must be of type iterator')
 
@@ -541,10 +413,6 @@ distinct = function(fn, iter)
     end, data, elem)
 end
 
---- Groups elements of iterator
---- @param fn function
---- @param iter iterator
---- @return tab<key, arr<value>>
 group = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'group(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'group(): iter must be of type iterator')
@@ -566,9 +434,6 @@ group = function(fn, iter)
     return res
 end
 
---- Counts number of elements in iterator
---- @param iter iterator
---- @return number
 count = function(iter)
     nd_assert(is_iter(iter), nd_err, 'count(): iter must be of type iterator')
 
@@ -581,10 +446,6 @@ count = function(iter)
     return index
 end
 
---- Checks whether all elements of iterator satisfies fn
---- @param fn function
---- @param iter iterator
---- @return boolean
 all = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'all(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'all(): iter must be of type iterator')
@@ -598,10 +459,6 @@ all = function(fn, iter)
     return true
 end
 
---- Checks whether any element of iterator satisfies fn
---- @param fn function
---- @param iter iterator
---- @return boolean
 any = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'any(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'any(): iter must be of type iterator')
@@ -615,11 +472,6 @@ any = function(fn, iter)
     return false
 end
 
---- Adds new val to index of iterator
---- @param val value
---- @param index index
---- @param iter iterator
---- @return iterator
 add = function(val, index, iter)
     nd_assert(index > 0, nd_err, 'add(): index must be greater than zero')
     nd_assert(is_iter(iter), nd_err, 'add(): iter must be of type iterator')
@@ -642,10 +494,6 @@ add = function(val, index, iter)
     end, data, elem)
 end
 
---- Removes val from index of iterator
---- @param index index
---- @param iter iterator
---- @return iterator
 remove = function(index, iter)
     nd_assert(index > 0, nd_err, 'remove(): index must be greater than zero')
     nd_assert(is_iter(iter), nd_err, 'remove(): iter must be of type iterator')
@@ -668,9 +516,6 @@ remove = function(index, iter)
     end, data, elem)
 end
 
---- Collects result of iterator in array
---- @param iter iterator
---- @return arr<any>
 collect = function(iter)
     nd_assert(is_iter(iter), nd_err, 'collect(): iter must be of type iterator')
 
@@ -686,9 +531,6 @@ collect = function(iter)
     return arr
 end
 
---- Applies fn to each element of iterator
---- @param fn function
---- @param iter iterator
 each = function(fn, iter)
     nd_assert(is_fn(fn), nd_err, 'each(): fn must be of type function')
     nd_assert(is_iter(iter), nd_err, 'each(): iter must be of type iterator')
@@ -698,10 +540,6 @@ each = function(fn, iter)
     end
 end
 
---- Pipes iterator over functions
---- @param iter iterator
---- @param args arr<function>
---- @return any
 pipe = function(iter, args)
     nd_assert(is_iter(iter), nd_err, 'pipe(): iter must be of type iterator')
     nd_assert(is_tab(args), nd_err, 'pipe(): args must be of type table')
