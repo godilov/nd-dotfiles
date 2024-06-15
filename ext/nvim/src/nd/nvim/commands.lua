@@ -36,8 +36,8 @@ nd_apply_config = function(config)
 
         unload {
             'nd.nvim.options',
-            'nd.res.keys.nvim',
-            'nd.res.colors.nvim',
+            'nd.res.nvim.keys',
+            'nd.res.nvim.colors',
         }
 
         local key_scheme   = cache_res.get_keys(config.keys, true)

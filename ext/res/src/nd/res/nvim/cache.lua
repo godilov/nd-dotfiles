@@ -3,8 +3,8 @@ local assert_lib         = require 'nd.lib.assert'
 
 local cache_colors       = require 'nd.res.cache.colors'
 local cache_keys         = require 'nd.res.cache.keys'
-local nvim_colors_fn     = require 'nd.res.colors.nvim'
-local nvim_keys_fn       = require 'nd.res.keys.nvim'
+local nvim_colors_fn     = require 'nd.res.nvim.colors'
+local nvim_keys_fn       = require 'nd.res.nvim.keys'
 
 local is_str             = type_lib.is_str
 local is_tab             = type_lib.is_tab

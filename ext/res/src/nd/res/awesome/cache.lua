@@ -3,8 +3,8 @@ local assert_lib         = require 'nd.lib.assert'
 
 local cache_colors       = require 'nd.res.cache.colors'
 local cache_keys         = require 'nd.res.cache.keys'
-local awesome_colors_fn  = require 'nd.res.colors.awesome'
-local awesome_keys_fn    = require 'nd.res.keys.awesome'
+local awesome_colors_fn  = require 'nd.res.awesome.colors'
+local awesome_keys_fn    = require 'nd.res.awesome.keys'
 
 local is_str             = type_lib.is_str
 local is_tab             = type_lib.is_tab
