@@ -1,32 +1,30 @@
-local fn_lib        = require 'nd.lib.fn'
+local fn_lib         = require 'nd.lib.fn'
 
-local cache_res     = require 'nd.res.keys.cache'
-local treeistter_fn = require 'nd.res.nvim.treesitter'
-local lsp_scheme_fn = require 'nd.res.nvim.lsp'
+local keys_cache_res = require 'nd.res.nvim.keys.cache'
+local treeistter_fn  = require 'nd.res.nvim.treesitter'
+local lsp_scheme_fn  = require 'nd.res.nvim.lsp'
 
-local keys_fn       = require 'nd.nvim.keys'
+local keys_fn        = require 'nd.nvim.keys'
 
-local ivals         = fn_lib.ivals
-local mapi          = fn_lib.mapi
-local filter        = fn_lib.filter
-local collect       = fn_lib.collect
-local each          = fn_lib.each
+local ivals          = fn_lib.ivals
+local mapi           = fn_lib.mapi
+local filter         = fn_lib.filter
+local collect        = fn_lib.collect
+local each           = fn_lib.each
 
-local key_scheme_fn = cache_res.get_nvim
+local cmp            = require 'cmp'
+local cmp_lsp        = require 'cmp_nvim_lsp'
+local snip           = require 'luasnip'
 
-local cmp           = require 'cmp'
-local cmp_lsp       = require 'cmp_nvim_lsp'
-local snip          = require 'luasnip'
+local mason          = require 'mason'
+local mason_lsp      = require 'mason-lspconfig'
+local lsp            = require 'lspconfig'
 
-local mason         = require 'mason'
-local mason_lsp     = require 'mason-lspconfig'
-local lsp           = require 'lspconfig'
+local inlayhints     = require 'lsp-inlayhints'
 
-local inlayhints    = require 'lsp-inlayhints'
+local treesitter     = require 'nvim-treesitter.configs'
 
-local treesitter    = require 'nvim-treesitter.configs'
-
-local crates        = require 'crates'
+local crates         = require 'crates'
 
 
 local is_not_skip_fn = nil
@@ -36,7 +34,7 @@ is_not_skip_fn = function(elem)
 end
 
 return function(config)
-    local key_scheme = key_scheme_fn(config.keys)
+    local key_scheme = keys_cache_res.get(config.keys)
     local lsp_scheme = lsp_scheme_fn(config.lsp)
 
     keys_fn(key_scheme.lsp_fn())

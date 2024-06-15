@@ -1,46 +1,40 @@
-local fn_lib          = require 'nd.lib.fn'
-local str_lib         = require 'nd.lib.str'
-local tab_lib         = require 'nd.lib.tab'
-local type_lib        = require 'nd.lib.type'
+local fn_lib           = require 'nd.lib.fn'
+local str_lib          = require 'nd.lib.str'
+local type_lib         = require 'nd.lib.type'
 
-local cache_lib       = require 'nd.lib.cache'
-local event_lib       = require 'nd.lib.event'
+local cache_lib        = require 'nd.lib.cache'
+local event_lib        = require 'nd.lib.event'
 
-local key_cache_res   = require 'nd.res.keys.cache'
-local color_cache_res = require 'nd.res.colors.cache'
+local keys_cache_res   = require 'nd.res.awesome.keys.cache'
+local colors_cache_res = require 'nd.res.awesome.colors.cache'
 
-local key_config      = require 'nd.awesome.config.keys'
-local color_config    = require 'nd.awesome.config.colors'
+local key_config       = require 'nd.awesome.config.keys'
+local color_config     = require 'nd.awesome.config.colors'
 
-local keys_fn         = require 'nd.awesome.keys'
+local keys_fn          = require 'nd.awesome.keys'
 
-local proc            = require 'nd.awesome.proc'
+local proc             = require 'nd.awesome.proc'
 
-local iv              = fn_lib.iv
-local each            = fn_lib.each
+local iv               = fn_lib.iv
+local each             = fn_lib.each
 
-local concat2s        = str_lib.concat2s
+local concat2s         = str_lib.concat2s
 
-local clone_with      = tab_lib.clone_with
+local is_str           = type_lib.is_str
+local is_fn            = type_lib.is_fn
 
-local is_str          = type_lib.is_str
-local is_fn           = type_lib.is_fn
+local awesome          = awesome
+local screen           = screen
+local client           = client
+local root             = root
+local awful            = require 'awful'
+local beautiful        = require 'beautiful'
+local gears            = require 'gears'
+local wibox            = require 'wibox'
 
-local key_scheme_fn   = key_cache_res.get_awesome
-local color_scheme_fn = color_cache_res.get_awesome
+local filesystem       = gears.filesystem
 
-local awesome         = awesome
-local screen          = screen
-local client          = client
-local root            = root
-local awful           = require 'awful'
-local beautiful       = require 'beautiful'
-local gears           = require 'gears'
-local wibox           = require 'wibox'
-
-local filesystem      = gears.filesystem
-
-local is_init         = false
+local is_init          = false
 
 
 local set_wallpapers      = nil
@@ -190,8 +184,8 @@ return function()
             { 'picom',   '' },
         }
 
-        local key_scheme = key_scheme_fn(key_config['main'])
-        local color_scheme = color_scheme_fn(color_config['main'])
+        local key_scheme = keys_cache_res.get(key_config['main'])
+        local color_scheme = colors_cache_res.get(color_config['main'])
 
         root.keys(keys_fn(key_scheme.key.root, awful.key))
         root.buttons(keys_fn(key_scheme.button.root, awful.button))

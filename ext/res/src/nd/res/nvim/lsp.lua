@@ -141,7 +141,7 @@ typescript_fn = function(_)
     return {}
 end
 
-json_ls = function(_)
+json_fn = function(_)
     return {}
 end
 
@@ -197,7 +197,7 @@ return function(config)
         { 'cssls',         css_fn(config.css) },
         { 'tsserver',      typescript_fn(config.typescript) },
 
-        { 'jsonls',        json_ls(config.json) },
+        { 'jsonls',        json_fn(config.json) },
         { 'yamlls',        yaml_fn(config.yaml) },
         { 'taplo',         toml_fn(config.toml) },
 
