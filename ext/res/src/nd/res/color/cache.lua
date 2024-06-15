@@ -1,7 +1,7 @@
 local str_lib    = require 'nd.lib.str'
 local type_lib   = require 'nd.lib.type'
 local assert_lib = require 'nd.lib.assert'
-local cache_lib  = require 'nd.lib.cache.fs'
+local cache_lib  = require 'nd.lib.cache'
 
 local awesome_fn = require 'nd.res.core.color.awesome'
 local nvim_fn    = require 'nd.res.core.color.nvim'
@@ -14,8 +14,8 @@ local is_tab     = type_lib.is_tab
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
 local nd_err     = assert_lib.get_err_fn 'nd.res.color.cache'
 
-local set        = cache_lib.set
-local get        = cache_lib.get
+local set        = cache_lib.fs.set
+local get        = cache_lib.fs.get
 
 local concat     = table.concat
 

@@ -3,7 +3,7 @@ local str_lib         = require 'nd.lib.str'
 local tab_lib         = require 'nd.lib.tab'
 local type_lib        = require 'nd.lib.type'
 
-local cache_lib       = require 'nd.lib.cache.fs'
+local cache_lib       = require 'nd.lib.cache'
 local event_lib       = require 'nd.lib.event'
 
 local key_cache_res   = require 'nd.res.key.cache'
@@ -183,7 +183,7 @@ end
 
 return function()
     if not is_init then
-        cache_lib.set_dir(concat2s(filesystem.get_dir 'cache', 'nd.awesome/'))
+        cache_lib.fs.set_dir(concat2s(filesystem.get_dir 'cache', '/nd.awesome/'))
 
         proc.uniques {
             { 'udiskie', '' },

@@ -109,7 +109,6 @@ write_file = function(path, args)
     if is_str(args) then
         f:write(args)
     else
-        --- @cast args table
         f:write(unpack(args))
     end
 

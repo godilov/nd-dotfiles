@@ -20,8 +20,12 @@ local dir        = './cache/'
 local set_dir    = nil
 local get_path   = nil
 
-local set        = nil
-local get        = nil
+local cache      = {}
+
+local set_fs     = nil
+local get_fs     = nil
+local set_mem    = nil
+local get_mem    = nil
 
 
 set_dir = function(path)
@@ -40,18 +44,32 @@ get_path = function(key)
     return concat2s(dir, key)
 end
 
-set = function(key, val)
+set_fs = function(key, val)
     write_val(get_path(key), val)
 end
 
-get = function(key)
+get_fs = function(key)
     local path = get_path(key)
 
     return exists(path) and read_val(path)
 end
 
+set_mem = function(key, val)
+    cache[key] = val
+end
+
+get_mem = function(key)
+    return cache[key]
+end
+
 return {
-    set_dir = set_dir,
-    set     = set,
-    get     = get,
+    fs = {
+        set_dir = set_dir,
+        set     = set_fs,
+        get     = get_fs,
+    },
+    mem = {
+        set = set_mem,
+        get = get_mem,
+    },
 }

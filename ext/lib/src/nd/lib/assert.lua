@@ -18,7 +18,6 @@ get_message = function(err, args)
     assert(is_fn(err) or is_str(err) or is_nil(err),
         'nd.lib.assert.get_message(): err must be of type nil, string or function')
 
-    --- @cast err function
     return is_fn(err) and err(args)
         or is_str(err) and err
         or is_nil(err) and 'assertion failed!'

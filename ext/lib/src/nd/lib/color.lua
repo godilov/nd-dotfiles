@@ -378,7 +378,6 @@ rgb_from = function(val)
 
     nd_assert(is_val_tab or is_val_num, nd_err, 'rgb.from(): val must be of type table or number')
 
-    --- @cast val number
 
     return rgb_t { {
         clamp(is_val_tab and val[1] or val, 0, 255),
@@ -394,7 +393,6 @@ hsl_from = function(val)
 
     nd_assert(is_val_tab or is_val_num, nd_err, 'hsl.from(): val must be of type table or number')
 
-    --- @cast val number
 
     return hsl_t { {
         clamp(is_val_tab and val[1] or val, 0.0, 1.0),
@@ -410,7 +408,6 @@ hsb_from = function(val)
 
     nd_assert(is_val_tab or is_val_num, nd_err, 'hsb.from(): val must be of type table or number')
 
-    --- @cast val number
 
     return hsb_t { {
         clamp(is_val_tab and val[1] or val, 0.0, 1.0),
