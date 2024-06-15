@@ -1,6 +1,6 @@
-local fn_lib   = require 'nd.lib.core.fn.compose'
+local fn_lib   = require 'nd.lib.core.fnc'
 
-local shared   = require 'test.fn.shared'
+local fnd      = require 'test.fnd'
 
 local empty    = fn_lib.empty
 local range_v  = fn_lib.range_v
@@ -28,8 +28,8 @@ local remove   = fn_lib.remove
 local collect  = fn_lib.collect
 
 
-local get_bench_cases = shared.get_bench_cases
-local get_test_cases  = shared.get_test_cases
+local get_bench_cases = fnd.get_bench_cases
+local get_test_cases  = fnd.get_test_cases
 
 
 local gmatch      = string.gmatch

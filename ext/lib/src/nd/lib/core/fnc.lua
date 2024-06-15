@@ -6,7 +6,7 @@ local is_num     = type_lib.is_num
 local is_fn      = type_lib.is_fn
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.core.fn.compose'
+local nd_err     = assert_lib.get_err_fn 'nd.lib.core.fnc'
 
 
 local is_iter       = fn_lib.is_iter
