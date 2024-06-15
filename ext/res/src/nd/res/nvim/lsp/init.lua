@@ -36,7 +36,7 @@ return function(config)
         { 'glslls',        glsl_fn(config.glsl) },
         { 'rust_analyzer', rust_fn(config.rust) },
         { 'hls',           haskell_fn(config.haskell) },
-        { 'clojure_lsp',   clojure_fn(config.haskell) },
+        { 'clojure_lsp',   clojure_fn(config.clojure) },
 
         { 'omnisharp',     csharp_fn(config.csharp) },
         { 'sqlls',         sql_fn(config.sql) },
