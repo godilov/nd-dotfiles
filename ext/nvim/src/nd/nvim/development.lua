@@ -1,6 +1,6 @@
 local fn_lib         = require 'nd.lib.fn'
 
-local keys_cache_res = require 'nd.res.nvim.keys.cache'
+local cache_res      = require 'nd.res.nvim.cache'
 local treeistter_fn  = require 'nd.res.nvim.treesitter'
 local lsp_scheme_fn  = require 'nd.res.nvim.lsp'
 
@@ -34,7 +34,7 @@ is_not_skip_fn = function(elem)
 end
 
 return function(config)
-    local key_scheme = keys_cache_res.get(config.keys)
+    local key_scheme = cache_res.get_keys(config.keys)
     local lsp_scheme = lsp_scheme_fn(config.lsp)
 
     keys_fn(key_scheme.lsp_fn())

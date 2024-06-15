@@ -1,14 +1,14 @@
-local colors_cache_res = require 'nd.res.nvim.colors.cache'
+local cache_res  = require 'nd.res.nvim.cache'
 
-local colors_fn        = require 'nd.nvim.colors'
+local colors_fn  = require 'nd.nvim.colors'
 
-local colorizer        = require 'colorizer'
-local lualine          = require 'lualine'
-local bufferline       = require 'bufferline'
-local dashboard        = require 'dashboard'
+local colorizer  = require 'colorizer'
+local lualine    = require 'lualine'
+local bufferline = require 'bufferline'
+local dashboard  = require 'dashboard'
 
 return function(config)
-    local color_scheme = colors_cache_res.get(config.colors)
+    local color_scheme = cache_res.get_colors(config.colors)
 
     colors_fn(color_scheme.highlight)
 

@@ -1,18 +1,18 @@
-local str_lib        = require 'nd.lib.str'
+local str_lib    = require 'nd.lib.str'
 
-local keys_cache_res = require 'nd.res.nvim.keys.cache'
+local cache_res  = require 'nd.res.nvim.cache'
 
-local keys_fn        = require 'nd.nvim.keys'
+local keys_fn    = require 'nd.nvim.keys'
 
-local concat2s       = str_lib.concat2s
+local concat2s   = str_lib.concat2s
 
-local tree           = require 'nvim-tree'
-local telescope      = require 'telescope'
-local sessions       = require 'sessions'
-local workspaces     = require 'workspaces'
+local tree       = require 'nvim-tree'
+local telescope  = require 'telescope'
+local sessions   = require 'sessions'
+local workspaces = require 'workspaces'
 
 return function(config)
-    local key_scheme = keys_cache_res.get(config.keys)
+    local key_scheme = cache_res.get_keys(config.keys)
 
     keys_fn(key_scheme.editor_fn())
 

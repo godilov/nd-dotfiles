@@ -1,19 +1,18 @@
-local fn_lib           = require 'nd.lib.fn'
+local fn_lib    = require 'nd.lib.fn'
 
-local keys_cache_res   = require 'nd.res.nvim.keys.cache'
-local colors_cache_res = require 'nd.res.nvim.colors.cache'
+local cache_res = require 'nd.res.nvim.cache'
 
-local keys_fn          = require 'nd.nvim.keys'
-local colors_fn        = require 'nd.nvim.colors'
+local keys_fn   = require 'nd.nvim.keys'
+local colors_fn = require 'nd.nvim.colors'
 
-local keys             = fn_lib.keys
-local ivals            = fn_lib.ivals
-local filter           = fn_lib.filter
-local each             = fn_lib.each
+local keys      = fn_lib.keys
+local ivals     = fn_lib.ivals
+local filter    = fn_lib.filter
+local each      = fn_lib.each
 
-local format           = string.format
-local match            = string.match
-local gsub             = string.gsub
+local format    = string.format
+local match     = string.match
+local gsub      = string.gsub
 
 
 local unload          = nil
@@ -41,8 +40,8 @@ nd_apply_config = function(config)
             'nd.res.colors.nvim',
         }
 
-        local key_scheme   = keys_cache_res.get(config.keys, true)
-        local color_scheme = colors_cache_res.get(config.colors, true)
+        local key_scheme   = cache_res.get_keys(config.keys, true)
+        local color_scheme = cache_res.get_colors(config.colors, true)
 
         keys_fn(key_scheme.editor_fn())
         colors_fn(color_scheme.highlight)
