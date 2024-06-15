@@ -6,8 +6,8 @@ local type_lib        = require 'nd.lib.type'
 local cache_lib       = require 'nd.lib.cache'
 local event_lib       = require 'nd.lib.event'
 
-local key_cache_res   = require 'nd.res.key.cache'
-local color_cache_res = require 'nd.res.color.cache'
+local key_cache_res   = require 'nd.res.keys.cache'
+local color_cache_res = require 'nd.res.colors.cache'
 
 local key_config      = require 'nd.awesome.config.keys'
 local color_config    = require 'nd.awesome.config.colors'

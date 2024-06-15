@@ -1,7 +1,7 @@
 local str_lib         = require 'nd.lib.str'
 
-local key_cache_res   = require 'nd.res.key.cache'
-local color_cache_res = require 'nd.res.color.cache'
+local key_cache_res   = require 'nd.res.keys.cache'
+local color_cache_res = require 'nd.res.colors.cache'
 
 local keys_fn         = require 'nd.nvim.keys'
 

@@ -1,6 +1,6 @@
 local fn_lib        = require 'nd.lib.fn'
 
-local cache_res     = require 'nd.res.key.cache'
+local cache_res     = require 'nd.res.keys.cache'
 local treeistter_fn = require 'nd.res.nvim.treesitter'
 local lsp_scheme_fn = require 'nd.res.nvim.lsp'
 

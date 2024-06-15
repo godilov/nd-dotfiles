@@ -1,7 +1,7 @@
 local type_lib        = require 'nd.lib.type'
 
-local nvim_color_fn   = require 'nd.res.color.nvim'
-local nvim_key_fn     = require 'nd.res.key.nvim'
+local nvim_color_fn   = require 'nd.res.colors.nvim'
+local nvim_key_fn     = require 'nd.res.keys.nvim'
 
 local is_tab          = type_lib.is_tab
 
