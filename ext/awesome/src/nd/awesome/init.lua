@@ -185,8 +185,8 @@ return function()
             { 'picom',   '' },
         }
 
-        local key_scheme = cache_keys_fn(key_config['main'])
         local color_scheme = cache_colors_fn(color_config['main'])
+        local key_scheme = cache_keys_fn(key_config['main'])
 
         root.keys(keys_fn(key_scheme.key.root, awful.key))
         root.buttons(keys_fn(key_scheme.button.root, awful.button))

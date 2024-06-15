@@ -1,30 +1,33 @@
-local fn_lib         = require 'nd.lib.fn'
+local fn_lib        = require 'nd.lib.fn'
 
-local cache_res      = require 'nd.res.nvim.cache'
-local treeistter_fn  = require 'nd.res.nvim.treesitter'
-local lsp_scheme_fn  = require 'nd.res.nvim.lsp'
+local cache_res     = require 'nd.res.nvim.cache'
 
-local keys_fn        = require 'nd.nvim.keys'
+local treeistter_fn = require 'nd.res.nvim.treesitter'
+local lsp_fn        = require 'nd.res.nvim.lsp'
 
-local ivals          = fn_lib.ivals
-local mapi           = fn_lib.mapi
-local filter         = fn_lib.filter
-local collect        = fn_lib.collect
-local each           = fn_lib.each
+local scheme        = require 'nd.nvim.scheme'
 
-local cmp            = require 'cmp'
-local cmp_lsp        = require 'cmp_nvim_lsp'
-local snip           = require 'luasnip'
+local ivals         = fn_lib.ivals
+local mapi          = fn_lib.mapi
+local filter        = fn_lib.filter
+local collect       = fn_lib.collect
+local each          = fn_lib.each
 
-local mason          = require 'mason'
-local mason_lsp      = require 'mason-lspconfig'
-local lsp            = require 'lspconfig'
+local apply_keys    = scheme.apply_keys
 
-local inlayhints     = require 'lsp-inlayhints'
+local cmp           = require 'cmp'
+local cmp_lsp       = require 'cmp_nvim_lsp'
+local snip          = require 'luasnip'
 
-local treesitter     = require 'nvim-treesitter.configs'
+local mason         = require 'mason'
+local mason_lsp     = require 'mason-lspconfig'
+local lsp_cfg       = require 'lspconfig'
 
-local crates         = require 'crates'
+local inlayhints    = require 'lsp-inlayhints'
+
+local treesitter    = require 'nvim-treesitter.configs'
+
+local crates        = require 'crates'
 
 
 local is_not_skip_fn = nil
@@ -34,10 +37,11 @@ is_not_skip_fn = function(elem)
 end
 
 return function(config)
-    local key_scheme = cache_res.get_keys(config.keys)
-    local lsp_scheme = lsp_scheme_fn(config.lsp)
+    local keys = cache_res.get_keys(config.keys)
 
-    keys_fn(key_scheme.lsp_fn())
+    local lsp = lsp_fn(config.lsp)
+
+    apply_keys(keys.lsp_fn())
 
     vim.diagnostic.config {
         signs            = true,
@@ -53,7 +57,7 @@ return function(config)
                 snip.lsp_expand(args.body)
             end,
         },
-        mapping = key_scheme.cmp_fn(),
+        mapping = keys.cmp_fn(),
         sources = {
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
@@ -70,7 +74,7 @@ return function(config)
 
     mason.setup {}
     mason_lsp.setup {
-        ensure_installed = collect(mapi(1, filter(is_not_skip_fn, ivals(lsp_scheme)))),
+        ensure_installed = collect(mapi(1, filter(is_not_skip_fn, ivals(lsp)))),
     }
 
     local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -79,7 +83,7 @@ return function(config)
         local key = elem[1]
         local val = elem[2]
 
-        lsp[key].setup {
+        lsp_cfg[key].setup {
             settings     = val,
             capabilities = capabilities,
             on_attach    = function(client, bufnr)
@@ -89,10 +93,10 @@ return function(config)
 
                 inlayhints.on_attach(client, bufnr)
 
-                keys_fn(key_scheme.lsp_buf_fn(bufnr))
+                apply_keys(keys.lsp_buf_fn(bufnr))
             end,
         }
-    end, ivals(lsp_scheme))
+    end, ivals(lsp))
 
     treesitter.setup {
         ensure_installed = treeistter_fn(),
@@ -104,7 +108,7 @@ return function(config)
             disable = {},
             updatetime = 25,
             persist_queries = false,
-            keybindings = key_scheme.treesitter_fn(),
+            keybindings = keys.treesitter_fn(),
         },
     }
 

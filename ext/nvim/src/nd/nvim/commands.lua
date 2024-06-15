@@ -1,18 +1,20 @@
-local fn_lib    = require 'nd.lib.fn'
+local fn_lib       = require 'nd.lib.fn'
 
-local cache_res = require 'nd.res.nvim.cache'
+local cache_res    = require 'nd.res.nvim.cache'
 
-local keys_fn   = require 'nd.nvim.keys'
-local colors_fn = require 'nd.nvim.colors'
+local scheme       = require 'nd.nvim.scheme'
 
-local keys      = fn_lib.keys
-local ivals     = fn_lib.ivals
-local filter    = fn_lib.filter
-local each      = fn_lib.each
+local keys         = fn_lib.keys
+local ivals        = fn_lib.ivals
+local filter       = fn_lib.filter
+local each         = fn_lib.each
 
-local format    = string.format
-local match     = string.match
-local gsub      = string.gsub
+local apply_colors = scheme.apply_colors
+local apply_keys   = scheme.apply_keys
+
+local format       = string.format
+local match        = string.match
+local gsub         = string.gsub
 
 
 local unload          = nil
@@ -40,12 +42,13 @@ nd_apply_config = function(config)
             'nd.res.nvim.colors',
         }
 
-        local key_scheme   = cache_res.get_keys(config.keys, true)
         local color_scheme = cache_res.get_colors(config.colors, true)
+        local key_scheme   = cache_res.get_keys(config.keys, true)
 
-        keys_fn(key_scheme.editor_fn())
-        colors_fn(color_scheme.highlight)
-        require 'nd.nvim.options' ()
+        apply_keys(key_scheme.editor_fn())
+        apply_colors(color_scheme.highlight)
+
+        require 'nd.nvim.options' (config)
 
         print 'Config has been applied!'
     end

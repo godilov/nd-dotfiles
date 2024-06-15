@@ -2,7 +2,9 @@ local str_lib    = require 'nd.lib.str'
 
 local cache_res  = require 'nd.res.nvim.cache'
 
-local keys_fn    = require 'nd.nvim.keys'
+local scheme     = require 'nd.nvim.scheme'
+
+local apply_keys = scheme.apply_keys
 
 local concat2s   = str_lib.concat2s
 
@@ -14,11 +16,11 @@ local workspaces = require 'workspaces'
 return function(config)
     local key_scheme = cache_res.get_keys(config.keys)
 
-    keys_fn(key_scheme.editor_fn())
+    apply_keys(key_scheme.editor_fn())
 
     tree.setup {
         on_attach = function(bufnr)
-            keys_fn(key_scheme.tree_fn(bufnr))
+            apply_keys(key_scheme.tree_fn(bufnr))
         end,
         view = {
             width = 48,

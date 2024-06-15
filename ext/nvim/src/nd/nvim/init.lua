@@ -2,7 +2,7 @@ local fn_lib         = require 'nd.lib.fn'
 local str_lib        = require 'nd.lib.str'
 local cache_lib      = require 'nd.lib.cache'
 
-local plugin_fn      = require 'nd.res.nvim.plugins'
+local plugins_fn     = require 'nd.res.nvim.plugins'
 
 local keys_config    = require 'nd.nvim.config.keys'
 local colors_config  = require 'nd.nvim.config.colors'
@@ -37,15 +37,13 @@ return function()
     if not is_init then
         cache_lib.fs.set_dir(concat2s(vim.fn.stdpath 'cache', '/nd.nvim/'))
 
-        local plugins = plugin_fn()
-
         packer.startup {
-            collect(map(concat_elem, ivals(plugins))),
+            collect(map(concat_elem, ivals(plugins_fn()))),
         }
 
         local config = {
-            keys   = keys_config['nd-even'],
             colors = colors_config['nd-even'],
+            keys   = keys_config['nd-even'],
             lsp    = lsp_config['nd-even'],
             res    = res_config['nd-even'],
         }
