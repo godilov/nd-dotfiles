@@ -1,8 +1,8 @@
 local type_lib    = require 'nd.lib.type'
 local assert_lib  = require 'nd.lib.assert'
 
+local cache       = require 'nd.res.cache.keys'
 local nvim_fn     = require 'nd.res.keys.nvim'
-local keys_cache  = require 'nd.res.keys_cache'
 
 local is_str      = type_lib.is_str
 local is_tab      = type_lib.is_tab
@@ -10,8 +10,8 @@ local is_tab      = type_lib.is_tab
 local nd_assert   = assert_lib.get_fn(ND_RES_IS_DEBUG)
 local nd_err      = assert_lib.get_err_fn 'nd.res.nvim.keys.cache'
 
-local get_keyname = keys_cache.get_keyname
-local get_scheme  = keys_cache.get_scheme
+local get_keyname = cache.get_keyname
+local get_scheme  = cache.get_scheme
 
 
 local get = nil
