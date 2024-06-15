@@ -6,7 +6,7 @@ local is_tab     = type_lib.is_tab
 local is_fn      = type_lib.is_fn
 
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.res.core.load'
+local nd_err     = assert_lib.get_err_fn 'nd.res.load'
 
 local format     = string.format
 

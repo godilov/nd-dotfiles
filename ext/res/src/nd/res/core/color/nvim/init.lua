@@ -1,7 +1,7 @@
 local type_lib   = require 'nd.lib.type'
 local assert_lib = require 'nd.lib.assert'
 
-local load_fn    = require 'nd.res.core.load'
+local load_fn    = require 'nd.res.load'
 
 local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
