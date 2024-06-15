@@ -36,7 +36,7 @@ nd_apply_config = function(config)
         vim.cmd 'wa'
 
         unload {
-            'nd.nvim.option',
+            'nd.nvim.options',
             'nd.res.key.nvim',
             'nd.res.color.nvim',
         }
@@ -46,7 +46,7 @@ nd_apply_config = function(config)
 
         keys_fn(key_scheme.editor_fn())
         colors_fn(color_scheme.highlight)
-        require 'nd.nvim.option' ()
+        require 'nd.nvim.options' ()
 
         print 'Config has been applied!'
     end
