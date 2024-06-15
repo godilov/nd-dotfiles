@@ -1,5 +1,6 @@
-return function(_)
-    return {
+return {
+    ['main'] = {
+        scheme = 'main',
         tree = {
             icons = {
                 symlink_arrow = '  ',
@@ -56,37 +57,37 @@ return function(_)
                 },
                 shortcut = {
                     {
-                        desc = ' Update Packer',
+                        desc = ' update packer',
                         group = '@function',
-                        action = 'PackerSync',
+                        action = 'packersync',
                         key = 'q',
                     },
                     {
-                        desc = ' Update Treesitter',
+                        desc = ' update treesitter',
                         group = '@function',
-                        action = 'TSUpdate',
+                        action = 'tsupdate',
                         key = 'w',
                     },
                     {
-                        desc = ' Update Mason',
+                        desc = ' update mason',
                         group = '@function',
-                        action = 'MasonUpdate',
+                        action = 'masonupdate',
                         key = 'e',
                     },
                     {
-                        desc = ' Files',
+                        desc = ' files',
                         group = '@property',
-                        action = 'Telescope find_files',
+                        action = 'telescope find_files',
                         key = 'f',
                     },
                     {
-                        desc = ' Search',
+                        desc = ' search',
                         group = '@property',
-                        action = 'Telescope live_grep',
+                        action = 'telescope live_grep',
                         key = 's',
                     },
                 },
             },
         },
-    }
-end
+    },
+}

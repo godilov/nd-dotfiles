@@ -10,7 +10,7 @@ local bufferline      = require 'bufferline'
 local dashboard       = require 'dashboard'
 
 return function(config)
-    local color_scheme = color_scheme_fn(config.color)
+    local color_scheme = color_scheme_fn(config.colors)
 
     colors_fn(color_scheme.highlight)
 
@@ -43,6 +43,6 @@ return function(config)
         theme = 'hyper',
         disable_move = true,
         shortcut_type = 'letter',
-        config = color_scheme.etc.dashboard.config,
+        config = config.res.dashboard.config,
     }
 end

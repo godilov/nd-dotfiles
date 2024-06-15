@@ -36,7 +36,7 @@ is_not_skip_fn = function(elem)
 end
 
 return function(config)
-    local key_scheme = key_scheme_fn(config.key)
+    local key_scheme = key_scheme_fn(config.keys)
     local lsp_scheme = lsp_scheme_fn(config.lsp)
 
     keys_fn(key_scheme.lsp_fn())

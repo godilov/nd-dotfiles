@@ -82,7 +82,6 @@ get_test_cases = function()
                 palette   = 'main',
                 accent    = 'main',
                 highlight = 'main',
-                etc       = 'main',
                 special   = 'main',
             },
             res = {},

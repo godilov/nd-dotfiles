@@ -41,8 +41,8 @@ nd_apply_config = function(config)
             'nd.res.core.color.nvim',
         }
 
-        local key_scheme   = key_res.get_nvim(config.key, true)
-        local color_scheme = color_res.get_nvim(config.color, true)
+        local key_scheme   = key_res.get_nvim(config.keys, true)
+        local color_scheme = color_res.get_nvim(config.colors, true)
 
         keys_fn(key_scheme.editor_fn())
         colors_fn(color_scheme.highlight)

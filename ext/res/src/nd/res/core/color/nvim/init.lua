@@ -17,12 +17,10 @@ return function(config)
     local accent_cfg    = config.accent or config.scheme
     local highlight_cfg = config.highlight or config.scheme
     local special_cfg   = config.special or config.scheme
-    local etc_cfg       = config.etc or config.scheme
 
     nd_assert(palette_cfg, nd_err, 'fn(): palette must be of type value')
     nd_assert(accent_cfg, nd_err, 'fn(): accent must be of type value')
     nd_assert(highlight_cfg, nd_err, 'fn(): highlight must be of type value')
-    nd_assert(etc_cfg, nd_err, 'fn(): etc must be of type value')
 
     local palette   = load_fn('nd.res.palette', palette_cfg, {})
     local accent    = load_fn('nd.res.core.color.nvim.accent', accent_cfg, { palette = palette })
@@ -30,8 +28,6 @@ return function(config)
         palette = palette,
         accent  = accent,
     })
-
-    local etc       = load_fn('nd.res.core.color.nvim.etc', etc_cfg, {})
 
     local special   = special_cfg and load_fn('nd.res.core.color.nvim.special', special_cfg, {
         palette   = palette,
@@ -44,6 +40,5 @@ return function(config)
         accent    = accent,
         highlight = highlight,
         special   = special,
-        etc       = etc,
     }
 end

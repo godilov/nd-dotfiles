@@ -16,8 +16,8 @@ local sessions        = require 'sessions'
 local workspaces      = require 'workspaces'
 
 return function(config)
-    local key_scheme   = key_scheme_fn(config.key)
-    local color_scheme = color_scheme_fn(config.color)
+    local key_scheme   = key_scheme_fn(config.keys)
+    local color_scheme = color_scheme_fn(config.colors)
 
     keys_fn(key_scheme.editor_fn())
 
@@ -29,13 +29,13 @@ return function(config)
             width = 48,
         },
         renderer = {
-            icons = color_scheme.etc.tree.icons,
+            icons = config.res.tree.icons,
         },
     }
 
     telescope.setup {
         defaults = {
-            borderchars = color_scheme.etc.telescope.borderchars,
+            borderchars = config.res.telescope.borderchars,
             mappings = key_scheme.telescope_fn(),
         },
     }

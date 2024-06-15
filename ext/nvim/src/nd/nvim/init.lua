@@ -7,6 +7,7 @@ local plugin_fn      = require 'nd.res.plugins'
 local keys_config    = require 'nd.nvim.config.keys'
 local colors_config  = require 'nd.nvim.config.colors'
 local lsp_config     = require 'nd.nvim.config.lsp'
+local res_config     = require 'nd.nvim.config.res'
 
 local option_fn      = require 'nd.nvim.option'
 local command_fn     = require 'nd.nvim.command'
@@ -43,9 +44,10 @@ return function()
         }
 
         local config = {
-            key   = keys_config['main'],
-            color = colors_config['main'],
-            lsp   = lsp_config['main'],
+            keys   = keys_config['main'],
+            colors = colors_config['main'],
+            lsp    = lsp_config['main'],
+            res    = res_config['main'],
         }
 
         option_fn()
