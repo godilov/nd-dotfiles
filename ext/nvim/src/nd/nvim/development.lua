@@ -4,7 +4,7 @@ local cache_res     = require 'nd.res.key.cache'
 local treeistter_fn = require 'nd.res.nvim.treesitter'
 local lsp_scheme_fn = require 'nd.res.nvim.lsp'
 
-local key_fn        = require 'nd.nvim.key'
+local keys_fn       = require 'nd.nvim.keys'
 
 local ivals         = fn_lib.ivals
 local mapi          = fn_lib.mapi
@@ -39,7 +39,7 @@ return function(config)
     local key_scheme = key_scheme_fn(config.key)
     local lsp_scheme = lsp_scheme_fn(config.lsp)
 
-    key_fn(key_scheme.lsp_fn())
+    keys_fn(key_scheme.lsp_fn())
 
     vim.diagnostic.config {
         signs            = true,
@@ -91,7 +91,7 @@ return function(config)
 
                 inlayhints.on_attach(client, bufnr)
 
-                key_fn(key_scheme.lsp_buf_fn(bufnr))
+                keys_fn(key_scheme.lsp_buf_fn(bufnr))
             end,
         }
     end, ivals(lsp_scheme))

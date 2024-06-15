@@ -1,6 +1,6 @@
 local color_cache_res = require 'nd.res.color.cache'
 
-local color_fn        = require 'nd.nvim.color'
+local colors_fn       = require 'nd.nvim.colors'
 
 local color_scheme_fn = color_cache_res.get_nvim
 
@@ -12,7 +12,7 @@ local dashboard       = require 'dashboard'
 return function(config)
     local color_scheme = color_scheme_fn(config.color)
 
-    color_fn(color_scheme.highlight)
+    colors_fn(color_scheme.highlight)
 
     colorizer.setup { '*' }
 

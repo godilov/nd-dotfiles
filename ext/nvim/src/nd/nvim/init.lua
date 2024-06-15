@@ -4,8 +4,8 @@ local cache_lib      = require 'nd.lib.cache'
 
 local plugin_fn      = require 'nd.res.plugins'
 
-local key_config     = require 'nd.nvim.config.key'
-local color_config   = require 'nd.nvim.config.color'
+local keys_config    = require 'nd.nvim.config.keys'
+local colors_config  = require 'nd.nvim.config.colors'
 local lsp_config     = require 'nd.nvim.config.lsp'
 
 local option_fn      = require 'nd.nvim.option'
@@ -43,8 +43,8 @@ return function()
         }
 
         local config = {
-            key   = key_config['main'],
-            color = color_config['main'],
+            key   = keys_config['main'],
+            color = colors_config['main'],
             lsp   = lsp_config['main'],
         }
 
