@@ -9,8 +9,8 @@ local colors_config  = require 'nd.nvim.config.colors'
 local lsp_config     = require 'nd.nvim.config.lsp'
 local res_config     = require 'nd.nvim.config.res'
 
-local option_fn      = require 'nd.nvim.option'
-local command_fn     = require 'nd.nvim.command'
+local options_fn     = require 'nd.nvim.options'
+local commands_fn    = require 'nd.nvim.commands'
 local navigation_fn  = require 'nd.nvim.navigation'
 local development_fn = require 'nd.nvim.development'
 local appearance_fn  = require 'nd.nvim.appearance'
@@ -50,8 +50,8 @@ return function()
             res    = res_config['main'],
         }
 
-        option_fn()
-        command_fn(config)
+        options_fn(config)
+        commands_fn(config)
         navigation_fn(config)
         development_fn(config)
         appearance_fn(config)

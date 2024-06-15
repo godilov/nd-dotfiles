@@ -1,4 +1,4 @@
-return function()
+return function(_)
     vim.opt.encoding      = 'utf-8'
     vim.opt.splitright    = true
     vim.opt.splitbelow    = true
