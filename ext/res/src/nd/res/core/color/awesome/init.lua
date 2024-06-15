@@ -21,7 +21,7 @@ return function(config)
     nd_assert(accent_cfg, nd_err, 'fn(): accent must be of type value')
     nd_assert(theme_cfg, nd_err, 'fn(): theme must be of type value')
 
-    local palette = load_fn('nd.res.core.color.palette', palette_cfg, {})
+    local palette = load_fn('nd.res.palette', palette_cfg, {})
     local accent  = load_fn('nd.res.core.color.awesome.accent', accent_cfg, { palette = palette })
     local theme   = load_fn('nd.res.core.color.awesome.theme', theme_cfg, { palette = palette, accent = accent })
 
