@@ -1,0 +1,25 @@
+wayland
+wayland-protocols
+
+gstreamer-vaapi
+
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+bluez
+bluez-utils
+bluez-tools
+
+xdg-user-dirs
+gcr-4
+gcr
+
+# AUR
+
+xpadneo-dkms-git
+xboxdrv
+
+all-repository-fonts
+bibata-cursor-theme

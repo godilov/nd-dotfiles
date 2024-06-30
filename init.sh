@@ -71,33 +71,45 @@ function link-zsh {
     link-config $DIR_LOCAL .profile ~ .zprofile
 }
 
+function init-all-pkg {
+    cat pkg/dev pkg/libs pkg/cli pkg/apps pkg/apps32 > pkg/all
+
+    install-pkg pkg/all
+}
+
+function init-all-cfg {
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml
+    link-config-arr $DIR_LOCAL ~ .profile .gitconfig
+
+    link-tmux
+    link-zsh
+}
+
 mkdir -p ~/.config
 
 for arg in "$@"
 do
     case $arg in
+        "all")
+            init-all-pkg
+            init-all-cfg
+            ;;
         "all-pkg")
-            cat pkg/dev pkg/cli pkg/fonts pkg/apps > pkg/all
-
-            install-pkg pkg/all
-            ;;
+            init-all-pkg;;
         "all-cfg")
-            link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml
-            link-config-arr $DIR_LOCAL ~ .profile .gitconfig
-
-            link-tmux
-            link-zsh
-            ;;
+            init-all-cfg;;
         "deps")
             clone-deps;;
         "dev")
             install-pkg pkg/dev;;
         "cli")
             install-pkg pkg/cli;;
-        "fonts")
-            install-pkg pkg/fonts;;
+        "libs")
+            install-pkg pkg/libs;;
         "apps")
             install-pkg pkg/apps;;
+        "apps32")
+            install-pkg pkg/apps32;;
         "amd")
             install-pkg pkg/v_amd;;
         "nvidia")

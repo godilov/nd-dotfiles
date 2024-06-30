@@ -1,20 +1,3 @@
-wayland
-wayland-protocols
-wl-clipboard
-wev
-
-gstreamer-vaapi
-
-pipewire
-pipewire-alsa
-pipewire-pulse
-pipewire-jack
-wireplumber
-bluez
-bluez-utils
-bluez-tools
-usbutils
-
 tmux
 zsh
 zsh-completions
@@ -30,6 +13,7 @@ vkmark
 stress
 hyperfine
 ripgrep
+xplr
 tree
 btop
 fd
@@ -39,18 +23,24 @@ fzf
 duf
 glow
 texlive
+brightnessctl
 
 tlp
 tlp-rdw
 acpi
 nvme-cli
+usbutils
 cpupower
 upower
+udisks2
+udiskie
 pacman-contrib
+
+wl-clipboard
+wev
 
 # AUR
 
 rm-improved
 nvim-packer-git
-xpadneo-dkms-git
 git-crypt

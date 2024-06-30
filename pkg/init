@@ -4,9 +4,9 @@ reflector
 refind
 networkmanager
 networkmanager-openvpn
+emacs
 vim
 neovim
-emacs
 git
 sudo
 gnupg
