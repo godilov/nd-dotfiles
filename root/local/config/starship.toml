@@ -8,4 +8,14 @@ error_symbol = '[>](bold red)'
 style = 'bold yellow'
 
 [git_status]
-deleted = "x"
+conflicted = ""
+ahead = ""
+behind = ""
+diverged = ""
+up_to_date = ""
+untracked = ""
+modified = ""
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""
