@@ -35,6 +35,8 @@ xdg-user-dirs
 polkit
 polkit-gnome
 
+papirus-icon-theme
+
 # AUR
 
 all-repository-fonts
