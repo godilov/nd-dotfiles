@@ -1,19 +1,18 @@
-firefox
-passff-host
 browserpass
 telegram-desktop
-gimp
-inkscape
-blender
-quodlibet
-qbittorrent
-obs-studio
-retroarch
+# firefox
+# passff-host
+# qbittorrent
+# obs-studio
+# quodlibet
+# inkscape
+# gimp
+# blender
 
 # AUR
 
 brave-bin
-webcord-bin
 grist-electron-bin
-anki-bin
-parabolic
+# webcord-bin
+# anki-bin
+# parabolic

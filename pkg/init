@@ -4,8 +4,6 @@ reflector
 refind
 networkmanager
 networkmanager-openvpn
-emacs
-vim
 neovim
 git
 sudo
@@ -21,4 +19,3 @@ tor
 i2pd
 man-db
 tealdeer
-exfatprogs

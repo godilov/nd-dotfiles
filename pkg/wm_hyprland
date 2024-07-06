@@ -1,15 +1,22 @@
 hyprland
+hyprpaper
+hyprpicker
+hypridle
+hyprlock
+hyprcursor
+
+waybar
 wofi
 grim
 slurp
 dunst
 cliphist
-swaylock
+
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 
 # AUR
 
+eww
 swww
-eww-wayland
 tofi

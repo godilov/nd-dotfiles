@@ -1,29 +1,30 @@
+alacritty
+starship
 tmux
 zsh
 zsh-completions
-alacritty
-starship
-neofetch
+
 mpd
 mpc
 mpv
 imv
+ncmpcpp
+transmission-cli
 
-vkmark
-stress
-hyperfine
-ripgrep
-xplr
-tree
-btop
 fd
 bat
 exa
-fzf
+btop
+bottom
+ripgrep
 duf
+dua
+
+xplr
+fzf
+tree
 glow
 texlive
-brightnessctl
 
 tlp
 tlp-rdw
@@ -34,13 +35,19 @@ cpupower
 upower
 udisks2
 udiskie
-pacman-contrib
+mtpfs
+brightnessctl
+bandwhich
+
+vkmark
+stress
+hyperfine
 
 wl-clipboard
 wev
 
 # AUR
 
-rm-improved
 nvim-packer-git
+rm-improved
 git-crypt

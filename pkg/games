@@ -1,0 +1,17 @@
+steam
+wine
+winetricks
+retroarch
+mangohud
+gamemode
+gamescope
+lib32-mangohud
+lib32-gamemode
+
+# AUR
+
+proton-ge-custom-bin
+protontricks
+
+xpadneo-dkms-git
+xboxdrv
