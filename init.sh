@@ -72,7 +72,7 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/dev pkg/libs pkg/cli pkg/apps pkg/apps32 > pkg/all
+    cat pkg/libs pkg/dev pkg/cli pkg/apps pkg/games > pkg/all
 
     install-pkg pkg/all
 }
@@ -100,16 +100,16 @@ do
             init-all-cfg;;
         "deps")
             clone-deps;;
+        "libs")
+            install-pkg pkg/libs;;
         "dev")
             install-pkg pkg/dev;;
         "cli")
             install-pkg pkg/cli;;
-        "libs")
-            install-pkg pkg/libs;;
         "apps")
             install-pkg pkg/apps;;
-        "apps32")
-            install-pkg pkg/apps32;;
+        "games")
+            install-pkg pkg/games;;
         "amd")
             install-pkg pkg/v_amd;;
         "nvidia")
