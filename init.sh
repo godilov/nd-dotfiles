@@ -26,8 +26,8 @@ function clone {
 
 function clone-deps {
     clone $DIR_DEPS/paru https://aur.archlinux.org/paru.git
-    clone $DIR_DEPS/refind git@github.com:bobafetthotmail/refind-theme-regular.git
-    clone $DIR_DEPS/tpm git@github.com:tmux-plugins/tpm.git
+    clone $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
+    clone $DIR_DEPS/tpm https://github.com/tmux-plugins/tpm.git
 }
 
 function link-config {
@@ -124,18 +124,18 @@ do
            link-zsh;;
         "gnome")
             install-pkg pkg/wm_gnome;;
-        "nvim")
-            link-config-arr $DIR_EXT ~/.config nvim;;
-        "awesome")
-            link-config-arr $DIR_EXT ~/.config awesome
-
-            install-pkg pkg/wm_shared pkg/wm_awesome
-            ;;
         "hypr")
             link-config-arr $DIR_CONFIG ~/.config hypr waybar
 
-            install-pkg pkg/wm_shared pkg/wm_hyprland
+            install-pkg pkg/wm_hyprland
             ;;
+        "awesome")
+            link-config-arr $DIR_EXT ~/.config awesome
+
+            install-pkg pkg/wm_awesome
+            ;;
+        "nvim")
+            link-config-arr $DIR_EXT ~/.config nvim;;
         "alacritty")
             link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
         "bat")
