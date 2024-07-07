@@ -3,4 +3,3 @@ NetworkManager-dispatcher.service
 bluetooth.service
 docker.service
 tlp.service
-mpd.service

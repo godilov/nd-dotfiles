@@ -72,13 +72,13 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/libs pkg/dev pkg/cli pkg/apps pkg/games > pkg/all
+    cat pkg/libs pkg/dev pkg/cli pkg/apps > pkg/all
 
     install-pkg pkg/all
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv retroarch starship.toml
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
     link-config-arr $DIR_LOCAL ~ .profile .gitconfig
 
     link-tmux
@@ -108,12 +108,15 @@ do
             install-pkg pkg/cli;;
         "apps")
             install-pkg pkg/apps;;
-        "games")
-            install-pkg pkg/games;;
         "amd")
             install-pkg pkg/v_amd;;
         "nvidia")
             install-pkg pkg/v_nvidia;;
+        "games")
+            install-pkg pkg/games
+
+            link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
+            ;;
         "env")
             link-config-arr $DIR_LOCAL ~ .profile;;
         "git")
