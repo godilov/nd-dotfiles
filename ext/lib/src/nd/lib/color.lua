@@ -8,7 +8,6 @@ local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.color'
 
 local clamp      = math_lib.clamp
 
@@ -134,8 +133,8 @@ add = function(fn)
         local is_y_tab   = is_tab(y_)
         local is_y_color = is_color(y_)
 
-        nd_assert(is_color(x_), nd_err, 'add(): x must be of type color')
-        nd_assert(is_y_num or is_y_tab or is_y_color, nd_err, 'add(): y must be of type number, table or number')
+        nd_assert(is_color(x_), 'x must be of type color')
+        nd_assert(is_y_num or is_y_tab or is_y_color, 'y must be of type number, table or number')
 
         return fn {
             x_.data[0] + (is_y_num and y_ or is_y_tab and y_[1] or y_.data[0]),
@@ -154,8 +153,8 @@ sub = function(fn)
         local is_y_tab   = is_tab(y_)
         local is_y_color = is_color(y_)
 
-        nd_assert(is_color(x_), nd_err, 'sub(): x must be of type color')
-        nd_assert(is_y_num or is_y_tab or is_y_color, nd_err, 'sub(): y must be of type number, table or number')
+        nd_assert(is_color(x_), 'x must be of type color')
+        nd_assert(is_y_num or is_y_tab or is_y_color, 'y must be of type number, table or number')
 
         return fn {
             x_.data[0] - (is_y_num and y_ or is_y_tab and y_[1] or y_.data[0]),
@@ -174,8 +173,8 @@ mul = function(fn)
         local is_y_tab   = is_tab(y_)
         local is_y_color = is_color(y_)
 
-        nd_assert(is_color(x_), nd_err, 'mul(): x must be of type color')
-        nd_assert(is_y_num or is_y_tab or is_y_color, nd_err, 'mul(): y must be of type number, table or number')
+        nd_assert(is_color(x_), 'x must be of type color')
+        nd_assert(is_y_num or is_y_tab or is_y_color, 'y must be of type number, table or number')
 
         return fn {
             x_.data[0] * (is_y_num and y_ or is_y_tab and y_[1] or y_.data[0]),
@@ -194,8 +193,8 @@ div = function(fn)
         local is_y_tab   = is_tab(y_)
         local is_y_color = is_color(y_)
 
-        nd_assert(is_color(x_), nd_err, 'div(): x must be of type color')
-        nd_assert(is_y_num or is_y_tab or is_y_color, nd_err, 'div(): y must be of type number, table or number')
+        nd_assert(is_color(x_), 'x must be of type color')
+        nd_assert(is_y_num or is_y_tab or is_y_color, 'y must be of type number, table or number')
 
         return fn {
             x_.data[0] / (is_y_num and y_ or is_y_tab and y_[1] or y_.data[0]),
@@ -207,7 +206,7 @@ div = function(fn)
 end
 
 rgb_hue = function(color)
-    nd_assert(is_rgb(color), nd_err, 'rgb.hue(): color must be of type rgb')
+    nd_assert(is_rgb(color), 'color must be of type rgb')
 
     local r = color.data[0] / 255
     local g = color.data[1] / 255
@@ -234,7 +233,7 @@ rgb_hue = function(color)
 end
 
 hsl_comp = function(color, n)
-    nd_assert(is_hsl(color), nd_err, 'hsl.comp(): color must be of type hsl')
+    nd_assert(is_hsl(color), 'color must be of type hsl')
 
     local h = color.data[0]
     local s = color.data[1]
@@ -246,7 +245,7 @@ hsl_comp = function(color, n)
 end
 
 hsb_comp = function(color, n)
-    nd_assert(is_hsb(color), nd_err, 'hsb.comp(): color must be of type hsb')
+    nd_assert(is_hsb(color), 'color must be of type hsb')
 
     local h = color.data[0]
     local s = color.data[1]
@@ -258,7 +257,7 @@ hsb_comp = function(color, n)
 end
 
 rgb_as_hsl = function(color)
-    nd_assert(is_rgb(color), nd_err, 'rgb.as_hsl(): color must be of type rgb')
+    nd_assert(is_rgb(color), 'color must be of type rgb')
 
     local r_ = color.data[0] / 255
     local g_ = color.data[1] / 255
@@ -278,7 +277,7 @@ rgb_as_hsl = function(color)
 end
 
 rgb_as_hsb = function(color)
-    nd_assert(is_rgb(color), nd_err, 'rgb.as_hsb(): color must be of type rgb')
+    nd_assert(is_rgb(color), 'color must be of type rgb')
 
     local r_ = color.data[0] / 255
     local g_ = color.data[1] / 255
@@ -298,7 +297,7 @@ rgb_as_hsb = function(color)
 end
 
 hsl_as_rgb = function(color)
-    nd_assert(is_hsl(color), nd_err, 'hsl.as_rgb(): color must be of type hsl')
+    nd_assert(is_hsl(color), 'color must be of type hsl')
 
     return rgb_t {
         hsl_comp(color, 0),
@@ -309,7 +308,7 @@ hsl_as_rgb = function(color)
 end
 
 hsb_as_rgb = function(color)
-    nd_assert(is_hsb(color), nd_err, 'hsb.as_rgb(): color must be of type hsb')
+    nd_assert(is_hsb(color), 'color must be of type hsb')
 
     return rgb_t {
         hsb_comp(color, 5),
@@ -320,7 +319,7 @@ hsb_as_rgb = function(color)
 end
 
 rgb_as_hex = function(color, alpha)
-    nd_assert(is_rgb(color), nd_err, 'rgb.as_hex(): color must be of type rgb')
+    nd_assert(is_rgb(color), 'color must be of type rgb')
 
     local alpha_val = is_bool(alpha) and color.data[3] or is_num(alpha) and clamp(alpha, 0, 255) or nil
 
@@ -333,13 +332,13 @@ rgb_as_hex = function(color, alpha)
 end
 
 hsl_as_hex = function(color, alpha)
-    nd_assert(is_hsl(color), nd_err, 'hsl.as_hex(): color must be of type hsl')
+    nd_assert(is_hsl(color), 'color must be of type hsl')
 
     return rgb_as_hex(hsl_as_rgb(color), alpha)
 end
 
 hsb_as_hex = function(color, alpha)
-    nd_assert(is_hsb(color), nd_err, 'hsb.as_hex(): color must be of type hsb')
+    nd_assert(is_hsb(color), 'color must be of type hsb')
 
     return rgb_as_hex(hsb_as_rgb(color), alpha)
 end
@@ -347,8 +346,8 @@ end
 rgb_from_hex = function(hex)
     local len = lenstr(hex)
 
-    nd_assert(is_str(hex), nd_err, 'rgb.from_hex(): hex must be of type string')
-    nd_assert(len >= 6, nd_err, 'rgb.from_hex(): hex must be at least of len 6')
+    nd_assert(is_str(hex), 'hex must be of type string')
+    nd_assert(len >= 6, 'hex must be at least of len 6')
 
     local n = tonumber(substr(hex, len >= 8 and -8 or -6), 16)
 
@@ -361,13 +360,13 @@ rgb_from_hex = function(hex)
 end
 
 hsl_from_hex = function(hex)
-    nd_assert(is_str(hex), nd_err, 'hsl.from_hex(): hex must be of type string')
+    nd_assert(is_str(hex), 'hex must be of type string')
 
     return rgb_as_hsl(rgb_from_hex(hex))
 end
 
 hsb_from_hex = function(hex)
-    nd_assert(is_str(hex), nd_err, 'hsb.from_hex(): hex must be of type string')
+    nd_assert(is_str(hex), 'hex must be of type string')
 
     return rgb_as_hsb(rgb_from_hex(hex))
 end
@@ -376,7 +375,7 @@ rgb_from = function(val)
     local is_val_tab = is_tab(val)
     local is_val_num = is_num(val)
 
-    nd_assert(is_val_tab or is_val_num, nd_err, 'rgb.from(): val must be of type table or number')
+    nd_assert(is_val_tab or is_val_num, 'val must be of type table or number')
 
 
     return rgb_t { {
@@ -384,14 +383,14 @@ rgb_from = function(val)
         clamp(is_val_tab and val[2] or val, 0, 255),
         clamp(is_val_tab and val[3] or val, 0, 255),
         clamp(is_val_tab and val[4] or val, 0, 255),
-    }, }
+    } }
 end
 
 hsl_from = function(val)
     local is_val_tab = is_tab(val)
     local is_val_num = is_num(val)
 
-    nd_assert(is_val_tab or is_val_num, nd_err, 'hsl.from(): val must be of type table or number')
+    nd_assert(is_val_tab or is_val_num, 'val must be of type table or number')
 
 
     return hsl_t { {
@@ -399,14 +398,14 @@ hsl_from = function(val)
         clamp(is_val_tab and val[2] or val, 0.0, 1.0),
         clamp(is_val_tab and val[3] or val, 0.0, 1.0),
         clamp(is_val_tab and val[4] or val, 0.0, 1.0),
-    }, }
+    } }
 end
 
 hsb_from = function(val)
     local is_val_tab = is_tab(val)
     local is_val_num = is_num(val)
 
-    nd_assert(is_val_tab or is_val_num, nd_err, 'hsb.from(): val must be of type table or number')
+    nd_assert(is_val_tab or is_val_num, 'val must be of type table or number')
 
 
     return hsb_t { {
@@ -414,7 +413,7 @@ hsb_from = function(val)
         clamp(is_val_tab and val[2] or val, 0.0, 1.0),
         clamp(is_val_tab and val[3] or val, 0.0, 1.0),
         clamp(is_val_tab and val[4] or val, 0.0, 1.0),
-    }, }
+    } }
 end
 
 rgb_add = add(rgb_from)

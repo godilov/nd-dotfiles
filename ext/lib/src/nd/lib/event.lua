@@ -3,7 +3,6 @@ local type_lib   = require 'nd.lib.type'
 local assert_lib = require 'nd.lib.assert'
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.event'
 
 local ivals      = fn_lib.ivals
 local each       = fn_lib.each
@@ -26,9 +25,9 @@ key = function(scope, name)
 end
 
 subscribe = function(scope, name, fn)
-    nd_assert(is_str(scope), nd_err, 'subscribe(): scope must be of type string')
-    nd_assert(is_str(name), nd_err, 'subscribe(): name must be of type string')
-    nd_assert(is_fn(fn), nd_err, 'subscribe(): fn must be of type function')
+    nd_assert(is_str(scope), 'scope must be of type string')
+    nd_assert(is_str(name), 'name must be of type string')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     local k = key(scope, name)
 
@@ -48,8 +47,8 @@ notify_each = function(args)
 end
 
 notify = function(scope, name, args)
-    nd_assert(is_str(scope), nd_err, 'notify(): scope must be of type string')
-    nd_assert(is_str(name), nd_err, 'notify(): name must be of type string')
+    nd_assert(is_str(scope), 'scope must be of type string')
+    nd_assert(is_str(name), 'name must be of type string')
 
     local event = events[key(scope, name)]
 

@@ -4,19 +4,18 @@ local assert_lib = require 'nd.lib.assert'
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.res.nvim.keys.nd-even.ext.cmp'
 
 return function(config)
     local api    = config.api
     local leader = config.leader
     local opts   = config.opts
 
-    nd_assert(is_tab(api), nd_err, 'fn(): api must be of type table')
-    nd_assert(api.cmp, nd_err, 'fn(): api.cmp must be of type value')
-    nd_assert(api.snip, nd_err, 'fn(): api.snip must be of type value')
+    nd_assert(is_tab(api), 'api must be of type table')
+    nd_assert(api.cmp, 'api.cmp must be of type value')
+    nd_assert(api.snip, 'api.snip must be of type value')
 
-    nd_assert(is_tab(leader), nd_err, 'fn(): leader must be of type table')
-    nd_assert(is_tab(opts) or not opts, nd_err, 'fn(): opts must be of type table or nil')
+    nd_assert(is_tab(leader), 'leader must be of type table')
+    nd_assert(is_tab(opts) or not opts, 'opts must be of type table or nil')
 
     return function()
         local cmp  = api.cmp

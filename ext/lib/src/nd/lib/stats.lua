@@ -7,7 +7,6 @@ local is_fn         = type_lib.is_fn
 local are_eq        = type_lib.are_eq
 
 local nd_assert     = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.lib.stats'
 
 local as_str        = serialize_lib.as_str
 
@@ -36,8 +35,8 @@ local get_failed_test_stats  = nil
 
 
 get_bench_stat = function(case, index)
-    nd_assert(is_str(case.name), nd_err, 'get_bench_stat(): case.name must be of type string')
-    nd_assert(is_fn(case.fn), nd_err, 'get_bench_stat(): case.fn must be of type function')
+    nd_assert(is_str(case.name), 'case.name must be of type string')
+    nd_assert(is_fn(case.fn), 'case.fn must be of type function')
 
     local dt = 0
     local fn = case.fn
@@ -67,8 +66,8 @@ end
 
 
 get_test_stat = function(case, index)
-    nd_assert(is_str(case.name), nd_err, 'get_test_stat(): case.name must be of type string')
-    nd_assert(is_fn(case.fn), nd_err, 'get_test_stat(): case.fn must be of type function')
+    nd_assert(is_str(case.name), 'case.name must be of type string')
+    nd_assert(is_fn(case.fn), 'case.fn must be of type function')
 
     local ret = case.fn(case.args)
 

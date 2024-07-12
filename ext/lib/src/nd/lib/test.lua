@@ -10,7 +10,6 @@ local get_bench_stats = stats_lib.get_bench_stats
 local get_test_stats  = stats_lib.get_test_stats
 
 local nd_assert       = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err          = assert_lib.get_err_fn 'nd.lib.test'
 
 local format          = string.format
 
@@ -95,8 +94,8 @@ return function(arr, config, options)
     local bs_failed = get_failed_bench_stats(bs, bs_prev, eps)
     local ts_failed = get_failed_test_stats(ts)
 
-    nd_assert(#bs_failed == 0, nd_err, format('run(): failed bench:\n%s', concat(bs_failed, '\n')))
-    nd_assert(#ts_failed == 0, nd_err, format('run(): failed test:\n%s', concat(ts_failed, '\n')))
+    nd_assert(#bs_failed == 0, format('run(): failed bench:\n%s', concat(bs_failed, '\n')))
+    nd_assert(#ts_failed == 0, format('run(): failed test:\n%s', concat(ts_failed, '\n')))
 
     if save then
         local time = date(fmt)

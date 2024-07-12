@@ -6,7 +6,6 @@ local is_num     = type_lib.is_num
 local is_fn      = type_lib.is_fn
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.fnc'
 
 
 local is_iter       = fn_lib.is_iter
@@ -64,7 +63,7 @@ local each          = nil
 
 
 mapi = function(i, iter)
-    nd_assert(is_num(i), nd_err, 'mapi(): i must be of type number')
+    nd_assert(is_num(i), 'i must be of type number')
 
     return iter and mapi_impl(i, iter) or function(iter_ext)
         return mapi_impl(i, iter_ext)
@@ -72,7 +71,7 @@ mapi = function(i, iter)
 end
 
 mapk = function(k, iter)
-    nd_assert(k, nd_err, 'mapk(): k must be of type value')
+    nd_assert(k, 'k must be of type value')
 
     return iter and mapk_impl(k, iter) or function(iter_ext)
         return mapk_impl(k, iter_ext)
@@ -80,7 +79,7 @@ mapk = function(k, iter)
 end
 
 map = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'map(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and map_impl(fn, iter) or function(iter_ext)
         return map_impl(fn, iter_ext)
@@ -88,7 +87,7 @@ map = function(fn, iter)
 end
 
 filter = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'filter(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and filter_impl(fn, iter) or function(iter_ext)
         return filter_impl(fn, iter_ext)
@@ -96,7 +95,7 @@ filter = function(fn, iter)
 end
 
 reduce = function(fn, init, iter)
-    nd_assert(is_fn(fn), nd_err, 'reduce(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and reduce_impl(fn, init, iter) or function(iter_ext)
         return reduce_impl(fn, init, iter_ext)
@@ -104,7 +103,7 @@ reduce = function(fn, init, iter)
 end
 
 concat = function(iter_, iter)
-    nd_assert(is_iter(iter_), nd_err, 'concat(): iter_ must be of type iterator')
+    nd_assert(is_iter(iter_), 'iter_ must be of type iterator')
 
     return iter and concat_impl(iter_, iter) or function(iter_ext)
         return concat_impl(iter_, iter_ext)
@@ -112,7 +111,7 @@ concat = function(iter_, iter)
 end
 
 zip = function(iter_, iter)
-    nd_assert(is_iter(iter_), nd_err, 'zip(): iter_ must be of type iterator')
+    nd_assert(is_iter(iter_), 'iter_ must be of type iterator')
 
     return iter and zip_impl(iter_, iter) or function(iter_ext)
         return zip_impl(iter_, iter_ext)
@@ -120,7 +119,7 @@ zip = function(iter_, iter)
 end
 
 take = function(n, iter)
-    nd_assert(n >= 0, nd_err, 'take(): n must not be non-negative')
+    nd_assert(n >= 0, 'n must not be non-negative')
 
     return iter and take_impl(n, iter) or function(iter_ext)
         return take_impl(n, iter_ext)
@@ -128,7 +127,7 @@ take = function(n, iter)
 end
 
 skip = function(n, iter)
-    nd_assert(n >= 0, nd_err, 'skip(): n must not be non-negative')
+    nd_assert(n >= 0, 'n must not be non-negative')
 
     return iter and skip_impl(n, iter) or function(iter_ext)
         return skip_impl(n, iter_ext)
@@ -142,7 +141,7 @@ distinct = function(fn, iter)
 end
 
 group = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'group(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and group_impl(fn, iter) or function(iter_ext)
         return group_impl(fn, iter_ext)
@@ -156,7 +155,7 @@ count = function(iter)
 end
 
 all = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'all(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and all_impl(fn, iter) or not iter and function(iter_ext)
         return all_impl(fn, iter_ext)
@@ -164,7 +163,7 @@ all = function(fn, iter)
 end
 
 any = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'any(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and any_impl(fn, iter) or not iter and function(iter_ext)
         return any_impl(fn, iter_ext)
@@ -172,7 +171,7 @@ any = function(fn, iter)
 end
 
 add = function(val, index, iter)
-    nd_assert(index > 0, nd_err, 'add(): index must be greater than zero')
+    nd_assert(index > 0, 'index must be greater than zero')
 
     return iter and add_impl(val, index, iter) or function(iter_ext)
         return add_impl(val, index, iter_ext)
@@ -180,7 +179,7 @@ add = function(val, index, iter)
 end
 
 remove = function(index, iter)
-    nd_assert(index > 0, nd_err, 'remove(): index must be greater than zero')
+    nd_assert(index > 0, 'index must be greater than zero')
 
     return iter and remove_impl(index, iter) or function(iter_ext)
         return remove_impl(index, iter_ext)
@@ -194,7 +193,7 @@ collect = function(iter)
 end
 
 each = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'each(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return iter and each_impl(fn, iter) or function(iter_ext)
         return each_impl(fn, iter_ext)

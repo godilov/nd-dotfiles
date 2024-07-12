@@ -16,7 +16,6 @@ local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.serialize'
 
 local format     = string.format
 local match      = string.match
@@ -72,14 +71,14 @@ as_str = function(val, options)
 end
 
 as_val = function(str)
-    nd_assert(is_str(str), nd_err, 'as_val(): str must be of type string')
+    nd_assert(is_str(str), 'str must be of type string')
 
     if str == '' or str == 'nil' then
         return nil
     end
 
-    return nd_assert(loadstring(match(str, '^[\n\t%s]*return') and str or format('return %s', str)), nd_err,
-        'as_val(): loadstring returned nil')()
+    return nd_assert(loadstring(match(str, '^[\n\t%s]*return') and str or format('return %s', str)),
+        'loadstring returned nil')()
 end
 
 return {

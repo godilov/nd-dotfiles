@@ -5,7 +5,6 @@ local color_lib  = require 'nd.lib.color'
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.res.nvim.colors.specials.nd-even.lualine'
 
 local as_hex     = color_lib.rgb.as_hex
 local from_hex   = color_lib.rgb.from_hex
@@ -22,13 +21,13 @@ abc_fn = function(color_rgb, bg_rgb, _, bg, fg)
 end
 
 return function(scheme)
-    nd_assert(is_tab(scheme), nd_err, 'fn(): scheme must be of type table')
+    nd_assert(is_tab(scheme), 'scheme must be of type table')
 
     local palette = scheme.palette
     local accent  = scheme.accent
 
-    nd_assert(is_tab(palette), nd_err, 'fn(): palette must be of type table')
-    nd_assert(is_tab(accent), nd_err, 'fn(): accent must be of type table')
+    nd_assert(is_tab(palette), 'palette must be of type table')
+    nd_assert(is_tab(accent), 'accent must be of type table')
 
     local bg = palette.bg.normal
     local fg = palette.fg.normal

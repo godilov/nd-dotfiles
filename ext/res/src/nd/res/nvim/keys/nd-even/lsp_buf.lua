@@ -11,19 +11,18 @@ local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.res.nvim.keys.nd-even.lsp_buf'
 
 return function(config)
     local api    = config.api
     local leader = config.leader
     local opts   = config.opts
 
-    nd_assert(is_tab(api), nd_err, 'fn(): api must be of type table')
-    nd_assert(api.nvim, nd_err, 'fn(): api.nvim must be of type value')
+    nd_assert(is_tab(api), 'api must be of type table')
+    nd_assert(api.nvim, 'api.nvim must be of type value')
 
-    nd_assert(is_tab(leader), nd_err, 'fn(): leader must be of type table')
-    nd_assert(is_str(leader.lsp), nd_err, 'fn(): leader.lsp must be of type string')
-    nd_assert(is_tab(opts) or not opts, nd_err, 'fn(): opts must be of type table or nil')
+    nd_assert(is_tab(leader), 'leader must be of type table')
+    nd_assert(is_str(leader.lsp), 'leader.lsp must be of type string')
+    nd_assert(is_tab(opts) or not opts, 'opts must be of type table or nil')
 
     local lsp = leader.lsp
 

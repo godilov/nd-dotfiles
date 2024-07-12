@@ -7,7 +7,6 @@ local concat        = tab_lib.concat
 local is_tab        = type_lib.is_tab
 
 local nd_assert     = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.res.nvim.colors.highlights.nd-even'
 
 local editor_fn     = require 'nd.res.nvim.colors.highlights.nd-even.editor'
 local syntax_fn     = require 'nd.res.nvim.colors.highlights.nd-even.syntax'
@@ -19,8 +18,8 @@ local tree_fn       = require 'nd.res.nvim.colors.highlights.nd-even.ext.tree'
 local cmp_fn        = require 'nd.res.nvim.colors.highlights.nd-even.ext.cmp'
 
 return function(config)
-    nd_assert(is_tab(config.palette), nd_err, 'fn(): palette must be of type table')
-    nd_assert(is_tab(config.accent), nd_err, 'fn(): accent must be of type table')
+    nd_assert(is_tab(config.palette), 'palette must be of type table')
+    nd_assert(is_tab(config.accent), 'accent must be of type table')
 
     return concat {
         editor_fn(config),

@@ -6,7 +6,6 @@ local is_tab        = type_lib.is_tab
 local is_fn         = type_lib.is_fn
 
 local nd_assert     = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.lib.fn'
 
 local next_fn       = next
 
@@ -62,8 +61,8 @@ local iter_mt = {
         local is_x_iter = is_iter(x)
         local is_x_fn   = is_fn(x)
 
-        nd_assert((is_x_iter or is_x_fn) and is_fn(fn), nd_err,
-            'iter.mul(): x must be of type iter or function and fn must be of type function')
+        nd_assert((is_x_iter or is_x_fn) and is_fn(fn),
+            'x must be of type iter or function and fn must be of type function')
 
         return is_x_iter and fn(x) or is_x_fn and function(iter_ext)
             return fn(x(iter_ext))
@@ -76,7 +75,7 @@ is_iter = function(val)
 end
 
 as_iter = function(next, data, state)
-    nd_assert(is_fn(next), nd_err, 'get_iter(): next must be of type function')
+    nd_assert(is_fn(next), 'next must be of type function')
 
     return setmetatable({ next, data, state }, iter_mt)
 end
@@ -130,7 +129,7 @@ keys_next = function(data, state)
 end
 
 mapi_fn = function(i)
-    nd_assert(is_num(i), nd_err, 'get_mapi_fn(): i must be of type number')
+    nd_assert(is_num(i), 'i must be of type number')
 
     return function(elem)
         return elem[i]
@@ -155,11 +154,11 @@ range_v = function(len, start, step)
     if not start then start = 1 end
     if not step then step = 1 end
 
-    nd_assert(is_num(len), nd_err, 'range_v(): len must be of type number')
-    nd_assert(is_num(start), nd_err, 'range_v(): start must be of type number')
-    nd_assert(is_num(step), nd_err, 'range_v(): step must be of type number')
-    nd_assert(step ~= 0, nd_err, 'range_v(): step must be non-zero')
-    nd_assert(len >= 0, nd_err, 'range_v(): len must be non-negative')
+    nd_assert(is_num(len), 'len must be of type number')
+    nd_assert(is_num(start), 'start must be of type number')
+    nd_assert(is_num(step), 'step must be of type number')
+    nd_assert(step ~= 0, 'step must be non-zero')
+    nd_assert(len >= 0, 'len must be non-negative')
 
     local sign = step > 0 and 1 or -1
     local stop = start + step * len
@@ -171,41 +170,41 @@ range_iv = function(len, start, step)
     if not start then start = 1 end
     if not step then step = 1 end
 
-    nd_assert(is_num(len), nd_err, 'range_iv(): len must be of type number')
-    nd_assert(is_num(start), nd_err, 'range_iv(): start must be of type number')
-    nd_assert(is_num(step), nd_err, 'range_iv(): step must be of type number')
-    nd_assert(step ~= 0, nd_err, 'range_iv(): step must be non-zero')
-    nd_assert(len >= 0, nd_err, 'range_iv(): len must be non-negative')
+    nd_assert(is_num(len), 'len must be of type number')
+    nd_assert(is_num(start), 'start must be of type number')
+    nd_assert(is_num(step), 'step must be of type number')
+    nd_assert(step ~= 0, 'step must be non-zero')
+    nd_assert(len >= 0, 'len must be non-negative')
 
     return as_iter(range_iv_next, { len, step }, { 0, start - step })
 end
 
 it = function(fn)
-    nd_assert(is_fn(fn), nd_err, 'it(): fn must be of type function')
+    nd_assert(is_fn(fn), 'fn must be of type function')
 
     return as_iter(fn)
 end
 
 iv = function(t)
-    nd_assert(is_tab(t), nd_err, 'iv(): t must be of type table')
+    nd_assert(is_tab(t), 't must be of type table')
 
     return as_iter(iv_next, t, { 0 })
 end
 
 kv = function(t)
-    nd_assert(is_tab(t), nd_err, 'kv(): t must be of type table')
+    nd_assert(is_tab(t), 't must be of type table')
 
     return as_iter(kv_next, t, {})
 end
 
 keys = function(t)
-    nd_assert(is_tab(t), nd_err, 'keys(): t must be of type table')
+    nd_assert(is_tab(t), 't must be of type table')
 
     return as_iter(keys_next, t, nil)
 end
 
 ivals = function(t)
-    nd_assert(is_tab(t), nd_err, 'ivals(): t must be of type table')
+    nd_assert(is_tab(t), 't must be of type table')
 
     local index = 0
 
@@ -221,7 +220,7 @@ ivals = function(t)
 end
 
 kvals = function(t)
-    nd_assert(is_tab(t), nd_err, 'kvals(): t must be of type table')
+    nd_assert(is_tab(t), 't must be of type table')
 
     local key = nil
 
@@ -237,22 +236,22 @@ kvals = function(t)
 end
 
 mapi = function(i, iter)
-    nd_assert(is_num(i), nd_err, 'mapi(): i must be of type number')
-    nd_assert(is_iter(iter), nd_err, 'mapi(): iter must be of type iterator')
+    nd_assert(is_num(i), 'i must be of type number')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     return map(mapi_fn(i), iter)
 end
 
 mapk = function(k, iter)
-    nd_assert(k, nd_err, 'mapk(): k must be of type value')
-    nd_assert(is_iter(iter), nd_err, 'mapk(): iter must be of type iterator')
+    nd_assert(k, 'k must be of type value')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     return map(mapk_fn(k), iter)
 end
 
 map = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'map(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'map(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next = iter[1]
     local data = iter[2]
@@ -266,8 +265,8 @@ map = function(fn, iter)
 end
 
 filter = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'filter(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'filter(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next = iter[1]
     local data = iter[2]
@@ -285,8 +284,8 @@ filter = function(fn, iter)
 end
 
 reduce = function(fn, init, iter)
-    nd_assert(is_fn(fn), nd_err, 'reduce(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'reduce(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local val = init
 
@@ -298,8 +297,8 @@ reduce = function(fn, init, iter)
 end
 
 concat = function(iter_, iter)
-    nd_assert(is_iter(iter), nd_err, 'concat(): iter must be of type iterator')
-    nd_assert(is_iter(iter_), nd_err, 'concat(): iter_ must be of type iterator')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
+    nd_assert(is_iter(iter_), 'iter_ must be of type iterator')
 
     local next  = iter[1]
     local data  = iter[2]
@@ -329,8 +328,8 @@ concat = function(iter_, iter)
 end
 
 zip = function(iter_, iter)
-    nd_assert(is_iter(iter), nd_err, 'zip(): iter must be of type iterator')
-    nd_assert(is_iter(iter_), nd_err, 'zip(): iter_ must be of type iterator')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
+    nd_assert(is_iter(iter_), 'iter_ must be of type iterator')
 
     local next  = iter[1]
     local data  = iter[2]
@@ -349,8 +348,8 @@ zip = function(iter_, iter)
 end
 
 take = function(n, iter)
-    nd_assert(n >= 0, nd_err, 'take(): n must not be non-negative')
-    nd_assert(is_iter(iter), nd_err, 'take(): iter must be of type iterator')
+    nd_assert(n >= 0, 'n must not be non-negative')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next  = iter[1]
     local data  = iter[2]
@@ -368,8 +367,8 @@ take = function(n, iter)
 end
 
 skip = function(n, iter)
-    nd_assert(n >= 0, nd_err, 'skip(): n must not be non-negative')
-    nd_assert(is_iter(iter), nd_err, 'skip(): iter must be of type iterator')
+    nd_assert(n >= 0, 'n must not be non-negative')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next = iter[1]
     local data = iter[2]
@@ -391,7 +390,7 @@ skip = function(n, iter)
 end
 
 distinct = function(fn, iter)
-    nd_assert(is_iter(iter), nd_err, 'distinct(): iter must be of type iterator')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     fn = fn or self
 
@@ -414,8 +413,8 @@ distinct = function(fn, iter)
 end
 
 group = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'group(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'group(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local res = {}
 
@@ -435,7 +434,7 @@ group = function(fn, iter)
 end
 
 count = function(iter)
-    nd_assert(is_iter(iter), nd_err, 'count(): iter must be of type iterator')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local index = 0
 
@@ -447,8 +446,8 @@ count = function(iter)
 end
 
 all = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'all(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'all(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     for elem in iter() do
         if not fn(elem) then
@@ -460,8 +459,8 @@ all = function(fn, iter)
 end
 
 any = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'any(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'any(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     for elem in iter() do
         if fn(elem) then
@@ -473,8 +472,8 @@ any = function(fn, iter)
 end
 
 add = function(val, index, iter)
-    nd_assert(index > 0, nd_err, 'add(): index must be greater than zero')
-    nd_assert(is_iter(iter), nd_err, 'add(): iter must be of type iterator')
+    nd_assert(index > 0, 'index must be greater than zero')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next = iter[1]
     local data = iter[2]
@@ -495,8 +494,8 @@ add = function(val, index, iter)
 end
 
 remove = function(index, iter)
-    nd_assert(index > 0, nd_err, 'remove(): index must be greater than zero')
-    nd_assert(is_iter(iter), nd_err, 'remove(): iter must be of type iterator')
+    nd_assert(index > 0, 'index must be greater than zero')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local next = iter[1]
     local data = iter[2]
@@ -517,7 +516,7 @@ remove = function(index, iter)
 end
 
 collect = function(iter)
-    nd_assert(is_iter(iter), nd_err, 'collect(): iter must be of type iterator')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     local arr = {}
     local index = 0
@@ -532,8 +531,8 @@ collect = function(iter)
 end
 
 each = function(fn, iter)
-    nd_assert(is_fn(fn), nd_err, 'each(): fn must be of type function')
-    nd_assert(is_iter(iter), nd_err, 'each(): iter must be of type iterator')
+    nd_assert(is_fn(fn), 'fn must be of type function')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
 
     for elem in iter() do
         fn(elem)
@@ -541,8 +540,8 @@ each = function(fn, iter)
 end
 
 pipe = function(iter, args)
-    nd_assert(is_iter(iter), nd_err, 'pipe(): iter must be of type iterator')
-    nd_assert(is_tab(args), nd_err, 'pipe(): args must be of type table')
+    nd_assert(is_iter(iter), 'iter must be of type iterator')
+    nd_assert(is_tab(args), 'args must be of type table')
 
     return reduce(function(val, fn)
         return fn(val)

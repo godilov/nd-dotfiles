@@ -4,7 +4,6 @@ local assert_lib    = require 'nd.lib.assert'
 local is_tab        = type_lib.is_tab
 
 local nd_assert     = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.res.nvim.lsp'
 
 local bash_fn       = nil
 local lua_fn        = nil
@@ -178,7 +177,7 @@ texlab_fn = function(_)
 end
 
 return function(config)
-    nd_assert(is_tab(config), nd_err, 'fn(): config must be of type table')
+    nd_assert(is_tab(config), 'config must be of type table')
 
     return {
         { 'bashls',        bash_fn(config.bash) },

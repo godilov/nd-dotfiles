@@ -7,7 +7,6 @@ local is_str        = type_lib.is_str
 local is_tab        = type_lib.is_tab
 
 local nd_assert     = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err        = assert_lib.get_err_fn 'nd.lib.fs'
 
 local as_str        = serialize_lib.as_str
 local as_val        = serialize_lib.as_val
@@ -36,7 +35,7 @@ local write_val  = nil
 
 
 split = function(path)
-    nd_assert(is_str(path), nd_err, 'split(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
     local index = find(path, '/?[^/]*$')
 
@@ -44,7 +43,7 @@ split = function(path)
 end
 
 exists = function(path)
-    nd_assert(is_str(path), nd_err, 'exists(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
     local f = open(path, 'rb')
 
@@ -56,21 +55,21 @@ exists = function(path)
 end
 
 create = function(path)
-    nd_assert(is_str(path), nd_err, 'create(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
-    nd_assert(execute(format('mkdir -p %s', split(path))), nd_err, 'create(): mkdir -p failed')
+    nd_assert(execute(format('mkdir -p %s', split(path))), 'mkdir -p failed')
 
     if match(path, '[^/]$') then
-        nd_assert(execute(format('echo "" > %s', path)), nd_err, 'create(): echo failed')
+        nd_assert(execute(format('echo "" > %s', path)), 'echo failed')
     end
 end
 
 enum = function(path, filter)
-    nd_assert(is_str(path) or not path, nd_err, 'enum(): path must be of type string or nil')
+    nd_assert(is_str(path) or not path, 'path must be of type string or nil')
 
     local grep = filter and format('| grep %s', filter)
 
-    local f = nd_assert(popen(format('ls -F %s %s', path or '', grep or '')), nd_err, 'enum(): popen returned nil')
+    local f = nd_assert(popen(format('ls -F %s %s', path or '', grep or '')), 'popen returned nil')
 
     local arr = {}
     local index = 0
@@ -87,9 +86,9 @@ enum = function(path, filter)
 end
 
 read_file = function(path)
-    nd_assert(is_str(path), nd_err, 'read(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
-    local f = nd_assert(open(path), nd_err, 'read(): io.open returned nil')
+    local f = nd_assert(open(path), 'io.open returned nil')
 
     local str = f:read '*a'
 
@@ -99,12 +98,12 @@ read_file = function(path)
 end
 
 write_file = function(path, args)
-    nd_assert(is_str(path), nd_err, 'write(): path must be of type string')
-    nd_assert(is_str(args) or is_tab(args), nd_err, 'write(): args must be of type string or table')
+    nd_assert(is_str(path), 'path must be of type string')
+    nd_assert(is_str(args) or is_tab(args), 'args must be of type string or table')
 
     create(path)
 
-    local f = nd_assert(open(path, 'w'), nd_err, 'write(): io.open returned nil')
+    local f = nd_assert(open(path, 'w'), 'io.open returned nil')
 
     if is_str(args) then
         f:write(args)
@@ -116,13 +115,13 @@ write_file = function(path, args)
 end
 
 read_val = function(path)
-    nd_assert(is_str(path), nd_err, 'read_val(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
     return as_val(read_file(path))
 end
 
 write_val = function(path, val)
-    nd_assert(is_str(path), nd_err, 'write_val(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
     write_file(path, format('return %s', as_str(val) or 'nil'))
 end

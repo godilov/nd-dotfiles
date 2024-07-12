@@ -7,15 +7,14 @@ local concat     = tab_lib.concat
 local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.res.nvim.colors.highlights.nd-even.ext.cmp'
 
 
 return function(config)
     local palette = config.palette
     local accent  = config.accent
 
-    nd_assert(is_tab(palette), nd_err, 'fn(): palette must be of type table')
-    nd_assert(is_tab(accent), nd_err, 'fn(): accent must be of type table')
+    nd_assert(is_tab(palette), 'palette must be of type table')
+    nd_assert(is_tab(accent), 'accent must be of type table')
 
     local none = 'NONE'
 

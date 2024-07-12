@@ -12,7 +12,6 @@ local concat2s   = str_lib.concat2s
 local is_str     = type_lib.is_str
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.cache'
 
 local match      = string.match
 
@@ -29,7 +28,7 @@ local get_mem    = nil
 
 
 set_dir = function(path)
-    nd_assert(is_str(path), nd_err, 'set_dir(): path must be of type string')
+    nd_assert(is_str(path), 'path must be of type string')
 
     dir = path
 
@@ -39,7 +38,7 @@ set_dir = function(path)
 end
 
 get_path = function(key)
-    nd_assert(is_str(key), nd_err, 'get_path(): key must be of type string')
+    nd_assert(is_str(key), 'key must be of type string')
 
     return concat2s(dir, key)
 end

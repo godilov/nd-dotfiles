@@ -1,7 +1,6 @@
 local assert_lib = require 'nd.lib.assert'
 
 local nd_assert  = assert_lib.get_fn(ND_LIB_IS_DEBUG)
-local nd_err     = assert_lib.get_err_fn 'nd.lib.sw'
 
 local clock      = os.clock
 
@@ -54,7 +53,7 @@ start = function(sw)
 end
 
 stop = function(sw)
-    nd_assert(is_sw(sw), nd_err, 'stop(): sw must be of type sw')
+    nd_assert(is_sw(sw), 'sw must be of type sw')
 
     local dt = clock() - sw.start
 
@@ -65,13 +64,13 @@ stop = function(sw)
 end
 
 as_num = function(sw)
-    nd_assert(is_sw(sw), nd_err, 'as_num(): sw must of type sw')
+    nd_assert(is_sw(sw), 'sw must of type sw')
 
     return sw.exec
 end
 
 as_str = function(sw, options)
-    nd_assert(is_sw(sw), nd_err, 'as_str(): sw must of type sw')
+    nd_assert(is_sw(sw), 'sw must of type sw')
 
     local opts = options or {}
 
