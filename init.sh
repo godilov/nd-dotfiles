@@ -132,11 +132,6 @@ do
 
             install-pkg pkg/wm_hyprland
             ;;
-        "awesome")
-            link-config-arr $DIR_EXT ~/.config awesome
-
-            install-pkg pkg/wm_awesome
-            ;;
         "nvim")
             link-config-arr $DIR_EXT ~/.config nvim;;
         "alacritty")
