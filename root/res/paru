@@ -1,0 +1,3 @@
+https://aur.archlinux.org/paru.git
+
+makepkg -si
