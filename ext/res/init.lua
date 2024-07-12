@@ -37,7 +37,6 @@ run = function()
     init('.', true)
 
     require 'nd.lib.test' {
-        require 'test.awesome',
         require 'test.nvim',
     }
 end
