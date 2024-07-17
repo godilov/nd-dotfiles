@@ -49,4 +49,5 @@ wev
 # AUR
 
 nvim-packer-git
+pass-secrets-git
 rm-improved
