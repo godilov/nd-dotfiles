@@ -32,7 +32,6 @@ return function(config)
             middle_mouse_command = '',
             always_show_bufferline = true,
             diagnostics = 'nvim_lsp',
-            diagnostics_update_in_insert = true,
             diagnostics_indicator = function(count, _, _, _)
                 return '(' .. count .. ')'
             end,
