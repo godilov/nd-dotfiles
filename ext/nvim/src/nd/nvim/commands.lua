@@ -1,16 +1,15 @@
 local fn_lib       = require 'nd.lib.fn'
 
 local cache_res    = require 'nd.nvim.res.cache'
-
-local scheme       = require 'nd.nvim.scheme'
+local scheme_res   = require 'nd.nvim.res.scheme'
 
 local keys         = fn_lib.keys
 local ivals        = fn_lib.ivals
 local filter       = fn_lib.filter
 local each         = fn_lib.each
 
-local apply_colors = scheme.apply_colors
-local apply_keys   = scheme.apply_keys
+local apply_colors = scheme_res.apply_colors
+local apply_keys   = scheme_res.apply_keys
 
 local format       = string.format
 local match        = string.match

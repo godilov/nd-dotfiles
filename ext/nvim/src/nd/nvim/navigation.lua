@@ -1,10 +1,9 @@
 local str_lib    = require 'nd.lib.str'
 
 local cache_res  = require 'nd.nvim.res.cache'
+local scheme_res = require 'nd.nvim.res.scheme'
 
-local scheme     = require 'nd.nvim.scheme'
-
-local apply_keys = scheme.apply_keys
+local apply_keys = scheme_res.apply_keys
 
 local concat2s   = str_lib.concat2s
 

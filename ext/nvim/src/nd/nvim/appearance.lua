@@ -1,8 +1,7 @@
 local cache_res    = require 'nd.nvim.res.cache'
+local scheme_res   = require 'nd.nvim.res.scheme'
 
-local scheme       = require 'nd.nvim.scheme'
-
-local apply_colors = scheme.apply_colors
+local apply_colors = scheme_res.apply_colors
 
 local colorizer    = require 'colorizer'
 local lualine      = require 'lualine'
