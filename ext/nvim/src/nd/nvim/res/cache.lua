@@ -3,8 +3,8 @@ local type_lib   = require 'nd.lib.type'
 local cache_lib  = require 'nd.lib.cache'
 local assert_lib = require 'nd.lib.assert'
 
-local colors_fn  = require 'nd.res.nvim.colors'
-local keys_fn    = require 'nd.res.nvim.keys'
+local colors_fn  = require 'nd.nvim.res.colors'
+local keys_fn    = require 'nd.nvim.res.keys'
 
 local concat2s   = str_lib.concat2s
 local concat3s   = str_lib.concat3s

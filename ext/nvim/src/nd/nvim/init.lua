@@ -2,7 +2,7 @@ local fn_lib         = require 'nd.lib.fn'
 local str_lib        = require 'nd.lib.str'
 local cache_lib      = require 'nd.lib.cache'
 
-local plugins_fn     = require 'nd.res.nvim.plugins'
+local plugins_fn     = require 'nd.nvim.res.plugins'
 
 local keys_config    = require 'nd.nvim.config.keys'
 local colors_config  = require 'nd.nvim.config.colors'

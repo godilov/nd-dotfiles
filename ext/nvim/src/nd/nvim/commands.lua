@@ -1,6 +1,6 @@
 local fn_lib       = require 'nd.lib.fn'
 
-local cache_res    = require 'nd.res.nvim.cache'
+local cache_res    = require 'nd.nvim.res.cache'
 
 local scheme       = require 'nd.nvim.scheme'
 
@@ -38,8 +38,8 @@ nd_apply_config = function(config)
 
         unload {
             'nd.nvim.options',
-            'nd.res.nvim.keys',
-            'nd.res.nvim.colors',
+            'nd.nvim.res.keys',
+            'nd.nvim.res.colors',
         }
 
         local color_scheme = cache_res.get_colors(config.colors, true)

@@ -1,4 +1,4 @@
-local cache_res    = require 'nd.res.nvim.cache'
+local cache_res    = require 'nd.nvim.res.cache'
 
 local scheme       = require 'nd.nvim.scheme'
 

@@ -1,6 +1,6 @@
 local str_lib    = require 'nd.lib.str'
 
-local cache_res  = require 'nd.res.nvim.cache'
+local cache_res  = require 'nd.nvim.res.cache'
 
 local scheme     = require 'nd.nvim.scheme'
 
