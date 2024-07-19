@@ -4,9 +4,6 @@ local cache_lib      = require 'nd.lib.cache'
 
 local plugins_fn     = require 'nd.nvim.res.plugins'
 
-local keys_config    = require 'nd.nvim.config.keys'
-local colors_config  = require 'nd.nvim.config.colors'
-local lsp_config     = require 'nd.nvim.config.lsp'
 local res_config     = require 'nd.nvim.config.res'
 
 local options_fn     = require 'nd.nvim.options'
@@ -14,6 +11,13 @@ local commands_fn    = require 'nd.nvim.commands'
 local navigation_fn  = require 'nd.nvim.navigation'
 local development_fn = require 'nd.nvim.development'
 local appearance_fn  = require 'nd.nvim.appearance'
+
+local cmp            = require 'cmp'
+local snip           = require 'luasnip'
+local tree           = require 'nvim-tree.api'
+local telescope      = require 'telescope'
+local actions        = require 'telescope.actions'
+local inlay          = require 'lsp-inlayhints'
 
 local ivals          = fn_lib.ivals
 local map            = fn_lib.map
@@ -42,9 +46,43 @@ return function()
         }
 
         local config = {
-            colors = colors_config['nd-even'],
-            keys   = keys_config['nd-even'],
-            lsp    = lsp_config['nd-even'],
+            colors = {
+                scheme = 'nd-even',
+            },
+            keys   = {
+                scheme = 'nd-even',
+                leader = {
+                    files    = ';',
+                    lsp_goto = 'g',
+                    lsp      = ' ',
+                },
+                opts = {
+                    noremap = true,
+                },
+                api = {
+                    nvim      = vim,
+                    cmp       = cmp,
+                    snip      = snip,
+                    tree      = tree,
+                    telescope = telescope,
+                    actions   = actions,
+                    inlay     = inlay,
+                },
+            },
+            lsp    = {
+                lua = {
+                    libs = {
+                        '/usr/share/nvim/runtime/lua',
+                        '/usr/share/nvim/runtime/lua/lsp',
+                    },
+                    globals = {
+                        'vim',
+                        'screen',
+                        'client',
+                        'root',
+                    },
+                },
+            },
             res    = res_config['nd-even'],
         }
 
