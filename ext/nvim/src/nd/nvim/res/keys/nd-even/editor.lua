@@ -7,7 +7,7 @@ local concat2s   = str_lib.concat2s
 local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
-local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 return function(config)
     local leader = config.leader

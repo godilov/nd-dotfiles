@@ -7,7 +7,7 @@ local clone_with = tab_lib.clone_with
 
 local is_tab     = type_lib.is_tab
 
-local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 local as_hex     = color_lib.rgb.as_hex
 local from_hex   = color_lib.rgb.from_hex

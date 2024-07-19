@@ -5,7 +5,7 @@ local load_fn    = require 'nd.nvim.res.load'
 
 local is_tab     = type_lib.is_tab
 
-local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 return function(config)
     nd_assert(is_tab(config), 'config must be of type table')

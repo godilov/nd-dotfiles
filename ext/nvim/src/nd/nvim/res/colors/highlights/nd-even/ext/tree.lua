@@ -3,7 +3,7 @@ local assert_lib = require 'nd.lib.assert'
 
 local is_tab     = type_lib.is_tab
 
-local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 
 return function(config)

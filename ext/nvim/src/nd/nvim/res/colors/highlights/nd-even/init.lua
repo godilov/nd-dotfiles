@@ -6,7 +6,7 @@ local concat        = tab_lib.concat
 
 local is_tab        = type_lib.is_tab
 
-local nd_assert     = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert     = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 local editor_fn     = require 'nd.nvim.res.colors.highlights.nd-even.editor'
 local syntax_fn     = require 'nd.nvim.res.colors.highlights.nd-even.syntax'

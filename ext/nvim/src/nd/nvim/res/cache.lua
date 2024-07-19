@@ -17,7 +17,7 @@ local get        = cache_lib.fs.get
 
 local concat     = table.concat
 
-local nd_assert  = assert_lib.get_fn(ND_RES_IS_DEBUG)
+local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
 
 local get_colors_keyname    = nil
