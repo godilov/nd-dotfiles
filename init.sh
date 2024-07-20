@@ -16,14 +16,22 @@ function install-pkg {
     paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
-function clone {
+function ensure {
     [[ -d $1 ]] || git clone $2 $1
+    
+    echo Update $1
+
+    cd $1
+
+    git pull
+
+    cd -
 }
 
-function clone-deps {
-    clone $DIR_DEPS/paru https://aur.archlinux.org/paru.git
-    clone $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
-    clone $DIR_DEPS/tpm https://github.com/tmux-plugins/tpm.git
+function ensure-deps {
+    ensure $DIR_DEPS/paru https://aur.archlinux.org/paru.git
+    ensure $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
+    ensure $DIR_DEPS/tpm https://github.com/tmux-plugins/tpm.git
 }
 
 function link-config {
@@ -52,7 +60,7 @@ function link-config-arr {
 }
 
 function link-tmux {
-    clone-deps
+    ensure-deps
 
     link-config-arr $DIR_LOCAL ~ .tmux.conf
 
@@ -96,7 +104,7 @@ do
         "all-cfg")
             init-all-cfg;;
         "deps")
-            clone-deps;;
+            ensure-deps;;
         "libs")
             install-pkg pkg/libs;;
         "dev")
