@@ -1,0 +1,1 @@
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/godilov/nd-dotfiles/main/init-remote.sh)"

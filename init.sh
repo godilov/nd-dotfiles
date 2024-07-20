@@ -74,6 +74,8 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
+    mkdir -p ~/.config
+
     link-config-arr $DIR_EXT ~/.config nvim;;
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
     link-config-arr $DIR_LOCAL ~ .profile .gitconfig
@@ -81,8 +83,6 @@ function init-all-cfg {
     link-tmux
     link-zsh
 }
-
-mkdir -p ~/.config
 
 for arg in "$@"
 do

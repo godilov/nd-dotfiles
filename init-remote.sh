@@ -1,7 +1,7 @@
-git clone git@github.com:godilov/nd-dotfiles.git dotfiles
+git clone https://github.com/godilov/nd-dotfiles.git dotfiles
 
 cd dotfiles
 
-./init.sh all-cfg all-pkg $@
+./init.sh all $@
 
 cd -
