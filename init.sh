@@ -1,14 +1,10 @@
 #!/bin/bash
 
 DIR=$(pwd)
-
 DIR_DEPS=$DIR/deps
 DIR_EXT=$DIR/ext
-
-DIR_BOOT=$DIR/root/boot
-DIR_GLOBAL=$DIR/root/global
 DIR_LOCAL=$DIR/root/local
-DIR_CONFIG=$DIR_LOCAL/config
+DIR_CONFIG=$DIR/root/local/config
 
 function mv-safe {
     if [[ -e $1/$2 ]]; then
@@ -78,6 +74,7 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
+    link-config-arr $DIR_EXT ~/.config nvim;;
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
     link-config-arr $DIR_LOCAL ~ .profile .gitconfig
 
