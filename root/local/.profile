@@ -1,3 +1,5 @@
+export GTK_THEME=Adwaita:dark
+
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
