@@ -7,9 +7,7 @@ DIR_LOCAL=$DIR/root/local
 DIR_CONFIG=$DIR/root/local/config
 
 function mv-safe {
-    if [[ -e $1/$2 ]]; then
-        mv $1/$2 $1/_$2.bak
-    fi
+    [[ -e $1/$2 ]] && mv $1/$2 $1/_$2.bak
 }
 
 function install-pkg {

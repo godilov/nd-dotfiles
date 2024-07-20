@@ -17,8 +17,7 @@ libuv
 boost
 base-devel
 vulkan-devel
-glfw-wayland
-glfw-doc
+glfw
 fmt
 spdlog
 gtest

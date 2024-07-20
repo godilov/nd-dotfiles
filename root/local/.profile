@@ -15,3 +15,5 @@ export WINE_FULLSCREEN_FSR_STRENGTH=5
 export AMD_VULKAN_ICD=RADV
 export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
+
+Hyprland
