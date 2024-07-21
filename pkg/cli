@@ -18,7 +18,6 @@ btop
 bottom
 ripgrep
 duf
-dex
 
 xplr
 fzf
@@ -50,5 +49,4 @@ wev
 # AUR
 
 nvim-packer-git
-pass-secrets-git
 rm-improved

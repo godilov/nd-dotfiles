@@ -6,12 +6,8 @@ DIR_EXT=$DIR/ext
 DIR_LOCAL=$DIR/root/local
 DIR_CONFIG=$DIR/root/local/config
 
-function mv-safe {
-    [[ -e $1/$2 ]] && mv $1/$2 $1/_$2.bak
-}
-
 function install-pkg {
-    paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
+    paru -S $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
 function ensure {
@@ -38,7 +34,7 @@ function link-config {
     dest=$3
     destf=$4
 
-    mv-safe $dest $destf
+    mkdir -p $dest
 
     ln -sf $src/$srcf $dest/$destf
 }
@@ -51,7 +47,7 @@ function link-config-arr {
 
     for config in "$@"
     do
-        mv-safe $dest $config
+        mkdir -p $dest
 
         ln -sf $src/$config $dest/$config
     done
@@ -84,6 +80,7 @@ function init-all-cfg {
 
     link-config-arr $DIR_EXT ~/.config nvim
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
+    link-config-arr $DIR_CONFIG/obsidian ~/.config/obsidian user-flags.conf
     link-config-arr $DIR_LOCAL ~ .profile .gitconfig
 
     link-tmux
