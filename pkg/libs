@@ -32,6 +32,7 @@ qt6-wayland
 qt5-wayland
 xdg-user-dirs
 
+gcr
 polkit
 polkit-gnome
 
