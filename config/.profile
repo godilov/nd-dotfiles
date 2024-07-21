@@ -1,4 +1,5 @@
-export GTK_THEME=Adwaita:dark
+export GTK_THEME=Orchis-Dark
+export GTK_ICON_THEME=Papirus-Dark
 
 export EDITOR=nvim
 export VISUAL=nvim
