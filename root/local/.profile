@@ -18,7 +18,6 @@ export AMD_VULKAN_ICD=RADV
 export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
 
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-unset SSH_AGENT_PID
+eval $(ssh-agent)
 
 Hyprland > /dev/null
