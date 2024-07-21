@@ -3,11 +3,14 @@
 DIR=$(pwd)
 DIR_DEPS=$DIR/deps
 DIR_EXT=$DIR/ext
-DIR_LOCAL=$DIR/root/local
-DIR_CONFIG=$DIR/root/local/config
+DIR_CONFIG=$DIR/config
 
 function install-pkg {
-    paru -S $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
+    paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
+}
+
+function rm-link {
+    [[ -L "$1" ]] && rm -v $1
 }
 
 function ensure {
@@ -22,6 +25,10 @@ function ensure {
     cd -
 }
 
+function ensure-dir {
+    [[ -d $1 ]] || mkdir -p $dest
+}
+
 function ensure-deps {
     ensure $DIR_DEPS/paru https://aur.archlinux.org/paru.git
     ensure $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
@@ -34,7 +41,9 @@ function link-config {
     dest=$3
     destf=$4
 
-    mkdir -p $dest
+    ensure-dir $dest
+
+    rm-link $dest/$destf
 
     ln -sf $src/$srcf $dest/$destf
 }
@@ -47,7 +56,9 @@ function link-config-arr {
 
     for config in "$@"
     do
-        mkdir -p $dest
+        ensure-dir $dest
+
+        rm-link $dest/$config
 
         ln -sf $src/$config $dest/$config
     done
@@ -56,17 +67,17 @@ function link-config-arr {
 function link-tmux {
     ensure-deps
 
-    link-config-arr $DIR_LOCAL ~ .tmux.conf
+    link-config-arr $DIR_CONFIG ~ .tmux.conf
 
-    mkdir -p ~/.tmux/plugins/
+    ensure-dir ~/.tmux/plugins/
 
     link-config-arr $DIR_DEPS ~/.tmux/plugins tpm
 }
 
 function link-zsh {
-    link-config-arr $DIR_LOCAL ~ .zshrc
+    link-config-arr $DIR_CONFIG ~ .zshrc
 
-    link-config $DIR_LOCAL .profile ~ .zprofile
+    link-config $DIR_CONFIG .profile ~ .zprofile
 }
 
 function init-all-pkg {
@@ -76,12 +87,10 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    mkdir -p ~/.config
-
     link-config-arr $DIR_EXT ~/.config nvim
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
     link-config-arr $DIR_CONFIG/obsidian ~/.config/obsidian user-flags.conf
-    link-config-arr $DIR_LOCAL ~ .profile .gitconfig
+    link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
     link-zsh
@@ -118,9 +127,9 @@ do
             link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
             ;;
         "env")
-            link-config-arr $DIR_LOCAL ~ .profile;;
+            link-config-arr $DIR_CONFIG ~ .profile;;
         "git")
-            link-config-arr $DIR_LOCAL ~ .gitconfig;;
+            link-config-arr $DIR_CONFIG ~ .gitconfig;;
         "tmux")
             link-tmux;;
         "zsh")
