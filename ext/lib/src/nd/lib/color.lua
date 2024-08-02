@@ -103,9 +103,9 @@ local rgb_mt       = nil
 local hsl_mt       = nil
 local hsb_mt       = nil
 
-local rgb_t        = nil
-local hsl_t        = nil
-local hsb_t        = nil
+local rgb_t        = rgb_t
+local hsl_t        = hsl_t
+local hsb_t        = hsb_t
 
 local is_rgb       = nil
 local is_hsl       = nil
@@ -222,11 +222,11 @@ rgb_hue = function(color)
     local len = max_val - min_val
 
     if r == max_val then
-        return ((0 + (g - b) / len) / 60) % 1
+        return (60 * (0 + (g - b) / len)) % 360
     elseif g == max_val then
-        return ((2 + (b - r) / len) / 60) % 1
+        return (60 * (2 + (b - r) / len)) % 360
     elseif b == max_val then
-        return ((4 + (r - g) / len) / 60) % 1
+        return (60 * (4 + (r - g) / len)) % 360
     end
 
     return 0
@@ -239,7 +239,7 @@ hsl_comp = function(color, n)
     local s = color.data[1]
     local l = color.data[2]
 
-    local k = (n + 12 * h) % 12
+    local k = (n + h / 30) % 12
 
     return l - s * min(l, 1 - l) * max(min(k - 3, 9 - k, 1), -1)
 end
@@ -251,7 +251,7 @@ hsb_comp = function(color, n)
     local s = color.data[1]
     local b = color.data[2]
 
-    local k = (n + 6 * h) % 6
+    local k = (n + h / 60) % 6
 
     return b * (1 - s * max(min(k, 4 - k, 1), 0))
 end
@@ -270,10 +270,10 @@ rgb_as_hsl = function(color)
     local len = max_val - min_val
 
     local h = rgb_hue(color)
-    local l = (max + min) / 2
+    local l = (max_val + min_val) / 2
     local s = len / (1 - abs(2 * l - 1))
 
-    return hsl_t { h, s, l, a }
+    return hsl_t { { h, s, l, a } }
 end
 
 rgb_as_hsb = function(color)
@@ -290,32 +290,32 @@ rgb_as_hsb = function(color)
     local len = max_val - min_val
 
     local h = rgb_hue(color)
-    local b = max
+    local b = max_val
     local s = b and len / b or 0
 
-    return hsb_t { h, s, b, a }
+    return hsb_t { { h, s, b, a } }
 end
 
 hsl_as_rgb = function(color)
     nd_assert(is_hsl(color), 'color must be of type hsl')
 
-    return rgb_t {
-        hsl_comp(color, 0),
-        hsl_comp(color, 8),
-        hsl_comp(color, 4),
-        color.data[3] * 255,
-    }
+    return rgb_t { {
+        255 * hsl_comp(color, 0),
+        255 * hsl_comp(color, 8),
+        255 * hsl_comp(color, 4),
+        255 * color.data[3],
+    } }
 end
 
 hsb_as_rgb = function(color)
     nd_assert(is_hsb(color), 'color must be of type hsb')
 
-    return rgb_t {
-        hsb_comp(color, 5),
-        hsb_comp(color, 3),
-        hsb_comp(color, 1),
-        color.data[3] * 255,
-    }
+    return rgb_t { {
+        255 * hsb_comp(color, 5),
+        255 * hsb_comp(color, 3),
+        255 * hsb_comp(color, 1),
+        255 * color.data[3],
+    } }
 end
 
 rgb_as_hex = function(color, alpha)
@@ -394,7 +394,7 @@ hsl_from = function(val)
 
 
     return hsl_t { {
-        clamp(is_val_tab and val[1] or val, 0.0, 1.0),
+        clamp(is_val_tab and val[1] or val, 0, 360),
         clamp(is_val_tab and val[2] or val, 0.0, 1.0),
         clamp(is_val_tab and val[3] or val, 0.0, 1.0),
         clamp(is_val_tab and val[4] or val, 0.0, 1.0),
@@ -409,7 +409,7 @@ hsb_from = function(val)
 
 
     return hsb_t { {
-        clamp(is_val_tab and val[1] or val, 0.0, 1.0),
+        clamp(is_val_tab and val[1] or val, 0, 360),
         clamp(is_val_tab and val[2] or val, 0.0, 1.0),
         clamp(is_val_tab and val[3] or val, 0.0, 1.0),
         clamp(is_val_tab and val[4] or val, 0.0, 1.0),
@@ -495,6 +495,7 @@ return {
         comp     = hsl_comp,
         as_rgb   = hsl_as_rgb,
         as_hex   = hsl_as_hex,
+        from_rgb = rgb_as_hsl,
         from_hex = hsl_from_hex,
         from     = hsl_from,
         type     = hsl_t,
@@ -507,6 +508,7 @@ return {
         comp     = hsb_comp,
         as_rgb   = hsb_as_rgb,
         as_hex   = hsb_as_hex,
+        from_rgb = rgb_as_hsb,
         from_hex = hsb_from_hex,
         from     = hsb_from,
         type     = hsb_t,
