@@ -4,8 +4,6 @@ local cache_lib      = require 'nd.lib.cache'
 
 local plugins_fn     = require 'nd.nvim.res.plugins'
 
-local res_config     = require 'nd.nvim.config.res'
-
 local options_fn     = require 'nd.nvim.options'
 local commands_fn    = require 'nd.nvim.commands'
 local navigation_fn  = require 'nd.nvim.navigation'
@@ -47,10 +45,10 @@ return function()
 
         local config = {
             colors = {
-                scheme = 'nd-even',
+                scheme = 'even',
             },
             keys   = {
-                scheme = 'nd-even',
+                scheme = 'even',
                 leader = {
                     files    = ';',
                     lsp_goto = 'g',
@@ -83,7 +81,6 @@ return function()
                     },
                 },
             },
-            res    = res_config['nd-even'],
         }
 
         options_fn(config)

@@ -1,5 +1,6 @@
 local str_lib    = require 'nd.lib.str'
 
+local res        = require 'nd.nvim.res'
 local cache_res  = require 'nd.nvim.res.cache'
 local scheme_res = require 'nd.nvim.res.scheme'
 
@@ -25,13 +26,13 @@ return function(config)
             width = 48,
         },
         renderer = {
-            icons = config.res.tree.icons,
+            icons = res.tree(config).icons,
         },
     }
 
     telescope.setup {
         defaults = {
-            borderchars = config.res.telescope.borderchars,
+            borderchars = res.telescope(config).borderchars,
             mappings = key_scheme.telescope_fn(),
         },
     }

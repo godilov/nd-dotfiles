@@ -1,3 +1,4 @@
+local res          = require 'nd.nvim.res'
 local cache_res    = require 'nd.nvim.res.cache'
 local scheme_res   = require 'nd.nvim.res.scheme'
 
@@ -41,6 +42,6 @@ return function(config)
         theme = 'hyper',
         disable_move = true,
         shortcut_type = 'letter',
-        config = config.res.dashboard.config,
+        config = res.dashboard(config).config,
     }
 end

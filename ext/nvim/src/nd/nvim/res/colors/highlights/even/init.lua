@@ -8,14 +8,14 @@ local is_tab        = type_lib.is_tab
 
 local nd_assert     = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
-local editor_fn     = require 'nd.nvim.res.colors.highlights.nd-even.editor'
-local syntax_fn     = require 'nd.nvim.res.colors.highlights.nd-even.syntax'
+local editor_fn     = require 'nd.nvim.res.colors.highlights.even.editor'
+local syntax_fn     = require 'nd.nvim.res.colors.highlights.even.syntax'
 
-local packer_fn     = require 'nd.nvim.res.colors.highlights.nd-even.ext.packer'
-local treesitter_fn = require 'nd.nvim.res.colors.highlights.nd-even.ext.treesitter'
-local telescope_fn  = require 'nd.nvim.res.colors.highlights.nd-even.ext.telescope'
-local tree_fn       = require 'nd.nvim.res.colors.highlights.nd-even.ext.tree'
-local cmp_fn        = require 'nd.nvim.res.colors.highlights.nd-even.ext.cmp'
+local packer_fn     = require 'nd.nvim.res.colors.highlights.even.ext.packer'
+local treesitter_fn = require 'nd.nvim.res.colors.highlights.even.ext.treesitter'
+local telescope_fn  = require 'nd.nvim.res.colors.highlights.even.ext.telescope'
+local tree_fn       = require 'nd.nvim.res.colors.highlights.even.ext.tree'
+local cmp_fn        = require 'nd.nvim.res.colors.highlights.even.ext.cmp'
 
 return function(config)
     nd_assert(is_tab(config.palette), 'palette must be of type table')

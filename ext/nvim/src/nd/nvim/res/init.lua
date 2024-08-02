@@ -23,6 +23,12 @@ local yaml_fn       = nil
 local toml_fn       = nil
 local texlab_fn     = nil
 
+local lsp_fn        = nil
+local treesitter_fn = nil
+local telescope_fn  = nil
+local tree_fn       = nil
+local dashboard_fn  = nil
+
 
 bash_fn = function(_)
     return {}
@@ -105,9 +111,6 @@ rust_fn = function(_)
             check = {
                 command = 'clippy',
             },
-            rustfmt = {
-                extraArgs = { '+nightly' },
-            },
         },
     }
 end
@@ -176,7 +179,7 @@ texlab_fn = function(_)
     return {}
 end
 
-return function(config)
+lsp_fn = function(config)
     nd_assert(is_tab(config), 'config must be of type table')
 
     return {
@@ -203,3 +206,121 @@ return function(config)
         { 'texlab',        texlab_fn(config.latex) },
     }
 end
+
+treesitter_fn = function(_)
+    return {
+        'query',
+        'bash', 'lua',
+        'cmake', 'ninja',
+        'c', 'cpp', 'rust', 'haskell', 'clojure', 'cuda', 'glsl',
+        'c_sharp', 'sql',
+        'html', 'css', 'scss', 'javascript', 'typescript',
+        'json', 'yaml', 'toml',
+        'tmux',
+    }
+end
+
+telescope_fn = function(_)
+    return {
+        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    }
+end
+
+tree_fn = function(_)
+    return {
+        icons = {
+            symlink_arrow = '  ',
+            glyphs = {
+                default = '',
+                symlink = '',
+                bookmark = '',
+                modified = '',
+                folder = {
+                    arrow_closed = '',
+                    arrow_open = '',
+                    default = '',
+                    open = '',
+                    empty = '',
+                    empty_open = '',
+                    symlink = '',
+                    symlink_open = '',
+                },
+                git = {
+                    staged = '',
+                    unstaged = '',
+                    unmerged = '',
+                    renamed = '',
+                    untracked = '',
+                    deleted = '',
+                    ignored = '',
+                },
+            },
+        },
+    }
+end
+
+dashboard_fn = function(_)
+    return {
+        config = {
+            header = {
+                '',
+                '    ⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄ ',
+                '    ⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄ ',
+                '   ⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄ ',
+                '   ⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄ ',
+                '  ⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰ ',
+                '  ⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤ ',
+                ' ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗ ',
+                ' ⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟  ',
+                ' ⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃  ',
+                ' ⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃  ',
+                '  ⠘⣿⣿⣿⣿⣿⣿⣿⣿⠄⣴⣿⣶⣄⠄⣴⣶⠄⢀⣾⣿⣿⣿⣿⣿⣿⠃   ',
+                '   ⠈⠻⣿⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⠄⣿⣿⡀⣾⣿⣿⣿⣿⣛⠛⠁    ',
+                '     ⠈⠛⢿⣿⣿⣿⠁⠞⢿⣿⣿⡄⢿⣿⡇⣸⣿⣿⠿⠛⠁      ',
+                '        ⠉⠻⣿⣿⣾⣦⡙⠻⣷⣾⣿⠃⠿⠋⠁     ⢀⣠⣴ ',
+                ' ⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿ ',
+                '',
+            },
+            shortcut = {
+                {
+                    desc = ' update packer',
+                    group = '@function',
+                    action = 'PackerSync',
+                    key = 'q',
+                },
+                {
+                    desc = ' update treesitter',
+                    group = '@function',
+                    action = 'TSUpdate',
+                    key = 'w',
+                },
+                {
+                    desc = ' update mason',
+                    group = '@function',
+                    action = 'MasonUpdate',
+                    key = 'e',
+                },
+                {
+                    desc = ' files',
+                    group = '@property',
+                    action = 'Telescope find_files',
+                    key = 'f',
+                },
+                {
+                    desc = ' search',
+                    group = '@property',
+                    action = 'Telescope live_grep',
+                    key = 's',
+                },
+            },
+        },
+    }
+end
+
+return {
+    lsp = lsp_fn,
+    treesitter = treesitter_fn,
+    telescope = telescope_fn,
+    tree = tree_fn,
+    dashboard = dashboard_fn,
+}

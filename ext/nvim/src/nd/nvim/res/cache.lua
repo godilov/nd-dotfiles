@@ -12,8 +12,10 @@ local concat3s   = str_lib.concat3s
 local is_str     = type_lib.is_str
 local is_tab     = type_lib.is_tab
 
-local set        = cache_lib.fs.set
-local get        = cache_lib.fs.get
+local set_fs     = cache_lib.fs.set
+local get_fs     = cache_lib.fs.get
+local set_mem    = cache_lib.mem.set
+local get_mem    = cache_lib.mem.get
 
 local concat     = table.concat
 
@@ -42,7 +44,7 @@ end
 get_colors_scheme_raw = function(fn, config, key)
     local scheme = fn(config)
 
-    set(key, scheme)
+    set_fs(key, scheme)
 
     return scheme
 end
@@ -50,7 +52,7 @@ end
 get_keys_scheme_raw = function(fn, config, key)
     local scheme = fn(config)
 
-    set(key, scheme)
+    set_mem(key, scheme)
 
     return scheme
 end
@@ -59,7 +61,7 @@ get_colors_scheme = function(fn, config, key, is_forced)
     if is_forced then
         return get_colors_scheme_raw(fn, config, key)
     else
-        local scheme_cache = get(key)
+        local scheme_cache = get_fs(key)
 
         return is_tab(scheme_cache) and scheme_cache or
             get_colors_scheme_raw(fn, config, key)
@@ -70,7 +72,7 @@ get_keys_scheme = function(fn, config, key, is_forced)
     if is_forced then
         return get_keys_scheme_raw(fn, config, key)
     else
-        local scheme_cache = get(key)
+        local scheme_cache = get_fs(key)
 
         return is_tab(scheme_cache) and scheme_cache or
             get_keys_scheme_raw(fn, config, key)

@@ -1,32 +1,30 @@
-local fn_lib        = require 'nd.lib.fn'
+local fn_lib     = require 'nd.lib.fn'
 
-local cache_res     = require 'nd.nvim.res.cache'
-local scheme_res    = require 'nd.nvim.res.scheme'
+local res        = require 'nd.nvim.res'
+local cache_res  = require 'nd.nvim.res.cache'
+local scheme_res = require 'nd.nvim.res.scheme'
 
-local treeistter_fn = require 'nd.nvim.res.treesitter'
-local lsp_fn        = require 'nd.nvim.res.lsp'
+local ivals      = fn_lib.ivals
+local mapi       = fn_lib.mapi
+local filter     = fn_lib.filter
+local collect    = fn_lib.collect
+local each       = fn_lib.each
 
-local ivals         = fn_lib.ivals
-local mapi          = fn_lib.mapi
-local filter        = fn_lib.filter
-local collect       = fn_lib.collect
-local each          = fn_lib.each
+local apply_keys = scheme_res.apply_keys
 
-local apply_keys    = scheme_res.apply_keys
+local cmp        = require 'cmp'
+local cmp_lsp    = require 'cmp_nvim_lsp'
+local snip       = require 'luasnip'
 
-local cmp           = require 'cmp'
-local cmp_lsp       = require 'cmp_nvim_lsp'
-local snip          = require 'luasnip'
+local mason      = require 'mason'
+local mason_lsp  = require 'mason-lspconfig'
+local lsp_cfg    = require 'lspconfig'
 
-local mason         = require 'mason'
-local mason_lsp     = require 'mason-lspconfig'
-local lsp_cfg       = require 'lspconfig'
+local inlayhints = require 'lsp-inlayhints'
 
-local inlayhints    = require 'lsp-inlayhints'
+local treesitter = require 'nvim-treesitter.configs'
 
-local treesitter    = require 'nvim-treesitter.configs'
-
-local crates        = require 'crates'
+local crates     = require 'crates'
 
 
 local is_not_skip_fn = nil
@@ -39,7 +37,7 @@ end
 return function(config)
     local key_scheme = cache_res.get_keys(config.keys)
 
-    local lsp = lsp_fn(config.lsp)
+    local lsp = res.lsp(config.lsp)
 
     apply_keys(key_scheme.lsp_fn())
 
@@ -99,7 +97,7 @@ return function(config)
     end, ivals(lsp))
 
     treesitter.setup {
-        ensure_installed = treeistter_fn(),
+        ensure_installed = res.treesitter(config),
         highlight = {
             enable = true,
         },

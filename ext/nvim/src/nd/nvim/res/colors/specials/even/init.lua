@@ -5,7 +5,7 @@ local is_tab     = type_lib.is_tab
 
 local nd_assert  = assert_lib.get_fn(ND_NVIM_IS_DEBUG)
 
-local lualine_fn = require 'nd.nvim.res.colors.specials.nd-even.lualine'
+local lualine_fn = require 'nd.nvim.res.colors.specials.even.lualine'
 
 return function(scheme)
     nd_assert(is_tab(scheme.palette), 'palette must be of type table')
