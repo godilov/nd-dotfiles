@@ -33,6 +33,7 @@ qt5-wayland
 xdg-user-dirs
 
 gcr
+gcr-4
 polkit
 polkit-gnome
 
@@ -40,7 +41,8 @@ papirus-icon-theme
 
 # AUR
 
-all-repository-fonts
-bibata-cursor-theme
 orchis-theme
-papirus-icon-theme-git
+bibata-cursor-theme
+all-repository-fonts
+
+gnome-ssh-askpass4-git

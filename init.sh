@@ -5,6 +5,8 @@ DIR_DEPS=$DIR/deps
 DIR_EXT=$DIR/ext
 DIR_CONFIG=$DIR/config
 
+ENSURED=false
+
 function install-pkg {
     paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
@@ -13,7 +15,7 @@ function rm-link {
     [[ -L "$1" ]] && rm -v $1
 }
 
-function ensure {
+function ensure-git {
     [[ -d $1 ]] || git clone $2 $1
     
     echo Update $1
@@ -30,9 +32,16 @@ function ensure-dir {
 }
 
 function ensure-deps {
-    ensure $DIR_DEPS/paru https://aur.archlinux.org/paru.git
-    ensure $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
-    ensure $DIR_DEPS/tpm https://github.com/tmux-plugins/tpm.git
+    if [ "$ENSURED" = true ]; then
+        return
+    fi
+
+    ensure-git $DIR_DEPS/paru https://aur.archlinux.org/paru.git
+    ensure-git $DIR_DEPS/refind https://github.com/bobafetthotmail/refind-theme-regular.git
+    ensure-git $DIR_DEPS/tpm https://github.com/tmux-plugins/tpm.git
+    ensure-git $DIR_DEPS/omz https://github.com/ohmyzsh/ohmyzsh.git
+
+    ENSURED=true
 }
 
 function link-config {
@@ -75,8 +84,11 @@ function link-tmux {
 }
 
 function link-zsh {
+    ensure-deps
+
     link-config-arr $DIR_CONFIG ~ .zshrc
 
+    link-config $DIR_DEPS omz ~ .zsh
     link-config $DIR_CONFIG .profile ~ .zprofile
 }
 
