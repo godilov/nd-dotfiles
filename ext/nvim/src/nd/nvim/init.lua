@@ -10,13 +10,6 @@ local navigation_fn  = require 'nd.nvim.navigation'
 local development_fn = require 'nd.nvim.development'
 local appearance_fn  = require 'nd.nvim.appearance'
 
-local cmp            = require 'cmp'
-local snip           = require 'luasnip'
-local tree           = require 'nvim-tree.api'
-local telescope      = require 'telescope'
-local actions        = require 'telescope.actions'
-local inlay          = require 'lsp-inlayhints'
-
 local ivals          = fn_lib.ivals
 local map            = fn_lib.map
 local collect        = fn_lib.collect
@@ -24,70 +17,82 @@ local collect        = fn_lib.collect
 local concat2s       = str_lib.concat2s
 local concat3s       = str_lib.concat3s
 
-local packer         = require 'packer'
-
 local is_init        = false
 
 local concat_elem    = nil
+
+local init           = nil
 
 
 concat_elem = function(elem)
     return concat3s(elem[1], '/', elem[2])
 end
 
+init = function()
+    require 'packer'.startup {
+        collect(map(concat_elem, ivals(plugins_fn()))),
+    }
+end
+
 return function()
     if not is_init then
         cache_lib.fs.set_dir(concat2s(vim.fn.stdpath 'cache', '/nd.nvim/'))
 
-        packer.startup {
-            collect(map(concat_elem, ivals(plugins_fn()))),
-        }
+        if not pcall(init) then
+            return
+        end
 
-        local config = {
-            colors = {
-                scheme = 'even',
-            },
-            keys   = {
-                scheme = 'even',
-                leader = {
-                    files    = ';',
-                    lsp_goto = 'g',
-                    lsp      = ' ',
+        local status, config = pcall(function()
+            return {
+                colors = {
+                    scheme = 'even',
                 },
-                opts = {
-                    noremap = true,
-                },
-                api = {
-                    nvim      = vim,
-                    cmp       = cmp,
-                    snip      = snip,
-                    tree      = tree,
-                    telescope = telescope,
-                    actions   = actions,
-                    inlay     = inlay,
-                },
-            },
-            lsp    = {
-                lua = {
-                    libs = {
-                        '/usr/share/nvim/runtime/lua',
-                        '/usr/share/nvim/runtime/lua/lsp',
+                keys   = {
+                    scheme = 'even',
+                    leader = {
+                        files    = ';',
+                        lsp_goto = 'g',
+                        lsp      = ' ',
                     },
-                    globals = {
-                        'vim',
-                        'screen',
-                        'client',
-                        'root',
+                    opts = {
+                        noremap = true,
+                    },
+                    api = {
+                        nvim      = vim,
+                        cmp       = require 'cmp',
+                        snip      = require 'luasnip',
+                        tree      = require 'nvim-tree.api',
+                        telescope = require 'telescope',
+                        actions   = require 'telescope.actions',
+                        inlay     = require 'lsp-inlayhints',
                     },
                 },
-            },
-        }
+                lsp    = {
+                    lua = {
+                        libs = {
+                            '/usr/share/nvim/runtime/lua',
+                            '/usr/share/nvim/runtime/lua/lsp',
 
-        options_fn(config)
-        commands_fn(config)
-        navigation_fn(config)
-        development_fn(config)
-        appearance_fn(config)
+                            '~/.local/share/nvim/site/pack/packer/start',
+                        },
+                        globals = {
+                            'vim',
+                            'screen',
+                            'client',
+                            'root',
+                        },
+                    },
+                },
+            }
+        end)
+
+        if status then
+            options_fn(config)
+            commands_fn(config)
+            navigation_fn(config)
+            development_fn(config)
+            appearance_fn(config)
+        end
 
         is_init = true
     end
