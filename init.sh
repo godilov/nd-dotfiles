@@ -100,7 +100,7 @@ function init-all-pkg {
 
 function init-all-cfg {
     link-config-arr $DIR_EXT ~/.config nvim
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop brave-flags.conf mpv starship.toml xplr
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv starship.toml xplr
     link-config-arr $DIR_CONFIG/obsidian ~/.config/obsidian user-flags.conf
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
@@ -161,6 +161,8 @@ do
             link-config-arr $DIR_CONFIG ~/.config bat;;
         "btop")
             link-config-arr $DIR_CONFIG ~/.config btop;;
+        "glow")
+            link-config-arr $DIR_CONFIG ~/.config glow;;
         "brave")
             link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
         "mpv")
