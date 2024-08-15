@@ -1,6 +1,6 @@
 [user]
-	signingkey = godilov@skiff.com
-	email = godilov@skiff.com
+	signingkey = godilov@tuta.io
+	email = godilov@tuta.io
 	name = German Odilov
 [commit]
 	gpgsign = true
