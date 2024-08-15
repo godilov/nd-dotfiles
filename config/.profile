@@ -6,7 +6,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
 export MANPAGER='nvim +Man!'
-export MANWIDTH=1024
+export MANWIDTH=320
 
 export PATH=$PATH:/home/german/.cargo/bin
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
