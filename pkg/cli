@@ -38,6 +38,7 @@ udiskie
 mtpfs
 brightnessctl
 bandwhich
+rsync
 
 vkmark
 stress
