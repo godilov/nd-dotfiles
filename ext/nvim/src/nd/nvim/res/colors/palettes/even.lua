@@ -10,10 +10,10 @@ local hsl = nil
 
 
 hsl = function(x)
-    local hsl = color_lib.hsl.from
-    local hex = color_lib.hsl.as_hex
+    local hsl_fn = color_lib.hsl.from
+    local hex_fn = color_lib.hsl.as_hex
 
-    return hex(hsl(x))
+    return hex_fn(hsl_fn(x))
 end
 
 

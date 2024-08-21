@@ -8,14 +8,21 @@ local colorizer    = require 'colorizer'
 local lualine      = require 'lualine'
 local bufferline   = require 'bufferline'
 local dashboard    = require 'dashboard'
-local markdown     = require 'render-markdown'
 
 return function(config)
     local color_scheme = cache_res.get_colors(config.colors)
 
     apply_colors(color_scheme.highlight)
 
-    colorizer.setup { '*' }
+    colorizer.setup({ '*' }, {
+        names = false,
+        RGB = false,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css_fn = true,
+    });
 
     lualine.setup {
         options = {
@@ -45,6 +52,4 @@ return function(config)
         shortcut_type = 'letter',
         config = res.dashboard(config).config,
     }
-
-    markdown.setup {}
 end
