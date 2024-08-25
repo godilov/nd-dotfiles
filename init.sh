@@ -2,7 +2,6 @@
 
 DIR=$(pwd)
 DIR_DEPS=$DIR/deps
-DIR_EXT=$DIR/ext
 DIR_CONFIG=$DIR/config
 
 ENSURED=false
@@ -99,9 +98,7 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_EXT ~/.config nvim
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv starship.toml xplr
-    link-config-arr $DIR_CONFIG/obsidian ~/.config/obsidian user-flags.conf
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv nvim starship.toml xplr
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -154,7 +151,7 @@ do
             install-pkg pkg/wm_hyprland
             ;;
         "nvim")
-            link-config-arr $DIR_EXT ~/.config nvim;;
+            link-config-arr $DIR_CONFIG ~/.config nvim;;
         "alacritty")
             link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
         "bat")
