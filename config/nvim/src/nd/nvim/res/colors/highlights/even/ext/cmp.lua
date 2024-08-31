@@ -19,11 +19,11 @@ return function(config)
     local none = 'NONE'
 
     return {
-        { 'CmpItemAbbr',           palette.fg.normal,      none, none, none },
-        { 'CmpItemAbbrDeprecated', palette.white.dark,     none, none, 'underline' },
-        { 'CmpItemAbbrMatch',      palette.yellow.light,   none, none, none },
-        { 'CmpItemAbbrMatchFuzzy', palette.red.light,      none, none, none },
-        { 'CmpItemKind',           palette.yellow.light,   none, none, none },
-        { 'CmpItemMenu',           palette.magenta.normal, none, none, none },
+        { 'CmpItemAbbr',           palette.fg.normal,    none, none, none },
+        { 'CmpItemAbbrDeprecated', palette.white.dark,   none, none, 'underline' },
+        { 'CmpItemAbbrMatch',      palette.yellow.light, none, none, none },
+        { 'CmpItemAbbrMatchFuzzy', palette.red.light,    none, none, none },
+        { 'CmpItemKind',           palette.yellow.light, none, none, none },
+        { 'CmpItemMenu',           palette.magenta.dark, none, none, none },
     }
 end

@@ -1,9 +1,9 @@
 local color_lib = require 'nd.lib.color'
 
 local val = {
-    { 1.0, 0.7 },
-    { 1.0, 0.8 },
-    { 1.0, 0.9 },
+    { 1.0, 0.75 },
+    { 1.0, 0.80 },
+    { 1.0, 0.85 },
 }
 
 local hsl = nil

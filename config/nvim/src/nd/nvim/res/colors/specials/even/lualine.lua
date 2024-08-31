@@ -36,11 +36,11 @@ return function(scheme)
     local fg_rgb = from_hex(fg)
 
     return {
-        normal   = abc_fn(from_hex(palette.yellow.normal), bg_rgb, fg_rgb, bg, fg),
-        insert   = abc_fn(from_hex(palette.red.normal), bg_rgb, fg_rgb, bg, fg),
-        visual   = abc_fn(from_hex(palette.green.normal), bg_rgb, fg_rgb, bg, fg),
-        replace  = abc_fn(from_hex(palette.blue.normal), bg_rgb, fg_rgb, bg, fg),
-        command  = abc_fn(from_hex(palette.magenta.normal), bg_rgb, fg_rgb, bg, fg),
+        normal   = abc_fn(from_hex(palette.yellow.dark), bg_rgb, fg_rgb, bg, fg),
+        insert   = abc_fn(from_hex(palette.red.dark), bg_rgb, fg_rgb, bg, fg),
+        visual   = abc_fn(from_hex(palette.green.dark), bg_rgb, fg_rgb, bg, fg),
+        replace  = abc_fn(from_hex(palette.blue.dark), bg_rgb, fg_rgb, bg, fg),
+        command  = abc_fn(from_hex(palette.magenta.dark), bg_rgb, fg_rgb, bg, fg),
         inactive = abc_fn(bg_rgb, bg_rgb, fg_rgb, bg, fg),
     }
 end
