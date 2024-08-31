@@ -71,9 +71,10 @@ return function(config)
         { 'LineNrBelow',  palette.yellow.light, none,                 none, none },
         --
         { 'MatchParen',   palette.bg.normal,    palette.yellow.light, none, 'reverse' },
-        { 'Substitute',   palette.bg.normal,    palette.yellow.dark,  none, none },
-        { 'IncSearch',    palette.bg.normal,    palette.yellow.light, none, none },
-        { 'Search',       palette.bg.normal,    palette.yellow.dark,  none, none },
+        { 'Substitute',   palette.bg.normal,    palette.yellow.light, none, none },
+        { 'CurSearch',    palette.bg.normal,    palette.red.light,    none, none },
+        { 'IncSearch',    palette.bg.normal,    palette.red.light,    none, none },
+        { 'Search',       palette.bg.normal,    palette.yellow.light, none, none },
         { 'Visual',       palette.bg.normal,    palette.yellow.light, none, none },
         --
         { 'Title',        palette.red.dark,     none,                 none, 'bold' },

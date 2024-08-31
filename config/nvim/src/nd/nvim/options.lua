@@ -29,6 +29,4 @@ return function(_)
     vim.opt.lazyredraw     = true
     vim.opt.updatetime     = 500
     vim.opt.ttyfast        = true
-
-    vim.cmd 'nohlsearch'
 end
