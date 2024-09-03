@@ -35,7 +35,8 @@ cpupower
 upower
 udisks2
 udiskie
-mtpfs
+gvfs
+gvfs-mtp
 brightnessctl
 bandwhich
 rsync
