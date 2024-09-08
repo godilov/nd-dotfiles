@@ -40,6 +40,7 @@ gvfs-mtp
 brightnessctl
 bandwhich
 rsync
+chrony
 
 vkmark
 stress
