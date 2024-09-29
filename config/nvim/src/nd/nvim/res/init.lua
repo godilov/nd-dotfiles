@@ -202,7 +202,7 @@ lsp_fn = function(config)
         { 'sqlls',         sql_fn(config.sql) },
         { 'html',          html_fn(config.html) },
         { 'cssls',         css_fn(config.css) },
-        { 'tsserver',      typescript_fn(config.typescript) },
+        { 'ts_ls',         typescript_fn(config.typescript) },
 
         { 'jsonls',        json_fn(config.json) },
         { 'yamlls',        yaml_fn(config.yaml) },
