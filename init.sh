@@ -98,7 +98,7 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv nvim starship.toml xplr
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv nvim starship.toml tofi xplr
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -168,6 +168,8 @@ do
             link-config-arr $DIR_CONFIG ~/.config retroarch;;
         "starship")
             link-config-arr $DIR_CONFIG ~/.config starship.toml;;
+        "tofi")
+            link-config-arr $DIR_CONFIG ~/.config tofi;;
         "xplr")
             link-config-arr $DIR_CONFIG ~/.config xplr;;
         *)
