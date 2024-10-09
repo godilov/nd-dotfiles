@@ -27,6 +27,8 @@ return function(config)
     lualine.setup {
         options = {
             theme = color_scheme.special.lualine,
+            component_separators = { left = '|', right = '|' },
+            section_separators = { left = '', right = '' },
         },
     }
 
