@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/godilov/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/nvimdev/dashboard-nvim"
   },
+  ["glow.nvim"] = {
+    loaded = true,
+    path = "/home/godilov/.local/share/nvim/site/pack/packer/start/glow.nvim",
+    url = "https://github.com/ellisonleao/glow.nvim"
+  },
   ["lsp-inlayhints.nvim"] = {
     loaded = true,
     path = "/home/godilov/.local/share/nvim/site/pack/packer/start/lsp-inlayhints.nvim",
