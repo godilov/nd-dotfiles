@@ -26,6 +26,8 @@ local treesitter = require 'nvim-treesitter.configs'
 
 local crates     = require 'crates'
 
+local glow       = require 'glow'
+
 
 local is_not_skip_fn = nil
 
@@ -111,4 +113,5 @@ return function(config)
     }
 
     crates.setup()
+    glow.setup()
 end

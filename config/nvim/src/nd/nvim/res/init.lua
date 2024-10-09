@@ -22,6 +22,7 @@ local json_fn       = nil
 local yaml_fn       = nil
 local toml_fn       = nil
 local marksman_fn   = nil
+local remark_fn     = nil
 local texlab_fn     = nil
 
 local lsp_fn        = nil
@@ -180,6 +181,10 @@ marksman_fn = function(_)
     return {}
 end
 
+remark_fn = function(_)
+    return {}
+end
+
 texlab_fn = function(_)
     return {}
 end
@@ -209,6 +214,7 @@ lsp_fn = function(config)
         { 'taplo',         toml_fn(config.toml) },
 
         { 'marksman',      marksman_fn(config.latex) },
+        { 'remark_ls',     remark_fn(config.latex) },
         { 'texlab',        texlab_fn(config.latex) },
     }
 end
