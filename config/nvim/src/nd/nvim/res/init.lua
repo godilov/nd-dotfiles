@@ -214,7 +214,7 @@ lsp_fn = function(config)
         { 'taplo',         toml_fn(config.toml) },
 
         { 'marksman',      marksman_fn(config.marksman) },
-        { 'remark_ls',     remark_fn(config.remark) },
+        -- { 'remark_ls',     remark_fn(config.remark) },
         { 'texlab',        texlab_fn(config.latex) },
     }
 end
