@@ -25,9 +25,6 @@ uncrustify
 go
 rustup
 ghc
-dotnet-sdk
-aspnet-targeting-pack
-aspnet-runtime
 nodejs
 npm
 docker
