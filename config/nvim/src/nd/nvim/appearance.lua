@@ -14,7 +14,7 @@ return function(config)
 
     apply_colors(color_scheme.highlight)
 
-    colorizer.setup({ '*' }, {
+    colorizer.setup({ 'css', 'lua' }, {
         names = false,
         RGB = false,
         RRGGBB = true,
