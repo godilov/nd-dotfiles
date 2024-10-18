@@ -25,5 +25,6 @@ return function()
         { 'natecraddock',    'workspaces.nvim' },
         { 'natecraddock',    'sessions.nvim' },
         { 'ellisonleao',     'glow.nvim' },
+        { 'iamcco',          'markdown-preview.nvim' },
     }
 end

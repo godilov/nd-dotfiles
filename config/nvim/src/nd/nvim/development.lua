@@ -87,7 +87,7 @@ return function(config)
             settings     = val,
             capabilities = capabilities,
             on_attach    = function(client, bufnr)
-                client.server_capabilities.semanticTokensProvider = nil
+                -- client.server_capabilities.semanticTokensProvider = nil
 
                 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
@@ -105,6 +105,6 @@ return function(config)
         },
     }
 
-    crates.setup()
+    crates.setup {}
     glow.setup()
 end
