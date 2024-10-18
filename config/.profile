@@ -1,6 +1,9 @@
 export GTK_THEME=Orchis-Dark
 export GTK_ICON_THEME=Papirus-Dark
 export XCURSOR_SIZE=24
+export XCURSOR_THEME=Bibata-Modern-Classic
+export HYPRCURSOR_SIZE=24
+export HYPRCURSOR_THEME=rose-pine-hyprcursor
 
 export EDITOR=nvim
 export VISUAL=nvim
@@ -26,4 +29,4 @@ export SSH_ASKPASS_REQUIRE='prefer'
 
 eval $(ssh-agent)
 
-Hyprland > /dev/null
+Hyprland
