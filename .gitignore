@@ -1,4 +1,5 @@
 .session
+.git/
 deps
 config/nvim/plugin/
 pkg/all
