@@ -98,7 +98,7 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
     link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi xplr
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
@@ -153,6 +153,8 @@ do
             ;;
         "alacritty")
             link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
+        "batsignal")
+            link-config-arr $DIR_CONFIG ~/.config batsignal;;
         "brave")
             link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
         "starship")
