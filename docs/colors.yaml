@@ -71,4 +71,12 @@ scheme:
       normal: #324C4C
       light: #3D5B5B
 
-desktop:
+hypr:
+  font: Fira Code Nerd Font Mono
+  frame:
+    active-pos: scheme.bg.yellow.light
+    active-neg: scheme.bg.yellow.dark
+  notify:
+    min: scheme.bg.green
+    mid: scheme.bg.yellow
+    max: scheme.bg.red
