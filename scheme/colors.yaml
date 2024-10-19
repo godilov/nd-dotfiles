@@ -1,40 +1,39 @@
-main:
+scheme:
   foreground:
-    normal: #ffffff
+    normal: #FFFFFF
   background:
-    normal: #0d0d0d
+    normal: #000000
   black:
-    dark: #1a1a1a
-    normal: #262626
-    light: #333333
+    dark: #0C0C0C
+    normal: #191919
+    light: #262626
   red:
-    dark: #801919
-    normal: #e65c5c
-    light: #ff9999
+    dark: #FF7F7F
+    normal: #FF9999
+    light: #FFB2B2
   green:
-    dark: #808019
-    normal: #e6e65c
-    light: #ffff99
+    dark: #FFFF7F
+    normal: #FFFF99
+    light: #FFFFB2
   yellow:
-    dark: #804d19
-    normal: #e6a15c
-    light: #ffcc99
+    dark: #FFBF7F
+    normal: #FFCC99
+    light: #FFD8B2
   blue:
-    dark: #194d80
-    normal: #5ca1e6
-    light: #99ccff
+    dark: #7FBFFF
+    normal: #99CCFF
+    light: #B2D8FF
   magenta:
-    dark: #80194d
-    normal: #e65ca1
-    light: #ff99cc
+    dark: #FF7FBF
+    normal: #FF99CC
+    light: #FFB2D8
   cyan:
-    dark: #198080
-    normal: #5ce6e6
-    light: #99ffff
+    dark: #7FFFFF
+    normal: #99FFFF
+    light: #B2FFFF
   white:
-    dark: #d9d9d9
-    normal: #e6e6e6
-    light: #f2f2f2
+    dark: #D8D8D8
+    normal: #E5E5E5
+    light: #F2F2F2
 
-nvim:
 desktop:

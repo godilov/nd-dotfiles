@@ -14,7 +14,7 @@ return function(config)
 
     apply_colors(color_scheme.highlight)
 
-    colorizer.setup({ 'css', 'lua', 'conf' }, {
+    colorizer.setup({ 'yaml', 'yml', 'css', 'lua', 'conf' }, {
         names = false,
         RGB = false,
         RRGGBB = true,

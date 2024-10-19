@@ -1,4 +1,4 @@
-main:
+scheme:
   keys:
     h: Move left  | Decrease  | Close   |
     j: Move down  | Decrease  | Close   | Move left
@@ -7,9 +7,9 @@ main:
 
   modifiers:
     super: Window Manager modkey
-    shift: 
-    ctrl: 
-    alt: 
+    shift:
+    ctrl:
+    alt:
 
 desktop:
   super: # Clients dimension
@@ -23,7 +23,7 @@ desktop:
     e: Minimize client
 
     enter: Run terminal
-    space: Run process 
+    space: Run process
 
     shift:
       h:
@@ -51,7 +51,7 @@ nvim:
   j: Down
   k: Up
   l: Right
-  shift: 
+  shift:
     h: Move window left
     j: Move window down
     k: Move window up
@@ -61,12 +61,12 @@ nvim:
       j: Resize vertical (-4)
       k: Resize vertical (+4)
       l: Resize horizontal (+4)
-  ctrl: 
+  ctrl:
     h: Focus l window
-    j: Focus d window 
+    j: Focus d window
     k: Focus u window
     l: Focus r window
-  alt: 
+  alt:
     h: Focus prev tab
     j: Tab close
     k: Tab open
