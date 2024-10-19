@@ -98,7 +98,8 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml bat btop glow brave-flags.conf mpv nvim starship.toml tofi xplr
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
+    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi xplr
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -150,24 +151,28 @@ do
 
             install-pkg pkg/wm_hyprland
             ;;
-        "nvim")
-            link-config-arr $DIR_CONFIG ~/.config nvim;;
         "alacritty")
             link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
+        "brave")
+            link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
+        "starship")
+            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
+        "ripgrep")
+            link-config-arr $DIR_CONFIG ~/.config ripgreprc;;
         "bat")
             link-config-arr $DIR_CONFIG ~/.config bat;;
         "btop")
             link-config-arr $DIR_CONFIG ~/.config btop;;
+        "dunst")
+            link-config-arr $DIR_CONFIG ~/.config dunst;;
         "glow")
             link-config-arr $DIR_CONFIG ~/.config glow;;
-        "brave")
-            link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
         "mpv")
             link-config-arr $DIR_CONFIG ~/.config mpv;;
+        "nvim")
+            link-config-arr $DIR_CONFIG ~/.config nvim;;
         "retroarch")
             link-config-arr $DIR_CONFIG ~/.config retroarch;;
-        "starship")
-            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
         "tofi")
             link-config-arr $DIR_CONFIG ~/.config tofi;;
         "xplr")

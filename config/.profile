@@ -28,6 +28,8 @@ export VDPAU_DRIVER=radeonsi
 export SSH_ASKPASS=/usr/lib/ssh/gnome-ssh-askpass4
 export SSH_ASKPASS_REQUIRE='prefer'
 
+export RIPGREP_CONFIG_PATH=~/.config/ripgreprc
+
 eval $(ssh-agent)
 
 Hyprland
