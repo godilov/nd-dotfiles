@@ -1,8 +1,9 @@
 export GTK_THEME=Orchis-Dark
 export GTK_ICON_THEME=Papirus-Dark
-export XCURSOR_SIZE=24
+
+export XCURSOR_SIZE=16
 export XCURSOR_THEME=Bibata-Modern-Classic
-export HYPRCURSOR_SIZE=24
+export HYPRCURSOR_SIZE=28
 export HYPRCURSOR_THEME=rose-pine-hyprcursor
 
 export EDITOR=nvim

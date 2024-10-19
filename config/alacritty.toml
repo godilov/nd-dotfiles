@@ -58,5 +58,5 @@ family = "Fira Code Nerd Font Mono"
 style = "Regular"
 
 [window]
-opacity = 0.6
+opacity = 0.5
 blur = false
