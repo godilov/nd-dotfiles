@@ -1,39 +1,74 @@
+struct:
+  hue: [0, 30, 60, 210, 330, 180]
+  fg:
+    dark: [100, 75]
+    normal: [100, 80]
+    light: [100, 85]
+  bg:
+    dark: [20, 20]
+    normal: [20, 25]
+    light: [20, 30]
+
 scheme:
-  foreground:
+  fg:
     normal: #FFFFFF
-  background:
+    white:
+      dark: #D8D8D8
+      normal: #E5E5E5
+      light: #F2F2F2
+    red:
+      dark: #FF7F7F
+      normal: #FF9999
+      light: #FFB2B2
+    green:
+      dark: #FFFF7F
+      normal: #FFFF99
+      light: #FFFFB2
+    yellow:
+      dark: #FFBF7F
+      normal: #FFCC99
+      light: #FFD8B2
+    blue:
+      dark: #7FBFFF
+      normal: #99CCFF
+      light: #B2D8FF
+    magenta:
+      dark: #FF7FBF
+      normal: #FF99CC
+      light: #FFB2D8
+    cyan:
+      dark: #7FFFFF
+      normal: #99FFFF
+      light: #B2FFFF
+  bg:
     normal: #000000
-  black:
-    dark: #0C0C0C
-    normal: #191919
-    light: #262626
-  red:
-    dark: #FF7F7F
-    normal: #FF9999
-    light: #FFB2B2
-  green:
-    dark: #FFFF7F
-    normal: #FFFF99
-    light: #FFFFB2
-  yellow:
-    dark: #FFBF7F
-    normal: #FFCC99
-    light: #FFD8B2
-  blue:
-    dark: #7FBFFF
-    normal: #99CCFF
-    light: #B2D8FF
-  magenta:
-    dark: #FF7FBF
-    normal: #FF99CC
-    light: #FFB2D8
-  cyan:
-    dark: #7FFFFF
-    normal: #99FFFF
-    light: #B2FFFF
-  white:
-    dark: #D8D8D8
-    normal: #E5E5E5
-    light: #F2F2F2
+    black:
+      dark: #0C0C0C
+      normal: #191919
+      light: #262626
+    red:
+      dark: #3D2828
+      normal: #4C3232
+      light: #5B3D3D
+    green:
+      dark: #3D3D28
+      normal: #4C4C32
+      light: #5B5B3D
+    yellow:
+      dark: #3D3328
+      normal: #4C3F32
+      light: #5B4C3D
+    blue:
+      dark: #28333D
+      normal: #323F4C
+      light: #3D4C5B
+    magenta:
+      dark: #3D2833
+      normal: #4C323F
+      light: #5B3D4C
+    cyan:
+      dark: #283D3D
+      normal: #324C4C
+      light: #3D5B5B
 
 desktop:
