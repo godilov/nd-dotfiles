@@ -153,6 +153,9 @@ yaml_fn = function(_)
     return {
         yaml = {
             yamlVersion = 1.2,
+            editor = {
+                tabSize = 2,
+            },
             format = {
                 enable         = true,
                 singleQuote    = true,

@@ -1,2 +1,4 @@
 --hidden
 --ignore
+--glob
+!.git

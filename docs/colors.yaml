@@ -1,13 +1,13 @@
 struct:
-  hue: [0, 30, 60, 210, 330, 180]
+  hue: [0 30 60 210 330 180]
   fg:
-    dark: [100, 75]
-    normal: [100, 80]
-    light: [100, 85]
+    dark: [100 75]
+    normal: [100 80]
+    light: [100 85]
   bg:
-    dark: [20, 20]
-    normal: [20, 25]
-    light: [20, 30]
+    dark: [20 20]
+    normal: [20 25]
+    light: [20 30]
 
 scheme:
   fg:
@@ -47,29 +47,29 @@ scheme:
       normal: #191919
       light: #262626
     red:
-      dark: #3D2828
-      normal: #4C3232
-      light: #5B3D3D
+      dark: #2F1C1C
+      normal: #3F2626
+      light: #4F2F2F
     green:
-      dark: #3D3D28
-      normal: #4C4C32
-      light: #5B5B3D
+      dark: #2F2F1C
+      normal: #3F3F26
+      light: #4F4F2F
     yellow:
-      dark: #3D3328
-      normal: #4C3F32
-      light: #5B4C3D
+      dark: #2F261C
+      normal: #3F3326
+      light: #4F3F2F
     blue:
-      dark: #28333D
-      normal: #323F4C
-      light: #3D4C5B
+      dark: #1C262F
+      normal: #2F3F4F
+      light: #26333F
     magenta:
-      dark: #3D2833
-      normal: #4C323F
-      light: #5B3D4C
+      dark: #2F1C26
+      normal: #3F2633
+      light: #4F2F3F
     cyan:
-      dark: #283D3D
-      normal: #324C4C
-      light: #3D5B5B
+      dark: #1C2F2F
+      normal: #263F3F
+      light: #2F4F4F
 
 hypr:
   font: Fira Code Nerd Font Mono
