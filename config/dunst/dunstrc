@@ -346,7 +346,7 @@
     background = "#2f261c"
     foreground = "#ffffff"
     frame_color = "#ffbf7f"
-    timeout = 30
+    timeout = 15
     override_pause_level = 30
     icon = dialog-warning
     # Icon for notifications with normal urgency, uncomment to enable
