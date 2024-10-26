@@ -335,7 +335,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#2f2f1c"
     foreground = "#ffffff"
-    frame_color = "#ffff7f"
+    frame_color = "#ffffb2"
     timeout = 10
     override_pause_level = 0
     icon = dialog-information
@@ -345,7 +345,7 @@
 [urgency_normal]
     background = "#2f261c"
     foreground = "#ffffff"
-    frame_color = "#ffbf7f"
+    frame_color = "#ffd8b2"
     timeout = 15
     override_pause_level = 30
     icon = dialog-warning
@@ -355,7 +355,7 @@
 [urgency_critical]
     background = "#2f1c1c"
     foreground = "#ffffff"
-    frame_color = "#ff7f7f"
+    frame_color = "#ffb2b2"
     timeout = 0
     override_pause_level = 60
     icon = dialog-error
