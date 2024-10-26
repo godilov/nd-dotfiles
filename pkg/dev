@@ -35,6 +35,7 @@ kubectl
 kubeadm
 kubelet
 minikube
+ollama
 
 # AUR
 
