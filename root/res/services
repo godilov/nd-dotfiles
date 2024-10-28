@@ -5,3 +5,4 @@ bluetooth.service
 docker.service
 tlp.service
 chronyd.service
+ollama.service

@@ -12,12 +12,15 @@ ncmpcpp
 transmission-cli
 
 fd
+duf
 bat
 exa
 btop
 bottom
+bandwhich
 ripgrep
-duf
+chrony
+rsync
 
 xplr
 fzf
@@ -28,6 +31,7 @@ texlive-lang
 
 tlp
 tlp-rdw
+lshw
 acpi
 nvme-cli
 usbutils
@@ -38,9 +42,6 @@ udiskie
 gvfs
 gvfs-mtp
 brightnessctl
-bandwhich
-rsync
-chrony
 
 vkmark
 stress
