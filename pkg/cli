@@ -1,8 +1,15 @@
+wezterm
 alacritty
 starship
 tmux
 zsh
 zsh-completions
+
+btop
+xplr
+glow
+texlive
+texlive-lang
 
 mpd
 mpc
@@ -11,23 +18,19 @@ imv
 ncmpcpp
 transmission-cli
 
+tree
+exa
+bat
+fzf
 fd
 duf
-bat
-exa
-btop
 bottom
 bandwhich
 ripgrep
 chrony
 rsync
-
-xplr
-fzf
-tree
-glow
-texlive
-texlive-lang
+perl-image-exiftool
+qpdf
 
 tlp
 tlp-rdw
