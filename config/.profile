@@ -12,7 +12,7 @@ export PAGER=bat
 export MANPAGER='nvim +Man!'
 export MANWIDTH=320
 
-export PATH=$PATH:/home/german/.cargo/bin
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/share/solana/install/active_release/bin:$HOME/.avm/bin"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 export MOZ_ENABLE_WAYLAND=1

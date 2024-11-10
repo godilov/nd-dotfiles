@@ -465,10 +465,6 @@
 #    summary = "foobar"
 #    skip_display = yes
 
-[batsignal]
-    appname = batsignal
-    timeout = 0
-
 #[signed_on]
 #    appname = Pidgin
 #    summary = "*signed on*"
