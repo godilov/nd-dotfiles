@@ -1,27 +1,20 @@
 # Dotfiles
 
-## Setup
-
+Setup
 - Auto setup script
 - Auto AMD/Nvidia setup script
 
-## Hypr
-
-### Theme
-
+Theme
 - Colors
 - Wallpapers
 - Notifications
 
-### Notifications: dunst
-
+Notifications: dunst
 - Battery: 15%
 - Battery: 85%
 
-### Launcher: tofi
-
-### Taskbar: waybar
-
+Launcher: tofi  
+Taskbar: waybar  
 - Spaces
 - Audio
 - Bluetooth
