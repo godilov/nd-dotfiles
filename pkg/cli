@@ -5,12 +5,6 @@ tmux
 zsh
 zsh-completions
 
-btop
-xplr
-glow
-texlive
-texlive-lang
-
 mpd
 mpc
 mpv
@@ -18,6 +12,9 @@ imv
 ncmpcpp
 transmission-cli
 
+btop
+xplr
+glow
 tree
 exa
 bat
@@ -29,6 +26,9 @@ bandwhich
 ripgrep
 chrony
 rsync
+texlive
+texlive-lang
+imagemagick
 perl-image-exiftool
 qpdf
 
