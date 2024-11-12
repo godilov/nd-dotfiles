@@ -11,6 +11,7 @@ local cmake_fn      = nil
 local cpp_fn        = nil
 local glsl_fn       = nil
 local rust_fn       = nil
+local solidity_fn   = nil
 local haskell_fn    = nil
 local clojure_fn    = nil
 local csharp_fn     = nil
@@ -117,6 +118,10 @@ rust_fn = function(_)
     }
 end
 
+solidity_fn = function(_)
+    return {}
+end
+
 haskell_fn = function(_)
     return {}
 end
@@ -203,6 +208,7 @@ lsp_fn = function(config)
         { 'ccls',          cpp_fn(config.cpp) },
         { 'glslls',        glsl_fn(config.glsl) },
         { 'rust_analyzer', rust_fn(config.rust) },
+        { 'solidity',      solidity_fn(config.solidity) },
         { 'hls',           haskell_fn(config.haskell) },
         { 'clojure_lsp',   clojure_fn(config.clojure) },
 
