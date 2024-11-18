@@ -27,8 +27,11 @@ rustup
 ghc
 nodejs
 npm
+pnpm
 docker
 docker-compose
+postgresql
+sqlite
 apache
 nginx-mainline
 kubectl
