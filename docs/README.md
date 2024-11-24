@@ -2,22 +2,23 @@
 
 ## Tasks
 
-Dotfiles
+**Cat:** Dotfiles
 - feat: Auto setup script
 - feat: Auto AMD/Nvidia setup script
 
-Hyprland
+**Cat:** Hyprland
 - feat: Widgets
 - feat: Wallpapers Engine
 - feat: Themes Engine
 
-Nvim
+**Cat:** Nvim
 - feat: Session
 - feat: Workspace
 - feat: which-key.nvim
 - feat: outline.nvim
+- refactor: keyscheme
 
-Env
+**Cat:** Env
 - feat: Tmux
 - feat: Files
 - feat: Music
