@@ -56,7 +56,3 @@ style = "Italic"
 [font.normal]
 family = "Fira Code Nerd Font Mono"
 style = "Regular"
-
-[window]
-opacity = 0.75
-blur = false
