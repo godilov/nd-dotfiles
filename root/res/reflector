@@ -1,1 +1,0 @@
-reflector --sort rate --threads 128 --fastest 64 --latest 512 --protocol https --save /etc/pacman.d/mirrorlist

@@ -1,6 +1,5 @@
 NetworkManager.service
 NetworkManager-dispatcher.service
-NetworkManager-wait-online.service
 bluetooth.service
 docker.service
 tlp.service
