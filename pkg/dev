@@ -28,6 +28,7 @@ ghc
 nodejs
 npm
 pnpm
+yarn
 docker
 docker-compose
 postgresql
