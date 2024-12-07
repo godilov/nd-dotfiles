@@ -5,3 +5,4 @@ docker.service
 tlp.service
 chronyd.service
 ollama.service
+gdm.service

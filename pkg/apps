@@ -1,17 +1,44 @@
-browserpass
+foliate
+amberol
+apostrophe
+authenticator
+blanket
+decoder
+dialect
+eartag
+emblem
+eyedropper
+fragments
+graphs
+hieroglyphic
+identity
+impression
+junktion
+komikku
+letterpress
+metadata-cleaner
+mousai
+paper-clip
+pika-backup
+resources
+solanum
+switcheroo
+textpieces
+valuta
+warp
+
+boxes
+dconf
+dconf-editor
+sysprof
+
 telegram-desktop
-# firefox
-# passff-host
-# qbittorrent
-# obs-studio
-# quodlibet
-# inkscape
-# gimp
-# blender
+firefox
+passff-host
+browserpass
+obs-studio
 
 # AUR
 
 brave-bin
-# webcord-bin
-# anki-bin
-# parabolic
+gnome-pass-search-provider-git

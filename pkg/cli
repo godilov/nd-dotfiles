@@ -5,15 +5,7 @@ tmux
 zsh
 zsh-completions
 
-mpd
-mpc
-mpv
-imv
-ncmpcpp
-transmission-cli
-
 btop
-xplr
 glow
 tree
 exa
@@ -29,8 +21,7 @@ rsync
 texlive
 texlive-lang
 imagemagick
-perl-image-exiftool
-qpdf
+lazygit
 
 tlp
 tlp-rdw
@@ -39,22 +30,11 @@ acpi
 nvme-cli
 usbutils
 cpupower
-upower
-udisks2
-udiskie
-gvfs
-gvfs-mtp
-brightnessctl
 
 vkmark
 stress
 hyperfine
 
-wl-clipboard
-wev
-
 # AUR
 
-nvim-packer-git
 rm-improved
-batsignal

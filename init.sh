@@ -92,14 +92,14 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/libs pkg/dev pkg/cli pkg/apps > pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps > pkg/all
 
     install-pkg pkg/all
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi xplr
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
+    link-config-arr $DIR_CONFIG ~/.config bat btop glow nvim
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -128,9 +128,9 @@ do
         "apps")
             install-pkg pkg/apps;;
         "amd")
-            install-pkg pkg/v_amd;;
+            install-pkg pkg/hw_amd;;
         "nvidia")
-            install-pkg pkg/v_nvidia;;
+            install-pkg pkg/hw_nvidia;;
         "games")
             install-pkg pkg/games
 
@@ -144,41 +144,24 @@ do
             link-tmux;;
         "zsh")
            link-zsh;;
-        "gnome")
-            install-pkg pkg/wm_gnome;;
-        "hypr")
-            link-config-arr $DIR_CONFIG ~/.config hypr waybar
-
-            install-pkg pkg/wm_hyprland
-            ;;
         "alacritty")
             link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
-        "batsignal")
-            link-config-arr $DIR_CONFIG ~/.config batsignal;;
         "brave")
             link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
-        "starship")
-            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
         "ripgrep")
             link-config-arr $DIR_CONFIG ~/.config ripgreprc;;
+        "starship")
+            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
         "bat")
             link-config-arr $DIR_CONFIG ~/.config bat;;
         "btop")
             link-config-arr $DIR_CONFIG ~/.config btop;;
-        "dunst")
-            link-config-arr $DIR_CONFIG ~/.config dunst;;
         "glow")
             link-config-arr $DIR_CONFIG ~/.config glow;;
-        "mpv")
-            link-config-arr $DIR_CONFIG ~/.config mpv;;
         "nvim")
             link-config-arr $DIR_CONFIG ~/.config nvim;;
         "retroarch")
             link-config-arr $DIR_CONFIG ~/.config retroarch;;
-        "tofi")
-            link-config-arr $DIR_CONFIG ~/.config tofi;;
-        "xplr")
-            link-config-arr $DIR_CONFIG ~/.config xplr;;
         "reflector")
             reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist;;
         *)

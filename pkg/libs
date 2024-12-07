@@ -35,15 +35,12 @@ xdg-user-dirs
 gcr
 gcr-4
 polkit
-polkit-gnome
 
-papirus-icon-theme
+gnome
+gnome-extra
+gnome-tweaks
 
 # AUR
 
-orchis-theme
 bibata-cursor-theme
-rose-pine-hyprcursor
 all-repository-fonts
-
-gnome-ssh-askpass4-git
