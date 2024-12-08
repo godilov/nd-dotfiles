@@ -25,4 +25,4 @@
 #--map-syntax ".ignore:Git Ignore"
 
 --style=plain,changes,header,header-filename,header-filesize
---theme=1337
+--theme="Catppuccin Mocha"

@@ -1,0 +1,58 @@
+return {
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, {
+				"lua-language-server",
+				"bash-language-server",
+				"haskell-language-server",
+				"typescript-language-server",
+				"yaml-language-server",
+				"rust-analyzer",
+				"glsl_analyzer",
+				"cmakelang",
+				"clangd",
+				"solang",
+				"omnisharp",
+				"sqlls",
+				"html-lsp",
+				"htmx-lsp",
+				"css-lsp",
+				"json-lsp",
+				"taplo",
+				"marksman",
+				"texlab",
+			})
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, {
+				"query",
+				"bash",
+				"lua",
+				"cmake",
+				"ninja",
+				"c",
+				"cpp",
+				"rust",
+				"haskell",
+				"clojure",
+				"cuda",
+				"glsl",
+				"c_sharp",
+				"sql",
+				"html",
+				"css",
+				"scss",
+				"javascript",
+				"typescript",
+				"json",
+				"yaml",
+				"toml",
+				"tmux",
+			})
+		end,
+	},
+}

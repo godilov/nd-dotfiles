@@ -29,6 +29,8 @@ nodejs
 npm
 pnpm
 yarn
+python
+pip
 docker
 docker-compose
 postgresql
@@ -39,11 +41,11 @@ kubectl
 kubeadm
 kubelet
 minikube
+tree-sitter
 ollama
 
 # AUR
 
 compiledb
-glsl-language-server
 ghcup-hs-bin
 scc-bin

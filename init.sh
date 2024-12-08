@@ -16,7 +16,7 @@ function rm-link {
 
 function ensure-git {
     [[ -d $1 ]] || git clone $2 $1
-    
+
     echo Update $1
 
     cd $1
@@ -62,8 +62,7 @@ function link-config-arr {
 
     shift 2
 
-    for config in "$@"
-    do
+    for config in "$@"; do
         ensure-dir $dest
 
         rm-link $dest/$config
@@ -92,7 +91,7 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps > pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
 
     install-pkg pkg/all
 }
@@ -106,65 +105,88 @@ function init-all-cfg {
     link-zsh
 }
 
-for arg in "$@"
-do
+for arg in "$@"; do
     case $arg in
-        "all")
-            init-all-pkg
-            init-all-cfg
-            ;;
-        "all-pkg")
-            init-all-pkg;;
-        "all-cfg")
-            init-all-cfg;;
-        "deps")
-            ensure-deps;;
-        "libs")
-            install-pkg pkg/libs;;
-        "dev")
-            install-pkg pkg/dev;;
-        "cli")
-            install-pkg pkg/cli;;
-        "apps")
-            install-pkg pkg/apps;;
-        "amd")
-            install-pkg pkg/hw_amd;;
-        "nvidia")
-            install-pkg pkg/hw_nvidia;;
-        "games")
-            install-pkg pkg/games
+    "all")
+        init-all-pkg
+        init-all-cfg
+        ;;
+    "all-pkg")
+        init-all-pkg
+        ;;
+    "all-cfg")
+        init-all-cfg
+        ;;
+    "deps")
+        ensure-deps
+        ;;
+    "libs")
+        install-pkg pkg/libs
+        ;;
+    "dev")
+        install-pkg pkg/dev
+        ;;
+    "cli")
+        install-pkg pkg/cli
+        ;;
+    "apps")
+        install-pkg pkg/apps
+        ;;
+    "amd")
+        install-pkg pkg/hw_amd
+        ;;
+    "nvidia")
+        install-pkg pkg/hw_nvidia
+        ;;
+    "games")
+        install-pkg pkg/games
 
-            link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
-            ;;
-        "env")
-            link-config-arr $DIR_CONFIG ~ .profile;;
-        "git")
-            link-config-arr $DIR_CONFIG ~ .gitconfig;;
-        "tmux")
-            link-tmux;;
-        "zsh")
-           link-zsh;;
-        "alacritty")
-            link-config-arr $DIR_CONFIG ~/.config alacritty.toml;;
-        "brave")
-            link-config-arr $DIR_CONFIG ~/.config brave-flags.conf;;
-        "ripgrep")
-            link-config-arr $DIR_CONFIG ~/.config ripgreprc;;
-        "starship")
-            link-config-arr $DIR_CONFIG ~/.config starship.toml;;
-        "bat")
-            link-config-arr $DIR_CONFIG ~/.config bat;;
-        "btop")
-            link-config-arr $DIR_CONFIG ~/.config btop;;
-        "glow")
-            link-config-arr $DIR_CONFIG ~/.config glow;;
-        "nvim")
-            link-config-arr $DIR_CONFIG ~/.config nvim;;
-        "retroarch")
-            link-config-arr $DIR_CONFIG ~/.config retroarch;;
-        "reflector")
-            reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist;;
-        *)
-            echo No args;;
+        link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
+        ;;
+    "env")
+        link-config-arr $DIR_CONFIG ~ .profile
+        ;;
+    "git")
+        link-config-arr $DIR_CONFIG ~ .gitconfig
+        ;;
+    "tmux")
+        link-tmux
+        ;;
+    "zsh")
+        link-zsh
+        ;;
+    "alacritty")
+        link-config-arr $DIR_CONFIG ~/.config alacritty.toml
+        ;;
+    "brave")
+        link-config-arr $DIR_CONFIG ~/.config brave-flags.conf
+        ;;
+    "ripgrep")
+        link-config-arr $DIR_CONFIG ~/.config ripgreprc
+        ;;
+    "starship")
+        link-config-arr $DIR_CONFIG ~/.config starship.toml
+        ;;
+    "bat")
+        link-config-arr $DIR_CONFIG ~/.config bat
+        ;;
+    "btop")
+        link-config-arr $DIR_CONFIG ~/.config btop
+        ;;
+    "glow")
+        link-config-arr $DIR_CONFIG ~/.config glow
+        ;;
+    "nvim")
+        link-config-arr $DIR_CONFIG ~/.config nvim
+        ;;
+    "retroarch")
+        link-config-arr $DIR_CONFIG ~/.config retroarch
+        ;;
+    "reflector")
+        reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist
+        ;;
+    *)
+        echo No args
+        ;;
     esac
 done

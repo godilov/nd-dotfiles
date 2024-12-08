@@ -17,5 +17,7 @@ unrar
 zip
 tor
 i2pd
+curl
+wget
 man-db
 tealdeer
