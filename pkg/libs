@@ -1,5 +1,6 @@
 wayland
 wayland-protocols
+wl-clipboard
 
 gstreamer
 gstreamer-vaapi

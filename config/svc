@@ -6,3 +6,6 @@ tlp.service
 chronyd.service
 ollama.service
 gdm.service
+fstrim.timer
+
+--user gcr-ssh-agent.service

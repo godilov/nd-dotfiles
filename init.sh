@@ -7,7 +7,7 @@ DIR_CONFIG=$DIR/config
 ENSURED=false
 
 function install-pkg {
-    paru -S --needed $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
+    paru -S $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
 }
 
 function rm-link {
@@ -91,7 +91,7 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps pkg/games >pkg/all
 
     install-pkg pkg/all
 }

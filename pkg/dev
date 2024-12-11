@@ -30,7 +30,7 @@ npm
 pnpm
 yarn
 python
-pip
+python-pip
 docker
 docker-compose
 postgresql
