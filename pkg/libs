@@ -40,8 +40,3 @@ polkit
 gnome
 gnome-extra
 gnome-tweaks
-
-# AUR
-
-bibata-cursor-theme
-all-repository-fonts

@@ -6,12 +6,21 @@ DIR_CONFIG=$DIR/config
 
 ENSURED=false
 
-function install-pkg {
-    paru -S $(cat $1 | grep -E --color=never "^[a-zA-Z0-9_-]+$")
-}
-
 function rm-link {
     [[ -L "$1" ]] && rm -v $1
+}
+
+function install-pkg {
+    PATTERN="^[a-zA-Z0-9_-]+$"
+
+    if command -v paru 2>&1 >/dev/null; then
+        paru -S $(cat pkg/all | grep -E --color=never $PATTERN)
+        paru -S $(cat pkg/all-aur | grep -E --color=never $PATTERN)
+    elif [[ $(id -u) == 0 ]]; then
+        pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+    else
+        sudo pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+    fi
 }
 
 function ensure-git {
@@ -23,7 +32,7 @@ function ensure-git {
 
     git pull
 
-    cd -
+    cd - >/dev/null
 }
 
 function ensure-dir {
@@ -91,15 +100,24 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps pkg/games >pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
+    cat pkg/libs-aur pkg/dev-aur pkg/cli-aur pkg/apps-aur >pkg/all-aur
 
     install-pkg pkg/all
+    install-pkg pkg/all-aur
 }
 
 function init-all-cfg {
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
     link-config-arr $DIR_CONFIG ~/.config bat btop glow nvim
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
+
+    if command -v gsettings 2>&1 >/dev/null; then
+        gsettings set org.gnome.mutter experimental-features '["scale-monitor-framebuffer", "variable-refresh-rate"]'
+        gsettings set org.gnome.desktop.peripherals.keyboard delay 150
+        gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
+        gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
+    fi
 
     link-tmux
     link-zsh
@@ -143,47 +161,8 @@ for arg in "$@"; do
 
         link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
         ;;
-    "env")
-        link-config-arr $DIR_CONFIG ~ .profile
-        ;;
-    "git")
-        link-config-arr $DIR_CONFIG ~ .gitconfig
-        ;;
-    "tmux")
-        link-tmux
-        ;;
-    "zsh")
-        link-zsh
-        ;;
-    "alacritty")
-        link-config-arr $DIR_CONFIG ~/.config alacritty.toml
-        ;;
-    "brave")
-        link-config-arr $DIR_CONFIG ~/.config brave-flags.conf
-        ;;
-    "ripgrep")
-        link-config-arr $DIR_CONFIG ~/.config ripgreprc
-        ;;
-    "starship")
-        link-config-arr $DIR_CONFIG ~/.config starship.toml
-        ;;
-    "bat")
-        link-config-arr $DIR_CONFIG ~/.config bat
-        ;;
-    "btop")
-        link-config-arr $DIR_CONFIG ~/.config btop
-        ;;
-    "glow")
-        link-config-arr $DIR_CONFIG ~/.config glow
-        ;;
-    "nvim")
-        link-config-arr $DIR_CONFIG ~/.config nvim
-        ;;
-    "retroarch")
-        link-config-arr $DIR_CONFIG ~/.config retroarch
-        ;;
     "reflector")
-        reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist
+        sudo reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist
         ;;
     *)
         echo No args

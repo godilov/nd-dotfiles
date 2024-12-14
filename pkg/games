@@ -7,12 +7,3 @@ gamemode
 gamescope
 lib32-mangohud
 lib32-gamemode
-
-# AUR
-
-rpcs3-bin
-proton-ge-custom-bin
-protontricks
-
-xpadneo-dkms-git
-xboxdrv

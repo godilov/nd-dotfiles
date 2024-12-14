@@ -37,8 +37,3 @@ firefox
 passff-host
 browserpass
 obs-studio
-
-# AUR
-
-brave-bin
-gnome-pass-search-provider-git
