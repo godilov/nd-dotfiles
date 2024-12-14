@@ -162,7 +162,13 @@ for arg in "$@"; do
         link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
         ;;
     "reflector")
-        sudo reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist
+        ARGS="--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+
+        if [[ $(id -u) == 0 ]]; then
+            reflector $ARGS
+        else
+            sudo reflector $ARGS
+        fi
         ;;
     *)
         echo No args
