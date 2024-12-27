@@ -117,6 +117,8 @@ function init-all-cfg {
         gsettings set org.gnome.desktop.peripherals.keyboard delay 150
         gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
         gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+        gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
     fi
 
     link-tmux
