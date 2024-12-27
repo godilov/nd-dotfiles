@@ -1,3 +1,6 @@
+export XCURSOR_SIZE=24
+export XCURSOR_THEME=Bibata-Original-Classic
+
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
