@@ -19,6 +19,15 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.diagnostic.config({
+	signs = true,
+	float = true,
+	underline = true,
+	severity_sort = true,
+	update_in_insert = true,
+	virtual_text = false,
+})
+
 local opt = vim.opt
 
 opt.mouse = "a"
@@ -65,6 +74,8 @@ opt.updatetime = 200
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
+local lsp_autoformat = false
+
 vim.api.nvim_create_augroup("LSP", { clear = true })
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -77,7 +88,9 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = "LSP",
 	callback = function()
-		vim.lsp.buf.format({ async = false })
+		if lsp_autoformat then
+			vim.lsp.buf.format({ async = false })
+		end
 	end,
 })
 
@@ -90,46 +103,17 @@ local lsp_goto = function(next, severity)
 	end
 end
 
-local lsp_servers = {
-	"rust_analyzer",
-	"glsl_analyzer",
-	"gopls",
-	"solang",
-	"clangd",
-	"neocmake",
-	"sqls",
-	"hls",
-
-	"lua_ls",
-	"bashls",
-	"ts_ls",
-	"html",
-	"htmx",
-	"cssls",
-
-	"jsonls",
-	"taplo",
-	"yamlls",
-
-	"dockerls",
-	"docker_compose_language_service",
-	"marksman",
-	"texlab",
-}
-
-local lsp_daps = {
-	"codelldb",
-	"delve",
-}
-
 require("lazy").setup({
+	defaults = {
+		lazy = true,
+	},
 	spec = {
-		{ "nvim-tree/nvim-web-devicons", lazy = true },
-		{ "nvim-lua/plenary.nvim", lazy = true },
-		{ "MunifTanjim/nui.nvim", lazy = true },
+		{ "nvim-tree/nvim-web-devicons" },
+		{ "nvim-lua/plenary.nvim" },
+		{ "MunifTanjim/nui.nvim" },
+		{ "nvim-neotest/nvim-nio" },
 		{
 			"rcarriga/nvim-notify",
-			lazy = true,
 			event = { "VeryLazy" },
 			config = function()
 				vim.notify = require("notify")
@@ -137,6 +121,7 @@ require("lazy").setup({
 		},
 		{
 			"EdenEast/nightfox.nvim",
+			lazy = false,
 			priority = 1000,
 			build = ":NightfoxCompile",
 			opts = {
@@ -170,7 +155,6 @@ require("lazy").setup({
 		},
 		{
 			"nvim-neo-tree/neo-tree.nvim",
-			lazy = true,
 			cmd = "Neotree",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
@@ -180,7 +164,6 @@ require("lazy").setup({
 		},
 		{
 			"nvim-telescope/telescope.nvim",
-			lazy = true,
 			cmd = "Telescope",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
@@ -190,7 +173,6 @@ require("lazy").setup({
 		},
 		{
 			"folke/which-key.nvim",
-			lazy = true,
 			cmd = "WhichKey",
 			event = { "VeryLazy" },
 			dependencies = {
@@ -256,6 +238,19 @@ require("lazy").setup({
 					end,
 					desc = "Prev Reference",
 				},
+				{ "[f", desc = "Prev Function Start" },
+				{ "[c", desc = "Prev Class Start" },
+				{ "[a", desc = "Prev Paramater Start" },
+				{ "[F", desc = "Prev Function End" },
+				{ "[C", desc = "Prev Class End" },
+				{ "[A", desc = "Prev Paramater End" },
+
+				{ "]f", desc = "Next Function Start" },
+				{ "]c", desc = "Next Class Start" },
+				{ "]a", desc = "Next Paramater Start" },
+				{ "]F", desc = "Next Function End" },
+				{ "]C", desc = "Next Class End" },
+				{ "]A", desc = "Next Paramater End" },
 
 				{ "<C-h>", "<C-w>h", desc = "Go to Left Window", remap = true },
 				{ "<C-j>", "<C-w>j", desc = "Go to Lower Window", remap = true },
@@ -381,13 +376,15 @@ require("lazy").setup({
 					desc = "Buffer Explorer",
 				},
 
-				{ "<leader>c", group = "Code" },
+				{ "<leader>c", group = "Code/LSP" },
 				{ "<leader>cm", "<CMD>Mason<CR>", desc = "Mason" },
 				{ "<leader>cl", "<CMD>LspInfo<CR>", desc = "Lsp Info" },
 				{ "<leader>cs", "<CMD>Telescope lsp_workspace_symbols<CR>", desc = "Symbols" },
 				{ "<leader>cS", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Symbols (Dynamic)" },
 				{ "<leader>cD", "<CMD>Telescope diagnostics<CR>", desc = "Diagnostics (Global)" },
 				{ "<leader>cd", "<CMD>Telescope diagnostics bufnr=0<CR>", desc = "Diagnostics (Local)" },
+				{ "<leader>cQ", "<CMD>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Global)" },
+				{ "<leader>cq", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Diagnostics (Local)" },
 				{ "<leader>cx", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 				{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
 				{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
@@ -408,11 +405,18 @@ require("lazy").setup({
 
 				{ "<leader>ct", group = "Code Toggle" },
 				{
+					"<leader>ctf",
+					function()
+						lsp_autoformat = not lsp_autoformat
+					end,
+					desc = "Toggle Autoformat",
+				},
+				{
 					"<leader>cth",
 					function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 					end,
-					desc = "Toggle Inlay hints",
+					desc = "Toggle Inlay Hints",
 				},
 				{
 					"<leader>ctd",
@@ -457,7 +461,6 @@ require("lazy").setup({
 		},
 		{
 			"folke/noice.nvim",
-			lazy = true,
 			event = { "VeryLazy" },
 			dependencies = {
 				"MunifTanjim/nui.nvim",
@@ -467,19 +470,29 @@ require("lazy").setup({
 		},
 		{
 			"folke/snacks.nvim",
-			lazy = true,
 			event = { "VeryLazy" },
 		},
 		{
 			"folke/persistence.nvim",
-			lazy = true,
 			event = { "BufReadPre" },
 		},
-		{ "echasnovski/mini.nvim" },
-		{ "lewis6991/gitsigns.nvim" },
+		{
+			"folke/trouble.nvim",
+			cmd = "Trouble",
+			dependencies = {
+				"neovim/nvim-lspconfig",
+			},
+		},
+		{
+			"echasnovski/mini.nvim",
+			event = { "VeryLazy" },
+		},
+		{
+			"lewis6991/gitsigns.nvim",
+			event = { "VeryLazy" },
+		},
 		{
 			"nvim-lualine/lualine.nvim",
-			lazy = true,
 			event = { "VeryLazy" },
 			opts = {
 				options = {
@@ -510,7 +523,6 @@ require("lazy").setup({
 		},
 		{
 			"akinsho/bufferline.nvim",
-			lazy = true,
 			event = { "VeryLazy" },
 			opts = {
 				options = {
@@ -520,70 +532,66 @@ require("lazy").setup({
 		},
 		{
 			"neovim/nvim-lspconfig",
-			lazy = true,
-			event = { "LazyFile" },
+			event = { "VeryLazy" },
 			dependencies = {
-				"saghen/blink.cmp",
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 			},
-			opts = function()
-				local cmp = require("blink.cmp")
-
-				return {
-					diagnostics = {
-						severity_sort = true,
-					},
-					inlay_hints = {
-						enabled = true,
-					},
-					codelens = {
-						enabled = true,
-					},
-					document_highlight = {
-						enabled = true,
-					},
-					capabilities = cmp.get_lsp_capabilities({
-						workspace = {
-							fileOperations = {
-								didRename = true,
-								willRename = true,
-							},
-						},
-					}),
-				}
-			end,
-			config = function()
-				local lspconfig = require("lspconfig")
-
-				for _, server in ipairs(lsp_servers) do
-					lspconfig[server].setup()
-				end
-			end,
 		},
 		{
 			"williamboman/mason.nvim",
-			lazy = true,
 			build = ":MasonUpdate",
 			cmd = "Mason",
-			event = { "VeryLazy" },
-			dependencies = {
-				"williamboman/mason-lspconfig.nvim",
-			},
 		},
 		{
 			"williamboman/mason-lspconfig.nvim",
-			lazy = true,
-			event = { "VeryLazy" },
+			dependencies = {
+				"saghen/blink.cmp",
+				"williamboman/mason.nvim",
+			},
 			opts = {
-				ensure_installed = vim.tbl_extend("force", lsp_servers, lsp_daps),
+				handlers = {
+					function(server)
+						require("lspconfig")[server].setup({
+							capabilities = require("blink.cmp").get_lsp_capabilities(),
+						})
+					end,
+				},
+				ensure_installed = {
+					"rust_analyzer",
+					"glsl_analyzer",
+					"gopls",
+					"solang",
+					"clangd",
+					"neocmake",
+					"sqls",
+					"hls",
+
+					"lua_ls",
+					"bashls",
+					"ts_ls",
+					"html",
+					"htmx",
+					"cssls",
+
+					"jsonls",
+					"taplo",
+					"yamlls",
+
+					"dockerls",
+					"docker_compose_language_service",
+					"marksman",
+					"texlab",
+
+					"codelldb",
+					"delve",
+				},
 			},
 		},
 		{
 			"nvim-treesitter/nvim-treesitter",
-			lazy = true,
 			build = ":TSUpdate",
-			cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+			cmd = { "TSUpdate", "TSInstall" },
 			event = { "VeryLazy" },
 			opts = {
 				ensure_installed = {
@@ -627,9 +635,9 @@ require("lazy").setup({
 				incremental_selection = {
 					enable = true,
 					keymaps = {
-						init_selection = "<C-space>",
-						node_incremental = "<C-space>",
-						scope_incremental = "<A-space>",
+						init_selection = "<C-Space>",
+						node_incremental = "<C-Space>",
+						scope_incremental = "<A-Space>",
 						node_decremental = "<BR>",
 					},
 				},
@@ -660,19 +668,32 @@ require("lazy").setup({
 				},
 			},
 		},
-		{ "folke/trouble.nvim" },
-		{ "rcarriga/nvim-dap-ui" },
-		{ "mfussenegger/nvim-dap" },
-		{ "mfussenegger/nvim-lint" },
+		{
+			"rcarriga/nvim-dap-ui",
+			dependencies = {
+				"mfussenegger/nvim-dap",
+				"nvim-neotest/nvim-nio",
+			},
+		},
+		{
+			"mfussenegger/nvim-dap",
+		},
+		{
+			"mfussenegger/nvim-lint",
+		},
 		{ "stevearc/overseer.nvim" },
-		{ "Saecki/crates.nvim" },
-		{ "mrcjkb/rustaceanvim/" },
+		{
+			"Saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+		},
+		{
+			"mrcjkb/rustaceanvim",
+			lazy = false,
+		},
 		{
 			"saghen/blink.cmp",
-			lazy = true,
 			build = "cargo build --release",
 			event = "InsertEnter",
-
 			opts_extend = { "sources.default" },
 			opts = {
 				sources = {
@@ -681,6 +702,5 @@ require("lazy").setup({
 			},
 		},
 	},
-	install = { colorscheme = { "habamax" } },
 	checker = { enabled = true },
 })
