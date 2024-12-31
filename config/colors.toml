@@ -1,0 +1,45 @@
+[bg]
+core = "#000000"
+
+[fg]
+core = "#FFFFFF"
+
+[black]
+dark = "#0D0D0D"
+core = "#1A1A1A"
+light = "#262626"
+
+[white]
+dark = "#D9D9D9"
+core = "#E6E6E6"
+light = "#F2F2F2"
+
+[red]
+dark = "#FF6666"
+core = "#FF9999"
+light = "#FFCCCC"
+
+[yellow]
+dark = "#FFD966"
+core = "#FFE699"
+light = "#FFF2CC"
+
+[green]
+dark = "#D9FF66"
+core = "#E6FF99"
+light = "#F2FFCC"
+
+[cyan]
+dark = "#66D9FF"
+core = "#99E6FF"
+light = "#CCF2FF"
+
+[blue]
+dark = "#6666FF"
+core = "#9999FF"
+light = "#CCCCFF"
+
+[magenta]
+dark = "#FF66D9"
+core = "#FF99E6"
+light = "#FFCCF2"
