@@ -21,3 +21,7 @@ export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
 
 export RIPGREP_CONFIG_PATH=~/.config/ripgreprc
+
+function fetch() {
+    macchina -t Lithium
+}

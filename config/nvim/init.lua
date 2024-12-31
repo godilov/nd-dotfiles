@@ -114,7 +114,7 @@ require("lazy").setup({
             opts = {
                 palettes = {
                     nightfox = {
-                        black = { base = "#262626", bright = "#333333", dim = "#1A1A1A" },
+                        black = { base = "#D0D0D", bright = "#333333", dim = "#1A1A1A" },
                         white = { base = "#D9D9D9", bright = "#E6E6E6", dim = "#CCCCCC" },
                         red = { base = "#F98686", bright = "#FFB3B3", dim = "#ED5E5E" },
                         orange = { base = "#F9AC86", bright = "#FFCCB3", dim = "#ED8E5E" },
@@ -461,7 +461,7 @@ require("lazy").setup({
                 { "<A-\\>",     vim.lsp.buf.signature_help,                         desc = "Signature",             mode = { "n", "i", "v" }, },
 
                 { "<leader>cm", "<CMD>Mason<CR>",                                   desc = "Mason" },
-                { "<leader>cL", "<CMD>LspInfo<CR>",                                 desc = "Lsp Info" },
+                { "<leader>cl", "<CMD>LspInfo<CR>",                                 desc = "Lsp Info" },
                 { "<leader>cs", "<CMD>FzfLua lsp_workspace_symbols<CR>",            desc = "Symbols (Global)" },
                 { "<leader>cS", "<CMD>FzfLua lsp_document_symbols<CR>",             desc = "Symbols (Local)" },
                 { "<leader>cd", "<CMD>FzfLua lsp_workspace_diagnostics<CR>",        desc = "Diagnostics (Local)" },
@@ -691,10 +691,11 @@ require("lazy").setup({
             "Saecki/crates.nvim",
             event = { "BufRead Cargo.toml" },
         },
-        -- {
-        --     "mrcjkb/rustaceanvim",
-        --     lazy = false,
-        -- },
+        {
+            "mrcjkb/rustaceanvim",
+            lazy = false,
+            cond = false,
+        },
         {
             "folke/lazydev.nvim",
             ft = "lua",
