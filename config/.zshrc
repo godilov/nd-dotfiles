@@ -6,4 +6,8 @@ function man {
     MANWIDTH=$((COLUMNS - 1)) /usr/bin/man "$@"
 }
 
+function fetch() {
+    macchina -t Lithium
+}
+
 eval "$(starship init zsh)"
