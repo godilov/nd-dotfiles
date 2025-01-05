@@ -8,8 +8,8 @@ white = "#F2F2F2"
 red = "#FFCCCC"
 yellow = "#FFF2CC"
 green = "#F2FFCC"
-cyan = "#CCF2FF"
-blue = "#CCCCFF"
+cyan = "#CCFFFF"
+blue = "#CCE6FF"
 magenta = "#FFCCF2"
 
 [colors.normal]
@@ -18,8 +18,8 @@ white = "#E6E6E6"
 red = "#FF9999"
 yellow = "#FFE699"
 green = "#E6FF99"
-cyan = "#99E6FF"
-blue = "#9999FF"
+cyan = "#99FFFF"
+blue = "#99CCFF"
 magenta = "#FF99E6"
 
 [colors.search.focused_match]
