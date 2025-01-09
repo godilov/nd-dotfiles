@@ -51,10 +51,10 @@ local status = {
 }
 
 local spell = {
-    bad  = { fg = palette[1].white[1], sp = palette[1].red[3], underline = true },
-    cap  = { fg = palette[1].white[1], sp = palette[1].yellow[3], underline = true },
-    loc  = { fg = palette[1].white[1], sp = palette[1].green[3], underline = true },
-    rare = { fg = palette[1].white[1], sp = palette[1].blue[3], underline = true },
+    bad  = { sp = palette[1].red[3], underline = true },
+    cap  = { sp = palette[1].yellow[3], underline = true },
+    loc  = { sp = palette[1].green[3], underline = true },
+    rare = { sp = palette[1].blue[3], underline = true },
 }
 
 local diff = {
@@ -71,9 +71,9 @@ local editor = {
     cursor     = { reverse = true },
     cursorx    = { bg = palette[2].black[3] },
     menu       = { fg = palette[1].white[1], bg = palette[2].black[3] },
-    menusel    = { fg = palette[2].black[1], bg = palette[1].yellow[3] },
-    search     = { fg = palette[2].black[1], bg = palette[1].red[2] },
-    searchsel  = { fg = palette[2].black[1], bg = palette[1].yellow[2] },
+    menusel    = { fg = palette[2].black[1], bg = palette[1].yellow[2] },
+    search     = { fg = palette[2].black[1], bg = palette[1].yellow[2] },
+    searchsel  = { fg = palette[2].black[1], bg = palette[1].red[2] },
     number     = { fg = palette[1].yellow[1] },
     numbersel  = { fg = palette[1].yellow[1], bold = true },
 }
@@ -91,11 +91,11 @@ local syntax = {
     ['literal.regexp']      = { fg = palette[1].yellow[2] },
     ['literal.url']         = { fg = palette[1].yellow[2], underline = true },
 
-    ['type']                = { fg = palette[1].yellow[4] },
-    ['attribute']           = { fg = palette[1].yellow[3] },
-    ['property']            = { fg = palette[1].yellow[3] },
+    ['type']                = { fg = palette[1].yellow[3] },
+    ['attribute']           = { fg = palette[1].yellow[2] },
+    ['property']            = { fg = palette[1].yellow[2] },
 
-    ['function']            = { fg = palette[1].red[4] },
+    ['function']            = { fg = palette[1].red[3] },
 
     ['constructor']         = { fg = palette[1].yellow[3] },
     ['operator']            = { fg = palette[1].white[1] },
