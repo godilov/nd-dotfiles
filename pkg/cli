@@ -24,6 +24,9 @@ imagemagick
 lazygit
 macchina
 
+tree-sitter
+tree-sitter-cli
+
 tlp
 tlp-rdw
 lshw

@@ -46,6 +46,12 @@ local keys = {
     { 'n',               '<leader>uI', '<CMD>InspectTree<CR>',        { desc = 'Inspect Tree' } },
 }
 
-for _, v in ipairs(keys) do
-    map(v[1], v[2], v[3], v[4])
+local function set_keys()
+    for _, v in ipairs(keys) do
+        map(v[1], v[2], v[3], v[4])
+    end
 end
+
+return {
+    set_keys = set_keys,
+}

@@ -25,7 +25,7 @@ vim.diagnostic.config {
     underline = true,
     severity_sort = true,
     update_in_insert = true,
-    virtual_text = false,
+    virtual_text = true,
 }
 
 local opt = vim.opt
@@ -76,8 +76,12 @@ opt.updatetime = 200
 
 opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus'
 
-require 'config.keys'
-require 'config.colors'
+local keys = require 'config.keys'
+local colors = require 'config.colors'
+
+keys.set_keys()
+colors.set_editor_hls()
+colors.set_syntax_hls()
 
 local lsp_autoformat = true
 
@@ -111,37 +115,6 @@ require 'lazy'.setup {
         { 'MunifTanjim/nui.nvim' },
         { 'nvim-neotest/nvim-nio' },
         { 'rcarriga/nvim-notify' },
-        {
-            'EdenEast/nightfox.nvim',
-            lazy = false,
-            priority = 1000,
-            build = ':NightfoxCompile',
-            opts = {
-                palettes = {
-                    nightfox = {
-                        black = { base = '#D0D0D0', bright = '#333333', dim = '#1A1A1A' },
-                        white = { base = '#D9D9D9', bright = '#E6E6E6', dim = '#CCCCCC' },
-                        red = { base = '#F98686', bright = '#FFB3B3', dim = '#ED5E5E' },
-                        orange = { base = '#F9AC86', bright = '#FFCCB3', dim = '#ED8E5E' },
-                        yellow = { base = '#F9D385', bright = '#FFE5B3', dim = '#EDBE5E' },
-                        green = { base = '#F9F985', bright = '#FFFFB3', dim = '#EDED5E' },
-                        cyan = { base = '#86F9F9', bright = '#B3FFFF', dim = '#5EEDED' },
-                        blue = { base = '#86D2F9', bright = '#B3E5FF', dim = '#5EBEED' },
-                        magenta = { base = '#F985D3', bright = '#FFB3E5', dim = '#ED5EBE' },
-                        pink = { base = '#F986AC', bright = '#FFB3CC', dim = '#ED5E8E' },
-                        bg0 = '#000000',
-                        bg1 = '#0D0D0D',
-                        bg2 = '#1A1A1A',
-                        bg3 = '#262626',
-                        bg4 = '#333333',
-                        fg0 = '#FFFFFF',
-                        fg1 = '#F2F2F2',
-                        fg2 = '#E6E6E6',
-                        fg3 = '#D9D9D9',
-                    },
-                },
-            },
-        },
         {
             'nvim-neo-tree/neo-tree.nvim',
             cmd = 'Neotree',
@@ -220,7 +193,7 @@ require 'lazy'.setup {
             event = { 'VeryLazy' },
             opts = {
                 options = {
-                    theme = 'auto',
+                    theme = colors.get_lualine_hls(),
                     globalstatus = vim.o.laststatus == 3,
                     disabled_filetypes = {
                         statusline = {
@@ -625,6 +598,11 @@ require 'lazy'.setup {
                 { ']C', desc = 'Next Class End' },
                 { ']A', desc = 'Next Paramater End' },
             },
+            config = function(_, opts)
+                require 'nvim-treesitter.configs'.setup(opts)
+
+                colors.set_treesitter_hls()
+            end
         },
         {
             'rcarriga/nvim-dap-ui',
@@ -709,5 +687,3 @@ require 'lazy'.setup {
     },
     checker = { enabled = true },
 }
-
-vim.cmd 'colorscheme nightfox'
