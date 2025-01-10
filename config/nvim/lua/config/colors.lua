@@ -66,7 +66,7 @@ local diff = {
 local editor = {
     normal     = { fg = palette[1].white[1], bg = palette[2].black[1] },
     invisible  = { fg = palette[2].black[1], bg = palette[2].black[1] },
-    whitespace = { fg = palette[2].black[6] },
+    whitespace = { fg = palette[1].white[6] },
     select     = { bg = palette[2].black[6] },
     cursor     = { reverse = true },
     cursorx    = { bg = palette[2].black[3] },
@@ -418,13 +418,13 @@ local function get_lualine_hls()
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         replace = {
-            a = { fg = palette[2].black[1], bg = palette[1].blue[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].blue[2] },
+            a = { fg = palette[2].black[1], bg = palette[1].cyan[4], gui = 'bold' },
+            b = { fg = palette[1].white[1], bg = palette[2].cyan[2] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         command = {
-            a = { fg = palette[2].black[1], bg = palette[1].cyan[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].cyan[2] },
+            a = { fg = palette[2].black[1], bg = palette[1].blue[4], gui = 'bold' },
+            b = { fg = palette[1].white[1], bg = palette[2].blue[2] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
     }

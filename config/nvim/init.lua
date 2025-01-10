@@ -329,6 +329,7 @@ require 'lazy'.setup {
                     desc = 'Session Stop',
                 },
             },
+            opts = {},
         },
         {
             'folke/trouble.nvim',
@@ -336,6 +337,7 @@ require 'lazy'.setup {
             dependencies = {
                 'neovim/nvim-lspconfig',
             },
+            opts = {},
         },
         {
             'echasnovski/mini.nvim',
