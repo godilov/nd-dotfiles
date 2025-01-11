@@ -43,6 +43,14 @@ local diag = {
     },
 }
 
+local logs = {
+    error = { fg = palette[1].red[4] },
+    warn  = { fg = palette[1].yellow[4] },
+    info  = { fg = palette[1].blue[4] },
+    debug = { fg = palette[1].cyan[4] },
+    trace = { fg = palette[1].white[6] },
+}
+
 local status = {
     error = { fg = palette[1].red[4] },
     warn  = { fg = palette[1].yellow[4] },
@@ -412,6 +420,24 @@ local markdown_hls = {
     { 'RenderMarkdownH6Bg', markdown.bg['heading.6'] },
 }
 
+local notify_hls = {
+    { 'NotifyERRORBorder', logs.error },
+    { 'NotifyERRORIcon',   logs.error },
+    { 'NotifyERRORTitle',  logs.error },
+    { 'NotifyWARNBorder',  logs.warn },
+    { 'NotifyWARNIcon',    logs.warn },
+    { 'NotifyWARNTitle',   logs.warn },
+    { 'NotifyINFOBorder',  logs.info },
+    { 'NotifyINFOIcon',    logs.info },
+    { 'NotifyINFOTitle',   logs.info },
+    { 'NotifyDEBUGBorder', logs.debug },
+    { 'NotifyDEBUGIcon',   logs.debug },
+    { 'NotifyDEBUGTitle',  logs.debug },
+    { 'NotifyTRACEBorder', logs.trace },
+    { 'NotifyTRACEIcon',   logs.trace },
+    { 'NotifyTRACETitle',  logs.trace },
+}
+
 local function set_hls(groups)
     for _, v in ipairs(groups) do
         vim.api.nvim_set_hl(0, v[1], v[2])
@@ -432,6 +458,10 @@ end
 
 local function set_markdown_hls()
     set_hls(markdown_hls)
+end
+
+local function set_notify_hls()
+    set_hls(notify_hls)
 end
 
 local function get_lualine_hls()
@@ -469,5 +499,6 @@ return {
     set_syntax_hls     = set_syntax_hls,
     set_treesitter_hls = set_treesitter_hls,
     set_markdown_hls   = set_markdown_hls,
+    set_notify_hls     = set_notify_hls,
     get_lualine_hls    = get_lualine_hls,
 }

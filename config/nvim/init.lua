@@ -284,6 +284,11 @@ require 'lazy'.setup {
                 { '<leader>nd', '<CMD>Noice dismiss<CR>', desc = 'Dismiss' },
                 { '<leader>ne', '<CMD>Noice errors<CR>',  desc = 'Errors' },
             },
+            config = function(_, opts)
+                require 'noice'.setup(opts)
+
+                colors.set_notify_hls()
+            end,
         },
         {
             'folke/snacks.nvim',
@@ -342,6 +347,7 @@ require 'lazy'.setup {
         },
         {
             'lewis6991/gitsigns.nvim',
+            cmd = { 'Gitsigns' },
             event = { 'VeryLazy' },
             opts = {},
         },
@@ -702,6 +708,19 @@ require 'lazy'.setup {
             event = 'InsertEnter',
             opts_extend = { 'sources.default' },
             opts = {
+                keymap = {
+                    preset = 'none',
+
+                    ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+
+                    ['<Tab>'] = { 'accept', 'fallback' },
+
+                    ['<C-k>'] = { 'select_prev', 'fallback' },
+                    ['<C-j>'] = { 'select_next', 'fallback' },
+
+                    ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+                    ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+                },
                 sources = {
                     default = { 'lsp', 'path', 'buffer', 'markdown', 'lazydev' },
                     providers = {
