@@ -83,19 +83,6 @@ keys.set_keys()
 colors.set_editor_hls()
 colors.set_syntax_hls()
 
-local lsp_autoformat = true
-
-vim.api.nvim_create_augroup('LSP', { clear = true })
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-    group = 'LSP',
-    callback = function()
-        if lsp_autoformat then
-            vim.lsp.buf.format { async = false }
-        end
-    end,
-})
-
 local lsp_goto = function(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
     local sev = severity and vim.diagnostic.severity[severity] or nil
@@ -404,26 +391,11 @@ require 'lazy'.setup {
                 { '<leader>cx', vim.diagnostic.open_float,                          desc = 'Line Diagnostics' },
                 { '<leader>cr', vim.lsp.buf.rename,                                 desc = 'Rename' },
                 {
-                    '<leader>cf',
-                    function()
-                        vim.lsp.buf.format { async = true }
-                    end,
-                    desc = 'Format',
-                },
-                {
                     '<leader>cR',
                     function()
                         require 'snacks'.rename.rename_file()
                     end,
                     desc = 'Rename File',
-                },
-
-                {
-                    '<leader>ctf',
-                    function()
-                        lsp_autoformat = not lsp_autoformat
-                    end,
-                    desc = 'Toggle Autoformat',
                 },
                 {
                     '<leader>cth',
@@ -605,6 +577,49 @@ require 'lazy'.setup {
 
                 colors.set_treesitter_hls()
             end
+        },
+        {
+            'stevearc/conform.nvim',
+            cmd = { 'ConformInfo' },
+            event = { 'BufWritePre' },
+            opts = {
+                formatters_by_ft = {
+                    go = { 'gofmt' },
+                    rust = { 'rustfmt' },
+                    markdown = { 'prettier' },
+                },
+                default_format_opts = {
+                    lsp_format = 'fallback',
+                },
+                format_on_save = function(bufnr)
+                    if not vim.g.autoformat_disable and not vim.b[bufnr].autoformat_disable then
+                        return { timeout_ms = 1000, lsp_format = 'fallback' }
+                    end
+                end,
+            },
+            keys = {
+                {
+                    '<leader>cf',
+                    function()
+                        require 'conform'.format { async = true }
+                    end,
+                    desc = 'Format',
+                },
+                {
+                    '<leader>ctf',
+                    function()
+                        vim.g.autoformat_disable = not vim.g.autoformat_disable
+                    end,
+                    desc = 'Toggle Autoformat (Global)',
+                },
+                {
+                    '<leader>ctF',
+                    function()
+                        vim.b.autoformat_disable = not vim.b.autoformat_disable
+                    end,
+                    desc = 'Toggle Autoformat (Local)',
+                },
+            }
         },
         {
             'rcarriga/nvim-dap-ui',
