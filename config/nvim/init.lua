@@ -295,6 +295,7 @@ require 'lazy'.setup {
             lazy = false,
             opts = {
                 dashboard = { enabled = true },
+                words = { enabled = true },
             },
             keys = {
                 { '<leader>nH', function() require 'snacks'.notifier.show_history() end, desc = 'History', },
