@@ -83,13 +83,20 @@ keys.set_keys()
 colors.set_editor_hls()
 colors.set_syntax_hls()
 
-local lsp_goto = function(next, severity)
+local function lsp_goto(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
     local sev = severity and vim.diagnostic.severity[severity] or nil
 
     return function()
         go { severity = sev }
     end
+end
+
+local function notify_autoformat()
+    vim.notify('Autoformat\n' ..
+        '[' .. (vim.g.autoformat_disable and ' ' or 'X') .. '] - Global\n' ..
+        '[' .. (vim.b.autoformat_disable and ' ' or 'X') .. '] - Local',
+        vim.log.levels.INFO)
 end
 
 require 'lazy'.setup {
@@ -110,6 +117,7 @@ require 'lazy'.setup {
                 'nvim-tree/nvim-web-devicons',
                 'MunifTanjim/nui.nvim',
             },
+            opts = {},
             keys = {
                 {
                     '<leader>fe',
@@ -140,6 +148,7 @@ require 'lazy'.setup {
             dependencies = {
                 'nvim-tree/nvim-web-devicons'
             },
+            opts = {},
             keys = {
                 { '<leader><space>', '<CMD>FzfLua files<CR>',           desc = 'Find Files' },
                 { '<leader>/',       '<CMD>FzfLua live_grep<CR>',       desc = 'Find Live' },
@@ -233,15 +242,6 @@ require 'lazy'.setup {
             'folke/which-key.nvim',
             cmd = 'WhichKey',
             event = { 'VeryLazy' },
-            keys = {
-                {
-                    '<leader>?',
-                    function()
-                        require 'which-key'.show { global = false }
-                    end,
-                    desc = 'Keymaps Local',
-                },
-            },
             opts = {
                 spec = {
                     { '[',         group = 'Prev' },
@@ -258,6 +258,15 @@ require 'lazy'.setup {
                     { '<leader>u', group = 'UI' },
                     { '<leader>n', group = 'Notifications' },
                     { '<leader>q', group = 'Session' },
+                },
+            },
+            keys = {
+                {
+                    '<leader>?',
+                    function()
+                        require 'which-key'.show { global = false }
+                    end,
+                    desc = 'Keymaps Local',
                 },
             },
         },
@@ -279,6 +288,7 @@ require 'lazy'.setup {
         {
             'folke/snacks.nvim',
             lazy = false,
+            opts = {},
             keys = {
                 {
                     '<C-/>',
@@ -333,6 +343,7 @@ require 'lazy'.setup {
         {
             'lewis6991/gitsigns.nvim',
             event = { 'VeryLazy' },
+            opts = {},
         },
         {
             'neovim/nvim-lspconfig',
@@ -471,10 +482,12 @@ require 'lazy'.setup {
         },
         {
             'williamboman/mason-lspconfig.nvim',
+            opts = {},
             config = function() end,
         },
         {
             'jay-babu/mason-nvim-dap.nvim',
+            opts = {},
             config = function() end,
         },
         {
@@ -617,6 +630,8 @@ require 'lazy'.setup {
                     '<leader>ctf',
                     function()
                         vim.g.autoformat_disable = not vim.g.autoformat_disable
+
+                        notify_autoformat()
                     end,
                     desc = 'Toggle Autoformat (Global)',
                 },
@@ -624,6 +639,8 @@ require 'lazy'.setup {
                     '<leader>ctF',
                     function()
                         vim.b.autoformat_disable = not vim.b.autoformat_disable
+
+                        notify_autoformat()
                     end,
                     desc = 'Toggle Autoformat (Local)',
                 },
@@ -635,24 +652,23 @@ require 'lazy'.setup {
                 'mfussenegger/nvim-dap',
                 'nvim-neotest/nvim-nio',
             },
+            opts = {},
         },
         {
             'mfussenegger/nvim-dap',
         },
         {
             'mfussenegger/nvim-lint',
+            opts = {},
         },
         {
-            'stevearc/overseer.nvim'
+            'stevearc/overseer.nvim',
+            opts = {},
         },
         {
             'Saecki/crates.nvim',
             event = { 'BufRead Cargo.toml' },
-        },
-        {
-            'mrcjkb/rustaceanvim',
-            ft = 'rust',
-            cond = false,
+            opts = {},
         },
         {
             'folke/lazydev.nvim',
