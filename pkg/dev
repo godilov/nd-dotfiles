@@ -43,3 +43,4 @@ kubelet
 minikube
 tree-sitter
 ollama
+prettier

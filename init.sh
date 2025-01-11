@@ -101,7 +101,6 @@ function link-zsh {
 
 function init-all-pkg {
     cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
-    cat pkg/libs-aur pkg/dev-aur pkg/cli-aur pkg/apps-aur >pkg/all-aur
 
     install-pkg pkg/all
     install-pkg pkg/all-aur

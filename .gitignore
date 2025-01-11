@@ -1,7 +1,5 @@
-.session
-.git/
+.git
 deps
-config/nvim/plugin/
 pkg/all
 
 root/local/config/retroarch/*
