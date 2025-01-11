@@ -297,14 +297,9 @@ require 'lazy'.setup {
                 dashboard = { enabled = true },
             },
             keys = {
-                {
-                    '<C-/>',
-                    function()
-                        require 'snacks'.terminal()
-                    end,
-                    desc = 'Terminal Open',
-                },
-                { '<C-/>', '<CMD>close<CR>', desc = 'Terminal Close', mode = { 't' }, },
+                { '<leader>nH', function() require 'snacks'.notifier.show_history() end, desc = 'History', },
+                { '<C-/>',      function() require 'snacks'.terminal() end,              desc = 'Terminal Open', },
+                { '<C-/>',      '<CMD>close<CR>',                                        desc = 'Terminal Close', mode = { 't' }, },
             },
         },
         {
