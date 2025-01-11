@@ -3,9 +3,9 @@ ghcup-hs-bin
 scc-bin
 
 rm-improved
+batsignal
 
 brave-bin
-gnome-pass-search-provider-git
 
 rpcs3-bin
 proton-ge-custom-bin
@@ -14,5 +14,12 @@ protontricks
 xpadneo-dkms-git
 xboxdrv
 
+orchis-theme
 bibata-cursor-theme
 all-repository-fonts
+
+gnome-ssh-askpass4-git
+
+eww
+swww
+tofi

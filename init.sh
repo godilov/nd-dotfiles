@@ -14,12 +14,11 @@ function install-pkg {
     PATTERN="^[a-zA-Z0-9_-]+$"
 
     if command -v paru 2>&1 >/dev/null; then
-        paru -S $(cat pkg/all | grep -E --color=never $PATTERN)
-        paru -S $(cat pkg/all-aur | grep -E --color=never $PATTERN)
+        paru -S $($1 | grep -E --color=never $PATTERN)
     elif [[ $(id -u) == 0 ]]; then
-        pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+        pacman -S $($1 | grep -E --color=never $PATTERN)
     else
-        sudo pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+        sudo pacman -S $($1 | grep -E --color=never $PATTERN)
     fi
 }
 
@@ -103,22 +102,13 @@ function init-all-pkg {
     cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
 
     install-pkg pkg/all
-    install-pkg pkg/all-aur
+    install-pkg pkg/aur
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop glow nvim
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
+    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi xplr
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
-
-    if command -v gsettings 2>&1 >/dev/null; then
-        gsettings set org.gnome.mutter experimental-features '["scale-monitor-framebuffer", "variable-refresh-rate"]'
-        gsettings set org.gnome.desktop.peripherals.keyboard delay 150
-        gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
-        gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
-        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-        gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
-    fi
 
     link-tmux
     link-zsh

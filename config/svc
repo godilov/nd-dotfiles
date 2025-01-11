@@ -1,11 +1,12 @@
 NetworkManager.service
 NetworkManager-dispatcher.service
+NetworkManager-wait-online.service
 bluetooth.service
-docker.service
 tlp.service
-chronyd.service
-ollama.service
-gdm.service
 fstrim.timer
+chronyd.service
+docker.service
+ollama.service
 
---user gcr-ssh-agent.service
+--user xdg-user-dirs-update.service
+--user mpd.service

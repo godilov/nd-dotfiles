@@ -1,3 +1,5 @@
+export GTK_THEME=Orchis-Dark
+export GTK_ICON_THEME=Papirus-Dark
 export XCURSOR_SIZE=24
 export XCURSOR_THEME=Bibata-Original-Classic
 
@@ -20,4 +22,11 @@ export AMD_VULKAN_ICD=RADV
 export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
 
+export SSH_ASKPASS=/usr/lib/ssh/gnome-ssh-askpass4
+export SSH_ASKPASS_REQUIRE='prefer'
+
 export RIPGREP_CONFIG_PATH=~/.config/ripgreprc
+
+eval $(ssh-agent)
+
+Hyprland

@@ -36,7 +36,6 @@ xdg-user-dirs
 gcr
 gcr-4
 polkit
+polkit-gnome
 
-gnome
-gnome-extra
-gnome-tweaks
+papirus-icon-theme
