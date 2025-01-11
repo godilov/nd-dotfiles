@@ -63,6 +63,27 @@ local diff = {
     rem = { fg = palette[1].red[3] },
 }
 
+local markdown = {
+    fg = {
+        ['heading'] = { fg = palette[1].white[1], bold = true },
+        ['heading.1'] = { fg = palette[1].red[2], bold = true },
+        ['heading.2'] = { fg = palette[1].yellow[2], bold = true },
+        ['heading.3'] = { fg = palette[1].green[2], bold = true },
+        ['heading.4'] = { fg = palette[1].cyan[1], bold = true },
+        ['heading.5'] = { fg = palette[1].blue[1], bold = true },
+        ['heading.6'] = { fg = palette[1].magenta[1], bold = true },
+    },
+    bg = {
+        ['heading'] = { bg = palette[2].black[4] },
+        ['heading.1'] = { bg = palette[2].red[1] },
+        ['heading.2'] = { bg = palette[2].yellow[1] },
+        ['heading.3'] = { bg = palette[2].green[1] },
+        ['heading.4'] = { bg = palette[2].cyan[1] },
+        ['heading.5'] = { bg = palette[2].blue[1] },
+        ['heading.6'] = { bg = palette[2].magenta[1] },
+    },
+}
+
 local editor = {
     normal     = { fg = palette[1].white[1], bg = palette[2].black[1] },
     invisible  = { fg = palette[2].black[1], bg = palette[2].black[1] },
@@ -350,13 +371,13 @@ local treesitter_hls = {
     { '@markup.strikethrough',        { fg = palette[1].white[1], strikethrough = true } },
     { '@markup.underline',            { fg = palette[1].white[1], underline = true } },
 
-    { '@markup.heading',              { fg = palette[1].white[1], bold = true } },
-    { '@markup.heading.1',            { fg = palette[1].red[2], bold = true } },
-    { '@markup.heading.2',            { fg = palette[1].yellow[2], bold = true } },
-    { '@markup.heading.3',            { fg = palette[1].green[2], bold = true } },
-    { '@markup.heading.4',            { fg = palette[1].white[1], bold = true } },
-    { '@markup.heading.5',            { fg = palette[1].white[1], bold = true } },
-    { '@markup.heading.6',            { fg = palette[1].white[1], bold = true } },
+    { '@markup.heading',              markdown.fg['heading'] },
+    { '@markup.heading.1',            markdown.fg['heading.1'] },
+    { '@markup.heading.2',            markdown.fg['heading.2'] },
+    { '@markup.heading.3',            markdown.fg['heading.3'] },
+    { '@markup.heading.4',            markdown.fg['heading.4'] },
+    { '@markup.heading.5',            markdown.fg['heading.5'] },
+    { '@markup.heading.6',            markdown.fg['heading.6'] },
 
     { '@markup.quote',                { fg = palette[1].white[1] } },
     { '@markup.math',                 { fg = palette[1].yellow[2] } },
@@ -382,6 +403,15 @@ local treesitter_hls = {
     { '@tag.delimiter',               { fg = palette[1].white[1] } },
 }
 
+local markdown_hls = {
+    { 'RenderMarkdownH1Bg', markdown.bg['heading.1'] },
+    { 'RenderMarkdownH2Bg', markdown.bg['heading.2'] },
+    { 'RenderMarkdownH3Bg', markdown.bg['heading.3'] },
+    { 'RenderMarkdownH4Bg', markdown.bg['heading.4'] },
+    { 'RenderMarkdownH5Bg', markdown.bg['heading.5'] },
+    { 'RenderMarkdownH6Bg', markdown.bg['heading.6'] },
+}
+
 local function set_hls(groups)
     for _, v in ipairs(groups) do
         vim.api.nvim_set_hl(0, v[1], v[2])
@@ -398,6 +428,10 @@ end
 
 local function set_treesitter_hls()
     set_hls(treesitter_hls)
+end
+
+local function set_markdown_hls()
+    set_hls(markdown_hls)
 end
 
 local function get_lualine_hls()
@@ -434,5 +468,6 @@ return {
     set_editor_hls     = set_editor_hls,
     set_syntax_hls     = set_syntax_hls,
     set_treesitter_hls = set_treesitter_hls,
+    set_markdown_hls   = set_markdown_hls,
     get_lualine_hls    = get_lualine_hls,
 }
