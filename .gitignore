@@ -1,6 +1,7 @@
 .git
 deps
 pkg/all
+config/nvim/lazy-lock.json
 
 root/local/config/retroarch/*
 !root/local/config/retroarch/retroarch.cfg
