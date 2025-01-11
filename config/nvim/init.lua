@@ -293,7 +293,9 @@ require 'lazy'.setup {
         {
             'folke/snacks.nvim',
             lazy = false,
-            opts = {},
+            opts = {
+                dashboard = { enabled = true },
+            },
             keys = {
                 {
                     '<C-/>',
