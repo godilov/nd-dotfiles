@@ -444,7 +444,6 @@ require 'lazy'.setup {
                         'bashls',
                         'ts_ls',
                         'html',
-                        'htmx',
                         'cssls',
 
                         'jsonls',
@@ -528,7 +527,7 @@ require 'lazy'.setup {
                         init_selection = '<C-Space>',
                         node_incremental = '<C-Space>',
                         scope_incremental = '<A-Space>',
-                        node_decremental = '<BR>',
+                        node_decremental = '<BS>',
                     },
                 },
                 textobjects = {
@@ -577,6 +576,15 @@ require 'lazy'.setup {
 
                 colors.set_treesitter_hls()
             end
+        },
+        {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            event = { 'VeryLazy' },
+            dependencies = {
+                'nvim-treesitter/nvim-treesitter',
+            },
+            opts = {},
+            config = function() end,
         },
         {
             'stevearc/conform.nvim',
@@ -666,6 +674,11 @@ require 'lazy'.setup {
                 'nvim-tree/nvim-web-devicons',
             },
             opts = {},
+            config = function(_, opts)
+                require 'render-markdown'.setup(opts)
+
+                colors.set_markdown_hls()
+            end
         },
         {
             'saghen/blink.cmp',
