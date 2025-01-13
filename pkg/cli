@@ -5,24 +5,28 @@ tmux
 zsh
 zsh-completions
 
-btop
-glow
+fd
+fzf
+file
 tree
 exa
 bat
-fzf
-fd
+ripgrep
+zoxide
+glow
+btop
 duf
+dust
 bottom
 bandwhich
-ripgrep
 chrony
 rsync
 texlive
 texlive-lang
 imagemagick
-lazygit
+poppler
 macchina
+lazygit
 
 tree-sitter
 tree-sitter-cli
