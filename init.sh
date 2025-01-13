@@ -15,8 +15,6 @@ function install-pkg {
 
     if command -v paru 2>&1 >/dev/null; then
         paru -S $($1 | grep -E --color=never $PATTERN)
-    elif [[ $(id -u) == 0 ]]; then
-        pacman -S $($1 | grep -E --color=never $PATTERN)
     else
         sudo pacman -S $($1 | grep -E --color=never $PATTERN)
     fi
@@ -99,7 +97,7 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps pkg/games >pkg/all
 
     install-pkg pkg/all
     install-pkg pkg/aur
@@ -107,7 +105,8 @@ function init-all-pkg {
 
 function init-all-cfg {
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi xplr
+    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi
+    link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -129,6 +128,9 @@ for arg in "$@"; do
     "deps")
         ensure-deps
         ;;
+    "aur")
+        install-pkg pkg/aur
+        ;;
     "libs")
         install-pkg pkg/libs
         ;;
@@ -141,25 +143,31 @@ for arg in "$@"; do
     "apps")
         install-pkg pkg/apps
         ;;
+    "games")
+        install-pkg pkg/games
+        ;;
     "amd")
         install-pkg pkg/hw_amd
         ;;
     "nvidia")
         install-pkg pkg/hw_nvidia
         ;;
-    "games")
-        install-pkg pkg/games
-
-        link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
-        ;;
     "reflector")
-        ARGS="--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+        sudo reflector "--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+        ;;
+    "services")
+        sudo systemctl enable --now NetworkManager.service
+        sudo systemctl enable --now NetworkManager-dispatcher.service
+        sudo systemctl disable --now NetworkManager-wait-online.service
+        sudo systemctl enable --now bluetooth.service
+        sudo systemctl enable --now tlp.service
+        sudo systemctl enable --now fstrim.timer
+        sudo systemctl enable --now chronyd.service
+        sudo systemctl enable --now docker.service
+        sudo systemctl enable --now ollama.service
 
-        if [[ $(id -u) == 0 ]]; then
-            reflector $ARGS
-        else
-            sudo reflector $ARGS
-        fi
+        systemctl --user enable --now xdg-user-dirs-update.service
+        systemctl --user enable --now mpd.service
         ;;
     *)
         echo No args

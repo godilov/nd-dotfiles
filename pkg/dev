@@ -43,5 +43,6 @@ kubelet
 minikube
 tree-sitter
 ollama
+shfmt
 prettier
 jq
