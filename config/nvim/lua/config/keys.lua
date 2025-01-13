@@ -6,8 +6,12 @@ local keys = {
     { { 'n', 'x' },      '<Down>',     "v:count == 0 ? 'gj' : 'j'",   { desc = 'Down', expr = true, silent = true, } },
     { { 'n', 'x' },      '<Up>',       "v:count == 0 ? 'gk' : 'k'",   { desc = 'Up', expr = true, silent = true, } },
 
-    { 'n',               '[t',         '<CMD>tabprevious<CR>',        { desc = 'Prev Tab' } },
+    { 'n',               '[b',         '<CMD>bprev<CR>',              { desc = 'Prev Buffer' }, },
+    { 'n',               ']b',         '<CMD>bnext<CR>',              { desc = 'Next Buffer' }, },
+    { 'n',               '[t',         '<CMD>tabprev<CR>',            { desc = 'Prev Tab' } },
     { 'n',               ']t',         '<CMD>tabnext<CR>',            { desc = 'Next Tab' } },
+    { 'n',               '[T',         '<CMD>-tabmove<CR>',           { desc = 'Move Tab Prev' } },
+    { 'n',               ']T',         '<CMD>+tabmove<CR>',           { desc = 'Move Tab Next' } },
     { 'n',               '[q',         vim.cmd.cprev,                 { desc = 'Prev Error' } },
     { 'n',               ']q',         vim.cmd.cnext,                 { desc = 'Next Error' } },
 
@@ -34,6 +38,9 @@ local keys = {
     { 'n',               '<C-A-j>',    '<CMD>tabclose<CR>',           { desc = 'Delete Tab' } },
     { 'n',               '<C-A-k>',    '<CMD>tabnew<CR>',             { desc = 'Create Tab' } },
     { 'n',               '<C-A-l>',    '<CMD>tabnext<CR>',            { desc = 'Next Tab' } },
+
+    { 'n',               '<C-A-H>',    '<CMD>-tabmove<CR>',           { desc = 'Move Tab Prev' } },
+    { 'n',               '<C-A-L>',    '<CMD>+tabmove<CR>',           { desc = 'Move Tab Next' } },
 
     { 'n',               '<leader>bc', '<CMD>enew<CR>',               { desc = 'Create Buffer' } },
     { 'n',               '<leader>bd', '<CMD>bdelete<CR>',            { desc = 'Delete Buffer' } },

@@ -234,11 +234,13 @@ require 'lazy'.setup {
             keys = {
                 { '[b',         '<CMD>BufferLineCyclePrev<CR>',            desc = 'Prev Buffer' },
                 { ']b',         '<CMD>BufferLineCycleNext<CR>',            desc = 'Next Buffer' },
-                { '[B',         '<CMD>BufferLineMovePrev<CR>',             desc = 'Move buffer prev' },
-                { ']B',         '<CMD>BufferLineMoveNext<CR>',             desc = 'Move buffer next' },
+                { '[B',         '<CMD>BufferLineMovePrev<CR>',             desc = 'Move Buffer prev' },
+                { ']B',         '<CMD>BufferLineMoveNext<CR>',             desc = 'Move Buffer next' },
 
                 { '<A-h>',      '<CMD>BufferLineCyclePrev<CR>',            desc = 'Prev Buffer' },
                 { '<A-l>',      '<CMD>BufferLineCycleNext<CR>',            desc = 'Next Buffer' },
+                { '<A-H>',      '<CMD>BufferLineMovePrev<CR>',             desc = 'Move Buffer prev' },
+                { '<A-L>',      '<CMD>BufferLineMoveNext<CR>',             desc = 'Move Buffer next' },
 
                 { '<leader>br', '<CMD>BufferLineCloseRight<CR>',           desc = 'Delete Buffers to the Right' },
                 { '<leader>bl', '<CMD>BufferLineCloseLeft<CR>',            desc = 'Delete Buffers to the Left' },
