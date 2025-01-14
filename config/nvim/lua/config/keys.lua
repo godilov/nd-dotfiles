@@ -51,6 +51,8 @@ local keys = {
     { 'n',               '<leader>ul', '<CMD>Lazy<CR>',               { desc = 'Lazy' } },
     { 'n',               '<leader>ui', '<CMD>Inspect<CR>',            { desc = 'Inspect Position' } },
     { 'n',               '<leader>uI', '<CMD>InspectTree<CR>',        { desc = 'Inspect Tree' } },
+
+    { 'n',               '<leader>qq', '<CMD>qall<CR>',               { desc = 'Quit' } },
 }
 
 local function set_keys()
