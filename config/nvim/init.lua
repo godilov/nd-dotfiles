@@ -182,6 +182,11 @@ require 'lazy'.setup {
                 { '<leader>gC',      '<CMD>FzfLua git_bcommits<CR>',    desc = 'Git Commits (Local)' },
                 { '<leader>gb',      '<CMD>FzfLua git_branches<CR>',    desc = 'Git Branches' },
                 { '<leader>gs',      '<CMD>FzfLua git_status<CR>',      desc = 'Git Status' },
+
+                { '<leader>ql',      desc = 'Session Load' },
+                { '<leader>qL',      desc = 'Session Load Last' },
+                { '<leader>qs',      desc = 'Session Select' },
+                { '<leader>qd',      desc = 'Session Stop' },
             },
             config = function(_, opts)
                 local fzf = require 'fzf-lua'
@@ -330,6 +335,13 @@ require 'lazy'.setup {
                         require 'persistence'.load()
                     end,
                     desc = 'Session Load',
+                },
+                {
+                    '<leader>qL',
+                    function()
+                        require 'persistence'.load { last = true }
+                    end,
+                    desc = 'Session Load Last',
                 },
                 {
                     '<leader>qs',
