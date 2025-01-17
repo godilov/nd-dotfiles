@@ -35,11 +35,11 @@ local diag = {
     },
 
     virt  = {
-        error = { bg = palette[2].black[3], fg = palette[1].red[4] },
-        warn  = { bg = palette[2].black[3], fg = palette[1].yellow[4] },
-        hint  = { bg = palette[2].black[3], fg = palette[1].green[4] },
-        info  = { bg = palette[2].black[3], fg = palette[1].blue[4] },
-        ok    = { bg = palette[2].black[3], fg = palette[1].white[1] },
+        error = { fg = palette[1].red[4] },
+        warn  = { fg = palette[1].yellow[4] },
+        hint  = { fg = palette[1].green[4] },
+        info  = { fg = palette[1].blue[4] },
+        ok    = { fg = palette[1].white[1] },
     },
 }
 
