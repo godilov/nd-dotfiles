@@ -149,6 +149,7 @@ for arg in "$@"; do
         sudo systemctl enable --now chronyd.service
         sudo systemctl enable --now docker.service
         sudo systemctl enable --now ollama.service
+        sudo systemctl enable --now xboxdrv.service
 
         systemctl --user enable --now xdg-user-dirs-update.service
         systemctl --user enable --now mpd.service
