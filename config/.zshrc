@@ -7,6 +7,10 @@ function man {
     MANWIDTH=$((COLUMNS - 1)) /usr/bin/man "$@"
 }
 
+function open {
+    xdg-open $@
+}
+
 function fetch() {
     macchina -t Lithium
 }
