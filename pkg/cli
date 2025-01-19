@@ -43,6 +43,7 @@ nvme-cli
 usbutils
 cpupower
 upower
+batsignal
 udisks2
 udiskie
 gvfs
