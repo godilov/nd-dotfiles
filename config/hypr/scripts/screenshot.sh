@@ -1,7 +1,8 @@
 #!/bin/bash
 
+DIR=$HOME/Pictures/Screenshots
 FILENAME="$(date '+%Y-%m-%d_%H-%m-%S-%N.png')"
-FILEPATH="$HOME/Pictures/Screenshots/$FILENAME"
+FILEPATH="$DIR/$FILENAME"
 
 MESSAGE_CLIP="Screenshot is taken"
 MESSAGE_FILE="Screenshot is taken: $FILENAME"
@@ -15,17 +16,19 @@ DST_CLIP=1
 SRC=$SRC_SCREEN
 DST=$DST_FILE
 
-for arg in "$@"
-do
+for arg in "$@"; do
     case $arg in
-        "--select" | "-s") SRC=$SRC_SELECT;;
-        "--clip" | "-c") DST=$DST_CLIP;;
-        *)
-            echo No args;;
+    "--select" | "-s") SRC=$SRC_SELECT ;;
+    "--clip" | "-c") DST=$DST_CLIP ;;
+    *)
+        echo No args
+        ;;
     esac
 done
 
-[[ $SRC -eq $SRC_SCREEN && $DST -eq $DST_FILE ]] && grim -t png -l 0 -                  > $FILEPATH && notify-send "$MESSAGE_FILE" 
-[[ $SRC -eq $SRC_SELECT && $DST -eq $DST_FILE ]] && grim -t png -l 0 -g "$(slurp)" -    > $FILEPATH && notify-send "$MESSAGE_FILE"
-[[ $SRC -eq $SRC_SCREEN && $DST -eq $DST_CLIP ]] && grim -t png -l 0 -                  | wl-copy   && notify-send "$MESSAGE_CLIP"
-[[ $SRC -eq $SRC_SELECT && $DST -eq $DST_CLIP ]] && grim -t png -l 0 -g "$(slurp)" -    | wl-copy   && notify-send "$MESSAGE_CLIP"
+mkdir -p $DIR
+
+[[ $SRC -eq $SRC_SCREEN && $DST -eq $DST_FILE ]] && grim -t png -l 0 - >$FILEPATH && notify-send "$MESSAGE_FILE"
+[[ $SRC -eq $SRC_SELECT && $DST -eq $DST_FILE ]] && grim -t png -l 0 -g "$(slurp)" - >$FILEPATH && notify-send "$MESSAGE_FILE"
+[[ $SRC -eq $SRC_SCREEN && $DST -eq $DST_CLIP ]] && grim -t png -l 0 - | wl-copy && notify-send "$MESSAGE_CLIP"
+[[ $SRC -eq $SRC_SELECT && $DST -eq $DST_CLIP ]] && grim -t png -l 0 -g "$(slurp)" - | wl-copy && notify-send "$MESSAGE_CLIP"
