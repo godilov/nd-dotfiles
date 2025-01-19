@@ -14,12 +14,9 @@ function install-pkg {
     PATTERN="^[a-zA-Z0-9_-]+$"
 
     if command -v paru 2>&1 >/dev/null; then
-        paru -S $(cat pkg/all | grep -E --color=never $PATTERN)
-        paru -S $(cat pkg/all-aur | grep -E --color=never $PATTERN)
-    elif [[ $(id -u) == 0 ]]; then
-        pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+        paru -S --needed $(cat $1 | grep -E --color=never $PATTERN)
     else
-        sudo pacman -S $(cat pkg/all | grep -E --color=never $PATTERN)
+        sudo pacman -S --needed $(cat $1 | grep -E --color=never $PATTERN)
     fi
 }
 
@@ -100,25 +97,16 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps >pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/hypr pkg/apps pkg/games >pkg/all
 
     install-pkg pkg/all
-    install-pkg pkg/all-aur
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop glow nvim
+    link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
+    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar
+    link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
-
-    if command -v gsettings 2>&1 >/dev/null; then
-        gsettings set org.gnome.mutter experimental-features '["scale-monitor-framebuffer", "variable-refresh-rate"]'
-        gsettings set org.gnome.desktop.peripherals.keyboard delay 150
-        gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
-        gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
-        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-        gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
-    fi
 
     link-tmux
     link-zsh
@@ -136,20 +124,11 @@ for arg in "$@"; do
     "all-cfg")
         init-all-cfg
         ;;
+    "aur-pkg")
+        install-pkg pkg/aur
+        ;;
     "deps")
         ensure-deps
-        ;;
-    "libs")
-        install-pkg pkg/libs
-        ;;
-    "dev")
-        install-pkg pkg/dev
-        ;;
-    "cli")
-        install-pkg pkg/cli
-        ;;
-    "apps")
-        install-pkg pkg/apps
         ;;
     "amd")
         install-pkg pkg/hw_amd
@@ -157,19 +136,22 @@ for arg in "$@"; do
     "nvidia")
         install-pkg pkg/hw_nvidia
         ;;
-    "games")
-        install-pkg pkg/games
-
-        link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
-        ;;
     "reflector")
-        ARGS="--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+        sudo reflector "--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+        ;;
+    "services")
+        sudo systemctl enable --now NetworkManager.service
+        sudo systemctl enable --now NetworkManager-dispatcher.service
+        sudo systemctl disable --now NetworkManager-wait-online.service
+        sudo systemctl enable --now bluetooth.service
+        sudo systemctl enable --now tlp.service
+        sudo systemctl enable --now fstrim.timer
+        sudo systemctl enable --now chronyd.service
+        sudo systemctl enable --now docker.service
+        sudo systemctl enable --now ollama.service
 
-        if [[ $(id -u) == 0 ]]; then
-            reflector $ARGS
-        else
-            sudo reflector $ARGS
-        fi
+        systemctl --user enable --now xdg-user-dirs-update.service
+        systemctl --user enable --now mpd.service
         ;;
     *)
         echo No args

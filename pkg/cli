@@ -5,28 +5,32 @@ tmux
 zsh
 zsh-completions
 
-fd
-fzf
-file
+mpd
+mpc
+mpv
+imv
+ncmpcpp
+transmission-cli
+
+btop
+yazi
+glow
 tree
 exa
 bat
-ripgrep
-zoxide
-glow
-btop
+fzf
+fd
 duf
-dust
 bottom
 bandwhich
+ripgrep
 chrony
 rsync
 texlive
 texlive-lang
 imagemagick
-poppler
-macchina
 lazygit
+macchina
 
 tree-sitter
 tree-sitter-cli
@@ -38,6 +42,13 @@ acpi
 nvme-cli
 usbutils
 cpupower
+upower
+udisks2
+udiskie
+gvfs
+gvfs-mtp
+brightnessctl
+wev
 
 vkmark
 stress
