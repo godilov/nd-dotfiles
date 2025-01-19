@@ -33,13 +33,13 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 24x24
+    offset = 16x16
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 32
+    notification_limit = 16
 
     ### Progress bar ###
 
@@ -109,7 +109,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 8
+    gap_size = 4
 
     # Define a color for the separator.
     # possible values are:
@@ -263,7 +263,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 12
+    corner_radius = 6
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.
@@ -333,9 +333,9 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#2f2f1c"
-    foreground = "#ffffff"
-    frame_color = "#ffffb2"
+    background = "#001933"
+    foreground = "#FFFFFF"
+    frame_color = "#CCE6FF"
     timeout = 10
     override_pause_level = 0
     icon = dialog-information
@@ -343,9 +343,9 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#2f261c"
-    foreground = "#ffffff"
-    frame_color = "#ffd8b2"
+    background = "#331A00"
+    foreground = "#FFFFFF"
+    frame_color = "#FFE6CC"
     timeout = 15
     override_pause_level = 30
     icon = dialog-warning
@@ -353,9 +353,9 @@
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#2f1c1c"
-    foreground = "#ffffff"
-    frame_color = "#ffb2b2"
+    background = "#330000"
+    foreground = "#FFFFFF"
+    frame_color = "#FFCCCC"
     timeout = 0
     override_pause_level = 60
     icon = dialog-error
