@@ -14,9 +14,9 @@ function install-pkg {
     PATTERN="^[a-zA-Z0-9_-]+$"
 
     if command -v paru 2>&1 >/dev/null; then
-        paru -S $($1 | grep -E --color=never $PATTERN)
+        paru -S --needed $(cat $1 | grep -E --color=never $PATTERN)
     else
-        sudo pacman -S $($1 | grep -E --color=never $PATTERN)
+        sudo pacman -S --needed $(cat $1 | grep -E --color=never $PATTERN)
     fi
 }
 
@@ -97,16 +97,15 @@ function link-zsh {
 }
 
 function init-all-pkg {
-    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/apps pkg/games >pkg/all
+    cat pkg/init pkg/libs pkg/dev pkg/cli pkg/hypr pkg/apps pkg/games >pkg/all
 
     install-pkg pkg/all
-    install-pkg pkg/aur
 }
 
 function init-all-cfg {
     link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow mpv nvim tofi
-    link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode
+    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar
+    link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
     link-config-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
@@ -125,26 +124,11 @@ for arg in "$@"; do
     "all-cfg")
         init-all-cfg
         ;;
-    "deps")
-        ensure-deps
-        ;;
-    "aur")
+    "aur-pkg")
         install-pkg pkg/aur
         ;;
-    "libs")
-        install-pkg pkg/libs
-        ;;
-    "dev")
-        install-pkg pkg/dev
-        ;;
-    "cli")
-        install-pkg pkg/cli
-        ;;
-    "apps")
-        install-pkg pkg/apps
-        ;;
-    "games")
-        install-pkg pkg/games
+    "deps")
+        ensure-deps
         ;;
     "amd")
         install-pkg pkg/hw_amd
