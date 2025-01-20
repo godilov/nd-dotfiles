@@ -43,12 +43,13 @@ nvme-cli
 usbutils
 cpupower
 upower
+fwupd
 batsignal
+brightnessctl
 udisks2
 udiskie
 gvfs
 gvfs-mtp
-brightnessctl
 wev
 
 vkmark
