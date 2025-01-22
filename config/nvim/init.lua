@@ -122,23 +122,44 @@ require 'lazy'.setup {
                 {
                     '<leader>fe',
                     function()
-                        require 'neo-tree.command'.execute { toggle = true }
+                        require 'neo-tree.command'.execute { source = 'filesystem', position = 'float', toggle = true }
                     end,
-                    desc = 'Explorer NeoTree',
+                    desc = 'Explorer NeoTree (Float)'
+                },
+                {
+                    '<leader>fE',
+                    function()
+                        require 'neo-tree.command'.execute { source = 'filesystem', position = 'left', toggle = true }
+                    end,
+                    desc = 'Explorer NeoTree (Attach)',
                 },
                 {
                     '<leader>ge',
                     function()
-                        require 'neo-tree.command'.execute { source = 'git_status', toggle = true }
+                        require 'neo-tree.command'.execute { source = 'git_status', position = 'float', toggle = true }
                     end,
-                    desc = 'Git Explorer',
+                    desc = 'Git Explorer (Float)',
+                },
+                {
+                    '<leader>gE',
+                    function()
+                        require 'neo-tree.command'.execute { source = 'git_status', position = 'left', toggle = true }
+                    end,
+                    desc = 'Git Explorer (Attach)',
                 },
                 {
                     '<leader>be',
                     function()
-                        require 'neo-tree.command'.execute { source = 'buffers', toggle = true }
+                        require 'neo-tree.command'.execute { source = 'buffers', position = 'float', toggle = true }
                     end,
-                    desc = 'Buffer Explorer',
+                    desc = 'Buffer Explorer (Float)',
+                },
+                {
+                    '<leader>bE',
+                    function()
+                        require 'neo-tree.command'.execute { source = 'buffers', position = 'left', toggle = true }
+                    end,
+                    desc = 'Buffer Explorer (Attach)',
                 },
             },
         },
