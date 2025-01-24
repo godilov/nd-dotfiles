@@ -137,7 +137,7 @@ for arg in "$@"; do
         install-pkg pkg/hw_nvidia
         ;;
     "reflector")
-        sudo reflector "--sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist"
+        sudo reflector --sort rate --threads 128 --fastest 128 --latest 1024 --protocol https --save /etc/pacman.d/mirrorlist
         ;;
     "services")
         sudo systemctl enable --now NetworkManager.service
