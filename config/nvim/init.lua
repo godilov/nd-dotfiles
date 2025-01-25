@@ -439,7 +439,7 @@ require 'lazy'.setup {
                 { '<leader>cD', '<CMD>FzfLua lsp_document_diagnostics<CR>',                         desc = 'Diagnostics (Local)' },
                 { '<leader>cQ', '<CMD>Trouble diagnostics toggle auto_close=true<CR>',              desc = 'Diagnostics (Global)' },
                 { '<leader>cq', '<CMD>Trouble diagnostics toggle auto_close=true filter.buf=0<CR>', desc = 'Diagnostics (Local)' },
-                { '<leader>ca', '<CMD>FzfLua lsp_code_actions<CR>',                                 desc = 'Code Action' },
+                { '<leader>ca', '<CMD>FzfLua lsp_code_actions<CR>',                                 desc = 'Code Action',           mode = { 'n', 'v' } },
                 { '<leader>ci', '<CMD>FzfLua lsp_incoming_calls<CR>',                               desc = 'Incoming Calls' },
                 { '<leader>co', '<CMD>FzfLua lsp_outgoing_calls<CR>',                               desc = 'Outcoming Calls' },
                 { '<leader>cx', vim.diagnostic.open_float,                                          desc = 'Line Diagnostics' },
