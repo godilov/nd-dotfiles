@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR=$(pwd)
+DIR_APPS=$DIR/apps
 DIR_DEPS=$DIR/deps
 DIR_CONFIG=$DIR/config
 
@@ -49,7 +50,7 @@ function ensure-deps {
     ENSURED=true
 }
 
-function link-config {
+function link {
     src=$1
     srcf=$2
     dest=$3
@@ -62,7 +63,7 @@ function link-config {
     ln -sf $src/$srcf $dest/$destf
 }
 
-function link-config-arr {
+function link-arr {
     src=$1
     dest=$2
 
@@ -80,20 +81,20 @@ function link-config-arr {
 function link-tmux {
     ensure-deps
 
-    link-config-arr $DIR_CONFIG ~ .tmux.conf
+    link-arr $DIR_CONFIG ~ .tmux.conf
 
     ensure-dir ~/.tmux/plugins/
 
-    link-config-arr $DIR_DEPS ~/.tmux/plugins tpm
+    link-arr $DIR_DEPS ~/.tmux/plugins tpm
 }
 
 function link-zsh {
     ensure-deps
 
-    link-config-arr $DIR_CONFIG ~ .zshrc
+    link-arr $DIR_CONFIG ~ .zshrc
 
-    link-config $DIR_DEPS omz ~ .zsh
-    link-config $DIR_CONFIG .profile ~ .zprofile
+    link $DIR_DEPS omz ~ .zsh
+    link $DIR_CONFIG .profile ~ .zprofile
 }
 
 function init-all-pkg {
@@ -103,13 +104,17 @@ function init-all-pkg {
 }
 
 function init-all-cfg {
-    link-config-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
-    link-config-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar
-    link-config-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
-    link-config-arr $DIR_CONFIG ~ .profile .gitconfig
+    link-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
+    link-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar
+    link-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
+    link-arr $DIR_CONFIG ~ .profile .gitconfig
 
     link-tmux
     link-zsh
+}
+
+function init-apps {
+    link-arr $DIR_APPS ~/.local/share/applications nvim.desktop yazi.desktop btop.desktop
 }
 
 for arg in "$@"; do
@@ -117,6 +122,7 @@ for arg in "$@"; do
     "all")
         init-all-pkg
         init-all-cfg
+        init-apps
         ;;
     "all-pkg")
         init-all-pkg
@@ -126,6 +132,9 @@ for arg in "$@"; do
         ;;
     "aur-pkg")
         install-pkg pkg/aur
+        ;;
+    "apps")
+        init-apps
         ;;
     "deps")
         ensure-deps
