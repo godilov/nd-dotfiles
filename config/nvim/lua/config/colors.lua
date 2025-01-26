@@ -1,12 +1,12 @@
 local palette = {
     {
         white   = { '#FFFFFF', '#F2F2F2', '#E6E6E6', '#D9D9D9', '#CCCCCC', '#BFBFBF' },
-        red     = { '#FFCCCC', '#FFB3B3', '#FF9999', '#FF8080' },
-        yellow  = { '#FFE6CC', '#FFD9B3', '#FFCC99', '#FFBF80' },
-        green   = { '#FFFFCC', '#FFFFB3', '#FFFF99', '#FFFF80' },
-        cyan    = { '#CCFFFF', '#B3FFFF', '#99FFFF', '#80FFFF' },
-        blue    = { '#CCE6FF', '#B3D9FF', '#99CCFF', '#80BFFF' },
-        magenta = { '#FFCCE6', '#FFB3D9', '#FF99CC', '#FF80BF' },
+        red     = { '#FFCCCC', '#FFB3B3', '#FF9999', '#FF8080' }, -- exec
+        yellow  = { '#FFE6CC', '#FFD9B3', '#FFCC99', '#FFBF80' }, -- struct
+        green   = { '#FFFFCC', '#FFFFB3', '#FFFF99', '#FFFF80' }, -- literal
+        cyan    = { '#CCFFFF', '#B3FFFF', '#99FFFF', '#80FFFF' }, -- -
+        blue    = { '#CCE6FF', '#B3D9FF', '#99CCFF', '#80BFFF' }, -- keyword
+        magenta = { '#FFCCE6', '#FFB3D9', '#FF99CC', '#FF80BF' }, -- -
     },
     {
         black   = { '#000000', '#0D0D0D', '#1A1A1A', '#262626', '#333333', '#404040' },
@@ -412,12 +412,13 @@ local treesitter_hls = {
 }
 
 local markdown_hls = {
-    { 'RenderMarkdownH1Bg', markdown.bg['heading.1'] },
-    { 'RenderMarkdownH2Bg', markdown.bg['heading.2'] },
-    { 'RenderMarkdownH3Bg', markdown.bg['heading.3'] },
-    { 'RenderMarkdownH4Bg', markdown.bg['heading.4'] },
-    { 'RenderMarkdownH5Bg', markdown.bg['heading.5'] },
-    { 'RenderMarkdownH6Bg', markdown.bg['heading.6'] },
+    { 'RenderMarkdownH1Bg',   markdown.bg['heading.1'] },
+    { 'RenderMarkdownH2Bg',   markdown.bg['heading.2'] },
+    { 'RenderMarkdownH3Bg',   markdown.bg['heading.3'] },
+    { 'RenderMarkdownH4Bg',   markdown.bg['heading.4'] },
+    { 'RenderMarkdownH5Bg',   markdown.bg['heading.5'] },
+    { 'RenderMarkdownH6Bg',   markdown.bg['heading.6'] },
+    { 'RenderMarkdownBullet', { fg = palette[1].yellow[2] } },
 }
 
 local notify_hls = {
