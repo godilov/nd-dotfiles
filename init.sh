@@ -153,6 +153,8 @@ for arg in "$@"; do
 
         systemctl --user enable --now xdg-user-dirs-update.service
         systemctl --user enable --now mpd.service
+        systemctl --user enable --now pipewire.service
+        systemctl --user enable --now wireplumber.service
         ;;
     *)
         echo No args
