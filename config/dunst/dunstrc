@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 16x16
+    offset = 8x8
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -263,7 +263,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 6
+    corner_radius = 4
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.
