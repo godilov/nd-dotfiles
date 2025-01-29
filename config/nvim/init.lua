@@ -483,6 +483,18 @@ require 'lazy'.setup {
                                 capabilities = require 'blink.cmp'.get_lsp_capabilities(),
                             }
                         end,
+                        ['rust_analyzer'] = function()
+                            require 'lspconfig'['rust_analyzer'].setup {
+                                capabilities = require 'blink.cmp'.get_lsp_capabilities(),
+                                settings = {
+                                    ['rust-analyzer'] = {
+                                        check = {
+                                            command = 'clippy',
+                                        },
+                                    },
+                                },
+                            }
+                        end,
                     },
                     ensure_installed = {
                         'rust_analyzer',
