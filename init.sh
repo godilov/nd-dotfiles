@@ -117,12 +117,17 @@ init-apps() {
     link-arr $DIR_APPS ~/.local/share/applications nvim.desktop yazi.desktop btop.desktop
 }
 
+init-groups() {
+    sudo usermod -aG wheel docker gamemod nordvpn $(whoami)
+}
+
 for arg in "$@"; do
     case $arg in
     "all")
         init-all-pkg
         init-all-cfg
         init-apps
+        init-groups
         ;;
     "all-pkg")
         init-all-pkg
