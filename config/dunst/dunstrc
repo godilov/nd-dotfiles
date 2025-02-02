@@ -333,9 +333,9 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#001933"
+    background = "#0D0D0D"
     foreground = "#FFFFFF"
-    frame_color = "#CCE6FF"
+    frame_color = "#80BFFF"
     timeout = 10
     override_pause_level = 0
     icon = dialog-information
@@ -343,9 +343,9 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#331A00"
+    background = "#0D0D0D"
     foreground = "#FFFFFF"
-    frame_color = "#FFE6CC"
+    frame_color = "#FFBF80"
     timeout = 15
     override_pause_level = 30
     icon = dialog-warning
@@ -353,9 +353,9 @@
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#330000"
+    background = "#0D0D0D"
     foreground = "#FFFFFF"
-    frame_color = "#FFCCCC"
+    frame_color = "#FF8080"
     timeout = 0
     override_pause_level = 60
     icon = dialog-error

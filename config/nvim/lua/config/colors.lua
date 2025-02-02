@@ -469,27 +469,27 @@ local function get_lualine_hls()
     return {
         normal  = {
             a = { fg = palette[2].black[1], bg = palette[1].yellow[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].yellow[2] },
+            b = { fg = palette[1].white[1], bg = palette[2].black[4] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         insert  = {
             a = { fg = palette[2].black[1], bg = palette[1].red[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].red[2] },
+            b = { fg = palette[1].white[1], bg = palette[2].black[4] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         visual  = {
             a = { fg = palette[2].black[1], bg = palette[1].green[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].green[2] },
+            b = { fg = palette[1].white[1], bg = palette[2].black[4] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         replace = {
             a = { fg = palette[2].black[1], bg = palette[1].cyan[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].cyan[2] },
+            b = { fg = palette[1].white[1], bg = palette[2].black[4] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
         command = {
             a = { fg = palette[2].black[1], bg = palette[1].blue[4], gui = 'bold' },
-            b = { fg = palette[1].white[1], bg = palette[2].blue[2] },
+            b = { fg = palette[1].white[1], bg = palette[2].black[4] },
             c = { fg = palette[1].white[1], bg = palette[2].black[1] },
         },
     }

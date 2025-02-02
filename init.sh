@@ -105,7 +105,7 @@ function init-all-pkg {
 
 function init-all-cfg {
     link-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
-    link-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar
+    link-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar yazi
     link-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
     link-arr $DIR_CONFIG ~ .profile .gitconfig
 
