@@ -117,7 +117,16 @@ require 'lazy'.setup {
                 'nvim-tree/nvim-web-devicons',
                 'MunifTanjim/nui.nvim',
             },
-            opts = {},
+            opts = {
+                filesystem = {
+                    filtered_items = {
+                        visible = false,
+                        hide_dotfiles = false,
+                        hide_gitignored = false,
+                        hide_hidden = false,
+                    },
+                }
+            },
             keys = {
                 {
                     '<leader>fe',
