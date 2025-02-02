@@ -7,11 +7,11 @@ DIR_CONFIG=$DIR/config
 
 ENSURED=false
 
-function rm-link {
+rm-link() {
     [[ -L "$1" ]] && rm -v $1
 }
 
-function install-pkg {
+install-pkg() {
     PATTERN="^[a-zA-Z0-9_-]+$"
 
     if command -v paru 2>&1 >/dev/null; then
@@ -21,7 +21,7 @@ function install-pkg {
     fi
 }
 
-function ensure-git {
+ensure-git() {
     [[ -d $1 ]] || git clone $2 $1
 
     echo Update $1
@@ -33,11 +33,11 @@ function ensure-git {
     cd - >/dev/null
 }
 
-function ensure-dir {
+ensure-dir() {
     [[ -d $1 ]] || mkdir -p $dest
 }
 
-function ensure-deps {
+ensure-deps() {
     if [ "$ENSURED" = true ]; then
         return
     fi
@@ -50,7 +50,7 @@ function ensure-deps {
     ENSURED=true
 }
 
-function link {
+link() {
     src=$1
     srcf=$2
     dest=$3
@@ -63,7 +63,7 @@ function link {
     ln -sf $src/$srcf $dest/$destf
 }
 
-function link-arr {
+link-arr() {
     src=$1
     dest=$2
 
@@ -78,7 +78,7 @@ function link-arr {
     done
 }
 
-function link-tmux {
+link-tmux() {
     ensure-deps
 
     link-arr $DIR_CONFIG ~ .tmux.conf
@@ -88,7 +88,7 @@ function link-tmux {
     link-arr $DIR_DEPS ~/.tmux/plugins tpm
 }
 
-function link-zsh {
+link-zsh() {
     ensure-deps
 
     link-arr $DIR_CONFIG ~ .zshrc
@@ -97,13 +97,13 @@ function link-zsh {
     link $DIR_CONFIG .profile ~ .zprofile
 }
 
-function init-all-pkg {
+init-all-pkg() {
     cat pkg/init pkg/libs pkg/dev pkg/cli pkg/hypr pkg/apps pkg/games >pkg/all
 
     install-pkg pkg/all
 }
 
-function init-all-cfg {
+init-all-cfg() {
     link-arr $DIR_CONFIG ~/.config alacritty.toml batsignal brave-flags.conf ripgreprc starship.toml
     link-arr $DIR_CONFIG ~/.config bat btop dunst glow hypr mpv nvim tofi waybar yazi
     link-arr $DIR_CONFIG ~/.config retroarch MangoHud gamemode.ini
@@ -113,7 +113,7 @@ function init-all-cfg {
     link-zsh
 }
 
-function init-apps {
+init-apps() {
     link-arr $DIR_APPS ~/.local/share/applications nvim.desktop yazi.desktop btop.desktop
 }
 
