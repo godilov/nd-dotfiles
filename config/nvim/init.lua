@@ -214,6 +214,12 @@ require 'lazy'.setup {
                 { '<leader>gb',      '<CMD>FzfLua git_branches<CR>',    desc = 'Git Branches' },
                 { '<leader>gs',      '<CMD>FzfLua git_status<CR>',      desc = 'Git Status' },
             },
+            config = function(_, opts)
+                local fzf = require 'fzf-lua'
+
+                fzf.setup(opts)
+                fzf.register_ui_select()
+            end,
         },
         {
             'nvim-lualine/lualine.nvim',
