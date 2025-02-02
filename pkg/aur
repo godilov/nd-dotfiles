@@ -1,10 +1,12 @@
 compiledb
+ra-multiplex
 ghcup-hs-bin
 scc-bin
 
 rm-improved
 
 brave-bin
+nordvpn-bin
 
 rpcs3-bin
 proton-ge-custom-bin

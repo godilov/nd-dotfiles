@@ -158,12 +158,13 @@ for arg in "$@"; do
         sudo systemctl enable --now chronyd.service
         sudo systemctl enable --now docker.service
         sudo systemctl enable --now ollama.service
-        sudo systemctl enable --now xboxdrv.service
+        sudo systemctl enable --now nordvpn.service
 
+        systemctl --user enable --now ra-multiplex.service
         systemctl --user enable --now xdg-user-dirs-update.service
-        systemctl --user enable --now mpd.service
         systemctl --user enable --now pipewire.service
         systemctl --user enable --now wireplumber.service
+        systemctl --user enable --now mpd.service
         ;;
     *)
         echo No args

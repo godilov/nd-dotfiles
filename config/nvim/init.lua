@@ -390,6 +390,7 @@ require 'lazy'.setup {
         },
         {
             'neovim/nvim-lspconfig',
+            lazy = vim.fn.argc(-1) == 0,
             event = { 'VeryLazy' },
             dependencies = {
                 'folke/snacks.nvim',
@@ -485,6 +486,7 @@ require 'lazy'.setup {
                         end,
                         ['rust_analyzer'] = function()
                             require 'lspconfig'['rust_analyzer'].setup {
+                                -- cmd = { 'ra-multiplex', 'client' },
                                 capabilities = require 'blink.cmp'.get_lsp_capabilities(),
                                 settings = {
                                     ['rust-analyzer'] = {
