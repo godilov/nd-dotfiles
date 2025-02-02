@@ -670,10 +670,17 @@ require 'lazy'.setup {
             cmd = { 'ConformInfo' },
             event = { 'BufWritePre' },
             opts = {
+                formatters = {
+                    injected = {
+                        options = {
+                            default_edition = '2021',
+                        }
+                    },
+                },
                 formatters_by_ft = {
                     go = { 'gofmt' },
                     rust = { 'rustfmt' },
-                    markdown = { 'prettier' },
+                    markdown = { 'prettier', 'injected' },
                 },
                 default_format_opts = {
                     lsp_format = 'fallback',
@@ -710,7 +717,7 @@ require 'lazy'.setup {
                     end,
                     desc = 'Toggle Autoformat (Local)',
                 },
-            }
+            },
         },
         {
             'rcarriga/nvim-dap-ui',
